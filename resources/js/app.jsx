@@ -15,7 +15,8 @@
  import '../css/app.css';
  import  ReactDOM from 'react-dom/client';
  import Example from './components/Example';
+ import App from './components/App';
  import 'bootstrap/dist/css/bootstrap.min.css';
  import { Nav } from 'react-bootstrap';
  
- ReactDOM.createRoot(document.getElementById('application')).render(<Example />);
+ ReactDOM.createRoot(document.getElementById('application')).render(<App />);
