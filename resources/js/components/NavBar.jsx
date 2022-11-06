@@ -5,7 +5,7 @@ import {Form, Button} from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import {PersonCircle, Search} from 'react-bootstrap-icons';
+import {PersonCircle, Search, Bell, Cart} from 'react-bootstrap-icons';
 import { Link, Outlet } from 'react-router-dom';
 
 function CollapsibleExample() {
@@ -13,7 +13,7 @@ function CollapsibleExample() {
     <>
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">PetWeb</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/ProyectoFinal/public/">PetWeb</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -52,11 +52,20 @@ function CollapsibleExample() {
                 <Dropdown.Item>Mi perfil</Dropdown.Item>
                 <Dropdown.Item>Mis mascotas</Dropdown.Item>
                 <Dropdown.Item>Ajustes</Dropdown.Item>
+                {/*<Nav.Link as={Link} to="/ProyectoFinal/public/example">Login</Nav.Link> */}
                 <Dropdown.Divider/>
                 <Dropdown.Item>Salir</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
         </Navbar.Collapse>
+        <Nav>
+          <Button>
+            <Cart/>
+          </Button>
+          <Button>
+            <Bell/>
+          </Button>
+        </Nav>
       </Container>
     </Navbar>
     <section>
