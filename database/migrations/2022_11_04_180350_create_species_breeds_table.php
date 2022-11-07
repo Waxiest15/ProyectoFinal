@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('species_breeds', function (Blueprint $table) {
-            $table->id();
+            $table->id('ID_SpeciesBreed');
+            $table->string('specie')->unique();
+            $table->string('breed')->unique();
             $table->timestamps();
         });
     }

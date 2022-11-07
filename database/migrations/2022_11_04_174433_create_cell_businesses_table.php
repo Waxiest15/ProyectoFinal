@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cell_businesses', function (Blueprint $table) {
-            $table->id();
+            $table->id('ID_CellBusiness');
+            $table->string('phone', 20);
+            $table->foreignId('ID_Business')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

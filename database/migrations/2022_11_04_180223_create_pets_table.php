@@ -14,7 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pets', function (Blueprint $table) {
-            $table->id();
+            $table->id('ID_Pet');
+            $table->string('name', 100);
+            $table->integer('age');
+            $table->string('size', 100);
+            $table->string('color', 100);
+            $table->text('description');
+            $table->foreignId('ID_User')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('ID_SpeciesBreed')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
