@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Neighborhood extends Model
 {
+    protected $primaryKey = "ID_Neighborhood";
     use HasFactory;
 }

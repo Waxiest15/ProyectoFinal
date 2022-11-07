@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CellUser extends Model
 {
+    protected $primaryKey = "ID_CellUser";
     use HasFactory;
 }

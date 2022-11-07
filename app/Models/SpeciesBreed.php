@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class SpeciesBreed extends Model
 {
+    protected $primaryKey = "ID_SpeciesBreed";
     use HasFactory;
 }

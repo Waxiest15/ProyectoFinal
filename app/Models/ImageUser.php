@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImageUser extends Model
 {
+    protected $primaryKey = "ID_ImageUser";
     use HasFactory;
 }

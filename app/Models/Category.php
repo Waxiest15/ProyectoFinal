@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    protected $primaryKey = "ID_Category";
     use HasFactory;
 }
