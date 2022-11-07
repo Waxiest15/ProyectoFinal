@@ -17,5 +17,8 @@
  import Example from './components/Example';
  import 'bootstrap/dist/css/bootstrap.min.css';
  import { Nav } from 'react-bootstrap';
+ import Map from './components/Map';
  
  ReactDOM.createRoot(document.getElementById('application')).render(<Example />);
+
+ReactDOM.createRoot(document.getElementById('Map')).render(<Map />);
