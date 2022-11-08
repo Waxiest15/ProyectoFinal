@@ -14,8 +14,9 @@ function carousel() {
       <Carousel.Item interval={1000}>
         <img
           className="d-block w-100"
-          src="images/tu mama w.jpg"
+          src="images/Carrusel_1.jfif"
           alt="First slide"
+          class="img-carrousel"
         />
         <Carousel.Caption>
           <h3>First slide label</h3>
@@ -25,8 +26,9 @@ function carousel() {
       <Carousel.Item interval={1000}>
         <img
           className="d-block w-100"
-          src="images/LTG KYS.jpg"
+          src="images/Carrusel_2.jfif"
           alt="Second slide"
+          class="img-carrousel"
         />
         <Carousel.Caption>
           <h3>Second slide label</h3>
@@ -36,8 +38,9 @@ function carousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="images/4lst2s.jpg"
+          src="images/Carrusel_3.jpg"
           alt="Third slide"
+          class="img-carrousel"
         />
         <Carousel.Caption>
           <h3>Third slide label</h3>
@@ -50,7 +53,7 @@ function carousel() {
     <br />
     <CardGroup>
       <Card>
-        <Card.Img variant="top" src="" />
+        <Card.Img variant="top" src="images/collar.jpg" class="img-main-products" />
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <Card.Text>
@@ -63,7 +66,7 @@ function carousel() {
         </Card.Footer>
       </Card>
       <Card>
-        <Card.Img variant="top" src="" />
+        <Card.Img variant="top" src="images/comerLento.jpg" class="img-main-products"/>
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <Card.Text>
@@ -76,7 +79,7 @@ function carousel() {
         </Card.Footer>
       </Card>
       <Card>
-        <Card.Img variant="top" src="" />
+        <Card.Img  variant="top" src="images/hulerojo.jpg" class="img-main-products"/>
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <Card.Text>

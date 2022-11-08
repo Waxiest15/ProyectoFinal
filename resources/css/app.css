@@ -15,8 +15,21 @@
 .footer {
     border: 1px rgb(33, 37, 41) solid;
     background-color: rgb(33, 37, 41);
+    padding: 3% 0 0 0;
 }
 
 .footer * {
     color: white;
 }
+ .img-main-products{
+  margin: 3% auto 0 auto;  
+  height: auto;
+  max-height: 250px;
+  width: auto;
+  max-width: 250px;
+ }
+
+ .img-carrousel{
+    max-height: 300px;
+    width: 100%;
+ }

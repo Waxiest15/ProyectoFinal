@@ -1,6 +1,8 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import "/xampp/htdocs/ProyectoFinal/resources/css/app.css"
 
@@ -8,20 +10,42 @@ function ProfileCard() {
   return (
     <div class="div_card-profile">
         <Container>
-        <Card style={{ width: '18rem' }}>
-      <Card.Img  src="images/default-person.jpg" />
-      <Card.Body>
-        <Card.Title>Nombre Completo</Card.Title>
+        <Card className="w-50 p-3">
+          <Card.Header className="w-100 text-center">Nombre</Card.Header>
+      <Row>
+        <Col>
+          <Card.Img  src="images/profile-default.webp" />  
+        </Col>
+        <Col>
+          <ListGroup className="list-group-flush">
+            <Row>
+              <Col>
+              <ListGroup.Item>Edad: </ListGroup.Item>  
+              </Col>
+              <Col>
+              <ListGroup.Item>Genero: </ListGroup.Item>
+              </Col>
+            </Row>
+            <ListGroup.Item>Direccion: </ListGroup.Item>
+            <ListGroup.Item>Informacion de contacto</ListGroup.Item>
+            <ListGroup.Item>Correo: </ListGroup.Item>
+            <ListGroup.Item>Telefono: </ListGroup.Item>
+          </ListGroup>  
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+        <Card.Body>
+        <Card.Title>Mascotas</Card.Title> 
         <Card.Text>
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
       </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroup.Item>Cras justo odio</ListGroup.Item>
-        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-        <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-      </ListGroup>
+        </Col>
+      </Row>
+      
+      
       <Card.Body>
         <Card.Link href="#">Card Link</Card.Link>
         <Card.Link href="#">Another Link</Card.Link>

@@ -5,7 +5,7 @@ import {Form, Button} from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import {PersonCircle, Search, Bell, Cart} from 'react-bootstrap-icons';
+import {PersonCircle, Search, Bell, Cart, Facebook} from 'react-bootstrap-icons';
 import { Link, Outlet } from 'react-router-dom';
 
 
@@ -13,29 +13,29 @@ const Footer = () => <footer className="page-footer font-small blue pt-4" class=
     <div className="container-fluid text-center text-md-left" >
         <div className="row">
             <div className="col-md-6 mt-md-0 mt-3">
-                <h5 className="text-uppercase">Footer Content</h5>
-                <p>Here you can use rows and columns to organize your footer content.</p>
+                <h5 className="text-uppercase">PetWeb</h5>
+                <p>Empresa dedicada a ayudarte a encontrar lo mejor de lo mejor para tu mascota</p>
             </div>
 
             <hr className="clearfix w-100 d-md-none pb-0"/>
 
             <div className="col-md-3 mb-md-0 mb-3">
-                <h5 className="text-uppercase">Links</h5>
+                <h5 className="text-uppercase">Acerca de</h5>
                 <ul className="list-unstyled">
-                    <li><a href="#!">Link 1</a></li>
-                    <li><a href="#!">Link 2</a></li>
-                    <li><a href="#!">Link 3</a></li>
-                    <li><a href="#!">Link 4</a></li>
+                    <li><a>PetWeb</a></li>
+                    <li><a>Ser vendedor</a></li>
+                    <li><a>Politicas de privacidad</a></li>
+                    <li><a></a></li>
                 </ul>
             </div>
 
             <div className="col-md-3 mb-md-0 mb-3">
-                <h5 className="text-uppercase">Links</h5>
+                <h5 className="text-uppercase">Informacion de contacto</h5>
                 <ul className="list-unstyled">
-                    <li><a href="#!">Link 1</a></li>
-                    <li><a href="#!">Link 2</a></li>
-                    <li><a href="#!">Link 3</a></li>
-                    <li><a href="#!">Link 4</a></li>
+                    <li><a>Facebook</a></li>
+                    <li><a>Whatsapp</a></li>
+                    <li><a>Twitter</a></li>
+                    <li><a>Correo</a></li>
                 </ul>
             </div>
         </div>
