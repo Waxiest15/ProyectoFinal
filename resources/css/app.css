@@ -8,3 +8,15 @@
     margin: 3% auto 0 auto;
 }
 
+.div_card-profile *{
+    margin: 3% auto 0 auto;
+}
+
+.footer {
+    border: 1px rgb(33, 37, 41) solid;
+    background-color: rgb(33, 37, 41);
+}
+
+.footer * {
+    color: white;
+}
