@@ -9,4 +9,8 @@ class SpeciesBreed extends Model
 {
     protected $primaryKey = "ID_SpeciesBreed";
     use HasFactory;
+
+    public function pet(){
+        return $this->belongsTo(Pet::class, 'ID_SpeciesBreed', 'ID_Pet');
+    }
 }

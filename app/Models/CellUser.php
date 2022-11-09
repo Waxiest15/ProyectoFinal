@@ -9,4 +9,8 @@ class CellUser extends Model
 {
     protected $primaryKey = "ID_CellUser";
     use HasFactory;
+
+    public function user(){
+        return $this->belongsTo(User::class, 'ID_CellUser', 'ID_User');
+    }
 }

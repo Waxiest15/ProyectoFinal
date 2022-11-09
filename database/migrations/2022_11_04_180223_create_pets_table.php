@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('size', 100);
             $table->string('color', 100);
             $table->text('description');
+            $table->boolean('state');//perdida o no xd
             $table->foreignId('ID_User')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('ID_SpeciesBreed')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

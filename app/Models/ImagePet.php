@@ -9,4 +9,8 @@ class ImagePet extends Model
 {
     protected $primaryKey = "ID_ImagePet";
     use HasFactory;
+
+    public function pet(){
+        return $this->belongsTo(Pet::class, 'ID_ImagePet', 'ID_Pet');
+    }
 }

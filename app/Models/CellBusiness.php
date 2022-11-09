@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class CellBusiness extends Model
 {
     protected $primaryKey = "ID_CellBusiness";
-    use HasFactory;
+    use HasFactory;   
 }

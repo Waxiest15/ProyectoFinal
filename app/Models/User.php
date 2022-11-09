@@ -13,6 +13,14 @@ class User extends Authenticatable
     protected $primaryKey = "ID_User";
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function cellUser(){
+        return $this->hasMany(CellUser::class, 'ID_User', 'ID_CellUser');
+    }
+
+    public function imageUser(){
+        return $this->hasMany(ImageUser::class, 'ID_User', 'ID_ImageUser');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

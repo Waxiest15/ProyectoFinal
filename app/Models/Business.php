@@ -9,4 +9,8 @@ class Business extends Model
 {
     protected $primaryKey = "ID_Business";
     use HasFactory;
+
+    public function imageBusiness(){
+        return $this->hasMany(ImageBusiness::class, 'ID_Business', 'ID_ImageBusiness');
+    }
 }
