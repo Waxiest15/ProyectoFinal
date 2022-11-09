@@ -9,4 +9,8 @@ class City extends Model
 {
     protected $primaryKey = "ID_City";
     use HasFactory;
+
+    public function address(){
+        return $this->belongsTo(Address::class, 'ID_City', 'ID_Address');
+    }
 }

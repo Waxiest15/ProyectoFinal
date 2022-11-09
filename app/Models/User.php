@@ -21,6 +21,28 @@ class User extends Authenticatable
         return $this->hasMany(ImageUser::class, 'ID_User', 'ID_ImageUser');
     }
 
+    public function addressUser(){
+        return $this->hasManyThrough(
+            Address::class, 
+            AddressUser::class,
+            'ID_User',
+            'ID_AddressUser',
+            'ID_User',
+            'ID_AddressUser'
+        );
+    }
+
+    public function addressBusiness(){
+        return $this->hasManyThrough(
+            Address::class,
+            AddressBusiness::class,
+            'ID_User',
+            'ID_AddressBusiness',
+            'ID_User',
+            'ID_AddressBusiness'
+        );
+    }
+
     /**
      * The attributes that are mass assignable.
      *

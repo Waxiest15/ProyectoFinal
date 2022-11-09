@@ -9,4 +9,8 @@ class Street extends Model
 {
     protected $primaryKey = "ID_Street";
     use HasFactory;
+
+    public function address(){
+        return $this->belongsTo(Address::class, 'ID_Street', 'ID_Address');
+    }
 }
