@@ -19,17 +19,21 @@ function AddPet() {
             <h1>Nueva mascota</h1>
                 <Container>
                 <Form.Group className="mb-0">
-                    <Form.Label className="w-100">Nombre: <Form.Control type="text" placeholder="Insert name"></Form.Control></Form.Label>
+                    <Form.Label className="w-100">Nombre: <Form.Control type="text" placeholder="Escribe su nombre"></Form.Control></Form.Label>
                 </Form.Group>
             <Row ClassName="d-grip gap-3">
                 <Col className='col-6'>
-                    <Card.Img  src="images/Koda.jpg" style={{maxWidth: '300px', maxHeight: '300px', margin: "10px"}}/>
+                    <Form.Group>
+                        <Form.Control type="file">
+
+                        </Form.Control>
+                    </Form.Group>
                 </Col>
                 <Col>
                 <Row>
                     <Col>
                     <Form.Group className="mb-0">
-                    <Form.Label>Especie: <DropdownButton id="dropdown-basic-button" title="Select one">
+                    <Form.Label>Especie: <DropdownButton id="dropdown-basic-button" title="Selecciona una">
                         <Dropdown.Item>Action</Dropdown.Item>
                         <Dropdown.Item>Another action</Dropdown.Item>
                         <Dropdown.Item>Something else</Dropdown.Item>
@@ -39,7 +43,7 @@ function AddPet() {
                     <Col>
                     <Form.Group className="mb-3">
                     
-                    <Form.Label>Raza: <DropdownButton id="dropdown-basic-button" title="Select one">
+                    <Form.Label>Raza: <DropdownButton id="dropdown-basic-button" title="Selecciona una">
                         <Dropdown.Item>Action</Dropdown.Item>
                         <Dropdown.Item>Another action</Dropdown.Item>
                         <Dropdown.Item>Something else</Dropdown.Item>
@@ -47,22 +51,22 @@ function AddPet() {
                 </Form.Group>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="w-100">
                     <Col>
                     <Form.Group className="mb-0">
-                    <Form.Label>Pelaje: <Form.Control type="text" placeholder="Insert name"></Form.Control></Form.Label>
+                    <Form.Label>Pelaje: <Form.Control className="w-100" type="text" placeholder="Describe su pelaje"></Form.Control></Form.Label>
                 </Form.Group>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
                     <Form.Group className="mb-0">
-                        <Form.Label>Edad: <Form.Control type="number" placeholder="Age"></Form.Control></Form.Label>
+                        <Form.Label>Edad: <Form.Control type="number" placeholder="Año(s)"></Form.Control></Form.Label>
                     </Form.Group>
                     </Col>
                     <Col>
                     <Form.Group className="mb-0">
-                        <Form.Label>Altura: <Form.Control type="number" placeholder="Age"></Form.Control></Form.Label>
+                        <Form.Label>Altura: <Form.Control type="number" placeholder="metros"></Form.Control></Form.Label><Form.Label></Form.Label>
                     </Form.Group>
                     </Col>
                 </Row>
@@ -71,14 +75,14 @@ function AddPet() {
             <Row>
                 <Col>
                 <Form.Group className="mb-0">
-                    <Form.Label className='w-100'>Descripcion Fisica: <Form.Control type="text" placeholder="Insert name"></Form.Control></Form.Label>
+                    <Form.Label className='w-100'>Descripcion Fisica: <Form.Control type="text" placeholder="Escribe algunas caracteristicas"></Form.Control></Form.Label>
                 </Form.Group>
                 </Col>
             </Row>
             <Row>
                 <Col>
                 <Form.Group className="mb-0">
-                    <Form.Label className="w-100">Notas: <Form.Control type="text" placeholder="Insert name"></Form.Control></Form.Label>
+                    <Form.Label className="w-100">Notas: <Form.Control type="text" placeholder="Describe algunas actitudes de tu mascota o comportamientos"></Form.Control></Form.Label>
                 </Form.Group>
                 </Col>
             </Row>

@@ -12,7 +12,7 @@ import { BrowserRouter, Route, Routes, Router} from "react-router-dom"
 
 export default function App() {
     return (
-        <div className="App">
+        <div className="App" class="div-main"> 
             <BrowserRouter>
                 <Routes>
                     <Route path="/ProyectoFinal/public/" element={<NavBar />}>

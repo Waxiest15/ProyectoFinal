@@ -52,11 +52,11 @@ function CollapsibleExample() {
     <>
     
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
+      <Container className="p-2">
         <Navbar.Brand as={Link} to="/ProyectoFinal/public/">PetWeb</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto" fill>
             <NavDropdown title="Servicios" id="collasible-nav-dropdown">
               <NavDropdown.Item>Paseo</NavDropdown.Item>
               <NavDropdown.Item>Aseo</NavDropdown.Item>
@@ -67,27 +67,21 @@ function CollapsibleExample() {
               <NavDropdown.Item>Servicios Funerarios</NavDropdown.Item>
               <NavDropdown.Item>Veterinaria</NavDropdown.Item>
               <NavDropdown.Item>Estadia</NavDropdown.Item>
-
-              <NavDropdown.Item>
-                Separated link
-              </NavDropdown.Item>
             </NavDropdown>
-            <Form className="d-flex">
+            <Form className="d-flex ms-3" >
                   <Form.Control
                     type="search"
-                    placeholder="Search"
-                    className="me-2"
+                    placeholder="Buscar"
+                    className="me-2 w-100"
                     aria-label="Search"
                   />
                   <Button variant="outline-success"><Search/></Button>
                 </Form>
           </Nav>
-          <Nav>
-          
-          </Nav>
-            <Dropdown as={ButtonGroup}>
+          <Nav className="me-3">
+          <Dropdown as={ButtonGroup}>
             <Button variant="success"><PersonCircle/></Button>
-            <Dropdown.Toggle split variant="success" id="dropdown-spli  t-basic">Usuario</Dropdown.Toggle>
+            <Dropdown.Toggle split variant="success" id="dropdown-spli  t-basic">Usuario {' '}</Dropdown.Toggle>
             <Dropdown.Menu>
                 <Dropdown.Item as={Link} to="/ProyectoFinal/public/profile">Mi perfil</Dropdown.Item>
                 <Dropdown.Item as={Link} to="/ProyectoFinal/public/pets">Mis mascotas</Dropdown.Item>
@@ -98,18 +92,20 @@ function CollapsibleExample() {
                 <Dropdown.Item>Salir</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
-        </Navbar.Collapse>
-        <Nav>
-          <Button>
+          </Nav>
+          <Nav>
+          <Button className="me-2">
             <Cart/>
           </Button>
           <Button>
             <Bell/>
           </Button>
-        </Nav>
+        </Nav> 
+        </Navbar.Collapse>
+        
       </Container>
     </Navbar>
-    <section>
+    <section class="section-main">
         <Outlet>
 
         </Outlet>

@@ -19,7 +19,7 @@ function carousel() {
           class="img-carrousel"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
+          <h3>primera</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -31,7 +31,7 @@ function carousel() {
           class="img-carrousel"
         />
         <Carousel.Caption>
-          <h3>Second slide label</h3>
+          <h3>Segunda pantalla</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -43,7 +43,7 @@ function carousel() {
           class="img-carrousel"
         />
         <Carousel.Caption>
-          <h3>Third slide label</h3>
+          <h3>Tercera pantalla</h3>
           <p>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
           </p>
@@ -55,10 +55,9 @@ function carousel() {
       <Card>
         <Card.Img variant="top" src="images/collar.jpg" class="img-main-products" />
         <Card.Body>
-          <Card.Title>Card title</Card.Title>
+          <Card.Title>Collar rosa para perro</Card.Title>
           <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
+            Collar decorativo para mascota, color rosa y con sincho para asegurar que no se suelte
           </Card.Text>
         </Card.Body>
         <Card.Footer>
@@ -68,10 +67,9 @@ function carousel() {
       <Card>
         <Card.Img variant="top" src="images/comerLento.jpg" class="img-main-products"/>
         <Card.Body>
-          <Card.Title>Card title</Card.Title>
+          <Card.Title>Tazon antiestres</Card.Title>
           <Card.Text>
-            This card has supporting text below as a natural lead-in to
-            additional content.{' '}
+            Tazon diseñado para hacer comer al animal mas despacio, ayudando a su nutricion y absorver los nutrimentos de forma adecuada{' '}
           </Card.Text>
         </Card.Body>
         <Card.Footer>
@@ -81,11 +79,9 @@ function carousel() {
       <Card>
         <Card.Img  variant="top" src="images/hulerojo.jpg" class="img-main-products"/>
         <Card.Body>
-          <Card.Title>Card title</Card.Title>
+          <Card.Title>Bola de juguete de goma extradura</Card.Title>
           <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This card has even longer content than the
-            first to show that equal height action.
+            Pelota de juguete de goma roja ultraresistente para uso duradero sin desgaste, hecho de material no toxico
           </Card.Text>
         </Card.Body>
         <Card.Footer>

@@ -11,6 +11,7 @@ function ProfileCard() {
     <div class="div_card-profile">
         <Container>
         <Card className="w-50 p-3">
+        <h1>MI perfil</h1>
           <Card.Header className="w-100 text-center">Nombre</Card.Header>
       <Row>
         <Col>
@@ -37,19 +38,14 @@ function ProfileCard() {
         <Col>
         <Card.Body>
         <Card.Title>Mascotas</Card.Title> 
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
+        <Row>
+          <Col>Nombre</Col>
+          <Col>Especie</Col>
+          <Col>Raza</Col>
+        </Row>
       </Card.Body>
         </Col>
       </Row>
-      
-      
-      <Card.Body>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body>
     </Card>
     </Container>
     </div>

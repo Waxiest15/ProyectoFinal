@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 import "/xampp/htdocs/ProyectoFinal/resources/css/app.css"
 
-function ProfileCard() {
+function PetCard() {
   return (
     <div class="div_card-profile">
         <Container className="w-50">
@@ -22,12 +22,12 @@ function ProfileCard() {
                 </Col>
                 <Col>
                     <ListGroup className="list-group-flush">
-                        <ListGroup.Item>Especie: </ListGroup.Item>
-                        <ListGroup.Item>Raza: </ListGroup.Item>
-                        <ListGroup.Item>Pelaje: </ListGroup.Item>
-                        <ListGroup.Item>Edad: </ListGroup.Item>
-                        <ListGroup.Item>Altura: </ListGroup.Item>
-                        <ListGroup.Item>Caracteristicas Fisicas: </ListGroup.Item>
+                        <ListGroup.Item>Especie: Perro</ListGroup.Item>
+                        <ListGroup.Item>Raza: Labrador</ListGroup.Item>
+                        <ListGroup.Item>Pelaje: Negro</ListGroup.Item>
+                        <ListGroup.Item>Edad: 2 años</ListGroup.Item>
+                        <ListGroup.Item>Altura: 1.0m</ListGroup.Item>
+                        <ListGroup.Item>Caracteristicas Fisicas: Sancon</ListGroup.Item>
                     </ListGroup>
                 </Col>
             </Row>
@@ -36,8 +36,7 @@ function ProfileCard() {
                 <Card.Body>
                         <Card.Text>Notas:</Card.Text>
                         <Card.Text>
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
+                        Comunmente jugueton, despues de un rato se quedara dormido
                         </Card.Text>
                     </Card.Body>
                 </Col>
@@ -48,4 +47,4 @@ function ProfileCard() {
   );
 }
 
-export default ProfileCard;
+export default PetCard;

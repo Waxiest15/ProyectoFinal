@@ -6,19 +6,22 @@ import Card from 'react-bootstrap/Card';
 function Login() {
   return (
     <div class="login-div">
-        <Container className="w-50" style={{border: '1px black solid'}}>
+        <Container className="w-50">
+        <Card className="p-3">
+          <Card.Header className="text-center">
+            <h2>Inicio de sesion</h2>
+          </Card.Header>
         <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Label>Correo electronico</Form.Label>
+        <Form.Control type="email" placeholder="Correo electronico" />
         <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
         </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Label>Contraseña</Form.Label>
+        <Form.Control type="password" placeholder="Contraseña" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
@@ -27,6 +30,7 @@ function Login() {
         Submit
       </Button>
     </Form>
+        </Card>
     </Container>
     </div>
   );
