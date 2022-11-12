@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('address_businesses', function (Blueprint $table) {
             $table->id('ID_AdressBusiness');
-            $table->foreignId('ID_Address')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('ID_Business')->constrained()->cascadeOnDelete();
+            $table->foreignId('ID_Address')->constrained()->cascadeOnDelete()->cascadeOnUpdate();            
             $table->timestamps();
         });
     }

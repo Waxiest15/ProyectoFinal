@@ -9,8 +9,12 @@ class CellUser extends Model
 {
     protected $primaryKey = "ID_CellUser";
     use HasFactory;
+    
+    protected $fillable = [
+        'phone'
+    ];
 
     public function user(){
-        return $this->belongsTo(User::class, 'ID_CellUser', 'ID_User');
+        return $this->belongsTo(User::class, 'ID_User', 'ID_CellUser');
     }
 }

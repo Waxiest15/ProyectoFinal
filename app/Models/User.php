@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\CellUser;
+use App\Models\ImageUser;
+use App\Models\Address;
+use App\Models\AddressUser;
+use App\Models\Product;
+use App\Models\Pet;
 
 class User extends Authenticatable
 {
@@ -14,14 +20,18 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public function cellUser(){
-        return $this->hasMany(CellUser::class, 'ID_User', 'ID_CellUser');
+        return $this->hasMany(CellUser::class, 'ID_User', 'ID_User');
     }
 
     public function imageUser(){
-        return $this->hasMany(ImageUser::class, 'ID_User', 'ID_ImageUser');
+        return $this->hasMany(ImageUser::class, 'ID_User', 'ID_User');
     }
 
-    public function addressUser(){
+    public function pet(){
+        return $this->hasMany(Pet::class, 'ID_User', 'ID_User');
+    }
+
+    public function dataAddressUser(){
         return $this->hasManyThrough(
             Address::class, 
             AddressUser::class,
@@ -32,17 +42,24 @@ class User extends Authenticatable
         );
     }
 
-    public function addressBusiness(){
-        return $this->hasManyThrough(
+    public function addressUser(){
+        return $this->belongsToMany(
             Address::class,
-            AddressBusiness::class,
+            'address_users',
+            'ID_AddressUser',
             'ID_User',
-            'ID_AddressBusiness',
-            'ID_User',
-            'ID_AddressBusiness'
+            'ID_Address'
         );
     }
 
+    public function buy(){
+        return $this->belongsToMany(
+            Product::class,
+            'buys',
+            'ID_User',
+            'ID_Product'
+        );
+    }
     /**
      * The attributes that are mass assignable.
      *

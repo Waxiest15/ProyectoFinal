@@ -4,27 +4,57 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\State;
+use App\Models\City;
+use App\Models\Neighborhood;
+use App\Models\Street;
+use App\Models\User;
+use App\Models\Business;
 
 class Address extends Model
-{
+{//Ta' bien :D
     protected $primaryKey = "ID_Address";
+
     use HasFactory;
 
+    protected $fillable = [
+        'number'
+    ];
+
     public function state(){
-        return $this->hasMany(State::class, 'ID_Address', 'ID_State');
+        return $this->belongsTo(State::class, 'ID_State', 'ID_Address');
     }
 
     public function city(){
-        return $this->hasMany(City::class, 'ID_Address', 'ID_City');
+        return $this->belongsTo(City::class, 'ID_City', 'ID_Address');
     }
 
     public function neighborhood(){
-        return $this->hasMany(Neighborhood::class, 'ID_Address','ID_Neighborhood');
+        return $this->belongsTo(Neighborhood::class, 'ID_Neighborhood','ID_Address');
     }
 
     public function street(){
-        return $this->hasMany(Street::class, 'ID_Address', 'ID_Street');
+        return $this->belongsTo(Street::class, 'ID_Street', 'ID_Address');
     }
+
+    public function addressUser(){
+        return $this->belongsToMany(
+            User::class,
+            'address_users',
+            'ID_Address',
+            'ID_User'
+        );
+    }
+
+    public function addressBusiness(){
+        return $this->belongsToMany(
+            Business::class,
+            'address_businesses',
+            'ID_Address',
+            'ID_Business'
+        );
+    }
+
 
     
 }

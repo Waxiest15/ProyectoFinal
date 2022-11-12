@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('address_users', function (Blueprint $table) {
             $table->id('ID_AddressUser');
-            $table->foreignId('ID_Address')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('ID_User')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('ID_Address')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

@@ -9,4 +9,8 @@ class Buy extends Model
 {
     protected $primaryKey = "ID_Buy";
     use HasFactory;
+    
+    protected $fillable = [
+        'date'
+    ];
 }
