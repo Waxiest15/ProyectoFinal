@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('image_businesses', function (Blueprint $table) {
-            $table->id('ID_ImageBusiness');
-            $table->string('route', 100);
-            $table->foreignId('ID_Business')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+        Schema::create('shopping_carts', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_businesses');
+        Schema::dropIfExists('shopping_carts');
     }
 };

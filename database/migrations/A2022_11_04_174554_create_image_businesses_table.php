@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id('ID_Product');
-            $table->string('name', 100);
-            $table->json('size')->nullable();
-            $table->float('weight')->nullable();
-            $table->text('description');
-            $table->foreignId('ID_Category')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+        Schema::create('image_businesses', function (Blueprint $table) {
+            $table->id('ID_ImageBusiness');
+            $table->string('route', 100);
+            $table->foreignId('ID_Business')->constrained('businesses', 'ID_Business')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('image_businesses');
     }
 };

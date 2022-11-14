@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pets', function (Blueprint $table) {
-            $table->id('ID_Pet');
+        Schema::create('products', function (Blueprint $table) {
+            $table->id('ID_Product');
             $table->string('name', 100);
-            $table->integer('age');
-            $table->string('size', 100);
-            $table->string('color', 100);
+            $table->json('size')->nullable();
+            $table->float('weight')->nullable();
             $table->text('description');
-            $table->boolean('state');//perdida o no xd
-            $table->foreignId('ID_User')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('ID_SpeciesBreed')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('ID_Category')->constrained('categories', 'ID_Category')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pets');
+        Schema::dropIfExists('products');
     }
 };

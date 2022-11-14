@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('address_businesses', function (Blueprint $table) {
-            $table->id('ID_AdressBusiness');
-            $table->foreignId('ID_Business')->constrained()->cascadeOnDelete();
-            $table->foreignId('ID_Address')->constrained()->cascadeOnDelete()->cascadeOnUpdate();            
+        Schema::create('image_products', function (Blueprint $table) {
+            $table->id('ID_ImageProduct');
+            $table->string('route', 100);
+            $table->foreignId('ID_Product')->constrained('products', 'ID_Product')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address_businesses');
+        Schema::dropIfExists('image_products');
     }
 };

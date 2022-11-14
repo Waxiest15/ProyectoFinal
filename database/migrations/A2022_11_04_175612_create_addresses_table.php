@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id('ID_Address');
-            $table->foreignId('ID_State')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('ID_City')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('ID_Neighborhood')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('ID_City')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('ID_State')->constrained('states', 'ID_State')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('ID_City')->constrained('cities', 'ID_City')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('ID_Neighborhood')->constrained('neighborhoods', 'ID_Neighborhood')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('ID_Street')->constrained('streets', 'ID_Street')->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('numer');
             $table->timestamps();
         });

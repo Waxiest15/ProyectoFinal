@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('image_pets', function (Blueprint $table) {
-            $table->id('ID_ImagePet');
-            $table->string('route', 100);
-            $table->foreignId('ID_Pet')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_pets');
+        Schema::dropIfExists('comments');
     }
 };
