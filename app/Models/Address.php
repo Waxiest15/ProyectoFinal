@@ -13,8 +13,6 @@ use App\Models\Business;
 
 class Address extends Model
 {//Ta' bien :D
-    protected $primaryKey = "ID_Address";
-
     use HasFactory;
 
     protected $fillable = [
@@ -22,36 +20,32 @@ class Address extends Model
     ];
 
     public function state(){
-        return $this->belongsTo(State::class, 'ID_State', 'ID_Address');
+        return $this->belongsTo(State::class);
     }
 
     public function city(){
-        return $this->belongsTo(City::class, 'ID_City', 'ID_Address');
+        return $this->belongsTo(City::class);
     }
 
     public function neighborhood(){
-        return $this->belongsTo(Neighborhood::class, 'ID_Neighborhood','ID_Address');
+        return $this->belongsTo(Neighborhood::class);
     }
 
     public function street(){
-        return $this->belongsTo(Street::class, 'ID_Street', 'ID_Address');
+        return $this->belongsTo(Street::class);
     }
 
     public function addressUser(){
         return $this->belongsToMany(
             User::class,
-            'address_users',
-            'ID_Address',
-            'ID_User'
+            'address_users'
         );
     }
 
     public function addressBusiness(){
         return $this->belongsToMany(
             Business::class,
-            'address_businesses',
-            'ID_Address',
-            'ID_Business'
+            'address_businesses'
         );
     }
 

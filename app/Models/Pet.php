@@ -11,7 +11,6 @@ use App\Models\User;
 
 class Pet extends Model
 {
-    protected $primaryKey = "ID_Pet";
     use HasFactory;
 
     protected $fillable = [
@@ -24,15 +23,15 @@ class Pet extends Model
     ];
     
     public function imagePet(){
-        return $this->hasMany(ImagePet::class, 'ID_Pet', 'ID_Pet');
+        return $this->hasMany(ImagePet::class);
     }
 
     public function speciesBreed(){
-        return $this->belongsTo(SpeciesBreed::class, 'ID_SpeciesBreed', 'ID_Pet');
+        return $this->belongsTo(SpeciesBreed::class);
     }
 
     public function user(){
-        return $this->belongsTo(User::class,'ID_User', 'ID_Pet');
+        return $this->belongsTo(User::class);
     }
 
 }

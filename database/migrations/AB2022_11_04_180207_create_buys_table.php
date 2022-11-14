@@ -15,9 +15,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('buys', function (Blueprint $table) {
-            $table->id('ID_Buy');
-            $table->foreignId('ID_User')->constrained('users', 'ID_User')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('ID_Product')->constrained('products', 'ID_Product')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->dateTime('date');
             $table->timestamps();
         });

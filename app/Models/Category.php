@@ -8,7 +8,6 @@ use App\Models\Product;
 
 class Category extends Model
 {
-    protected $primaryKey = "ID_Category";
     use HasFactory;
 
     protected $fillable = [
@@ -16,6 +15,6 @@ class Category extends Model
     ];
 
     public function products(){
-        return $this->hasMany(Product::class, 'ID_Category', 'ID_Category');
+        return $this->hasMany(Product::class);
     }
 }

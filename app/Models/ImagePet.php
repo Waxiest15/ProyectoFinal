@@ -8,7 +8,6 @@ use App\Models\Pet;
 
 class ImagePet extends Model
 {
-    protected $primaryKey = "ID_ImagePet";
     use HasFactory;
 
     protected $fillable = [
@@ -16,6 +15,6 @@ class ImagePet extends Model
     ];
 
     public function pet(){
-        return $this->belongsTo(Pet::class, 'ID_Pet', 'ID_ImagePet');
+        return $this->belongsTo(Pet::class);
     }
 }

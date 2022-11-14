@@ -8,7 +8,6 @@ use App\Models\Pet;
 
 class SpeciesBreed extends Model
 {
-    protected $primaryKey = "ID_SpeciesBreed";
     use HasFactory;
 
     protected $fillable = [
@@ -18,6 +17,6 @@ class SpeciesBreed extends Model
 
 
     public function pet(){
-        return $this->hasOne(Pet::class, 'ID_SpeciesBreed', 'ID_SpeciesBreed');
+        return $this->hasOne(Pet::class);
     }
 }

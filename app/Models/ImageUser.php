@@ -8,7 +8,6 @@ use App\Models\User;
 
 class ImageUser extends Model
 {
-    protected $primaryKey = "ID_ImageUser";
     use HasFactory;
 
     protected $fillable = [
@@ -16,6 +15,6 @@ class ImageUser extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class, 'ID_User', 'ID_ImageUser');
+        return $this->belongsTo(User::class);
     }
 }

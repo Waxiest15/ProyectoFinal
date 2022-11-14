@@ -8,10 +8,9 @@ use App\Models\Address;
 
 class Street extends Model
 {
-    protected $primaryKey = "ID_Street";
     use HasFactory;
 
     public function address(){
-        return $this->hasMany(Address::class, 'ID_Street', 'ID_Street');
+        return $this->hasMany(Address::class);
     }
 }

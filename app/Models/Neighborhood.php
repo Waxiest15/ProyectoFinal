@@ -8,7 +8,6 @@ use App\Models\Address;
 
 class Neighborhood extends Model
 {
-    protected $primaryKey = "ID_Neighborhood";
     use HasFactory;
 
     protected $fillable = [
@@ -16,6 +15,6 @@ class Neighborhood extends Model
     ];
 
     public function address(){
-        return $this->hasMany(Address::class, 'ID_Neighborhood', 'ID_Neighborhood');
+        return $this->hasMany(Address::class);
     }
 }

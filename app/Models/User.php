@@ -20,46 +20,60 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public function cellUser(){
-        return $this->hasMany(CellUser::class, 'ID_User', 'ID_User');
+        return $this->hasMany(CellUser::class);
     }
 
     public function imageUser(){
-        return $this->hasMany(ImageUser::class, 'ID_User', 'ID_User');
+        return $this->hasMany(ImageUser::class);
     }
 
     public function pet(){
-        return $this->hasMany(Pet::class, 'ID_User', 'ID_User');
+        return $this->hasMany(Pet::class);
     }
 
     public function dataAddressUser(){
         return $this->hasManyThrough(
             Address::class, 
-            AddressUser::class,
-            'ID_User',
-            'ID_AddressUser',
-            'ID_User',
-            'ID_AddressUser'
+            AddressUser::class
         );
     }
 
     public function addressUser(){
         return $this->belongsToMany(
             Address::class,
-            'address_users',
-            'ID_AddressUser',
-            'ID_User',
-            'ID_Address'
+            'address_users'
         );
     }
 
     public function buy(){
         return $this->belongsToMany(
             Product::class,
-            'buys',
-            'ID_User',
-            'ID_Product'
+            'buys'
         );
     }
+
+    public function wishlist(){
+        return $this->belongsToMany(
+            Product::class,
+            'wishlists'
+        );
+    }
+
+    public function shopingcart(){
+        return $this->belongsToMany(
+            Product::class,
+            'shopping_carts'
+        );
+    }
+
+    public function comment(){
+        return $this->belongsToMany(
+            Product::class,
+            'comments'
+        );
+    }
+
+
     /**
      * The attributes that are mass assignable.
      *

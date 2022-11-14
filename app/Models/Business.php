@@ -11,7 +11,6 @@ use App\Models\CellBusiness;
 
 class Business extends Model
 {//Ta' bien :D
-    protected $primaryKey = "ID_Business";
     use HasFactory;
 
     protected $fillable = [
@@ -21,30 +20,24 @@ class Business extends Model
     ];
 
     public function imageBusiness(){
-        return $this->hasMany(ImageBusiness::class, 'ID_Business', 'ID_Business');
+        return $this->hasMany(ImageBusiness::class);
     }
 
     public function cellBusiness(){
-        return $this->hasMany(CellBusiness::class, 'ID_Business', 'ID_Business');
+        return $this->hasMany(CellBusiness::class);
     }
 
-    public function dataAddressBusiness(){
+    public function dataAddressBusiness(){//Checar
         return $this->hasManyThrough(
             Address::class,
-            AddressBusiness::class,
-            'ID_Business',
-            'ID_AddressBusiness',
-            'ID_Business',
-            'ID_AddressBusiness'
+            AddressBusiness::class
         );
     }
 
-    public function addressBusiness(){
+    public function addressBusiness(){//Checar
         return $this->belongsToMany(
             Address::class,
-            'address_businesses',
-            'ID_Business',
-            'ID_Address'
+            'address_businesses'
         );
     }   
 }

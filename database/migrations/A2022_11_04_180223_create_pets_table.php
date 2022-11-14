@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pets', function (Blueprint $table) {
-            $table->id('ID_Pet');
+            $table->id();
             $table->string('name', 100);
             $table->integer('age');
             $table->string('size', 100);
             $table->string('color', 100);
             $table->text('description');
             $table->boolean('state');//perdida o no xd
-            $table->foreignId('ID_User')->constrained('users', 'ID_User')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('ID_SpeciesBreed')->constrained('species_breeds', 'ID_SpeciesBreed')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('species_breed_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

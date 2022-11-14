@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CellUser extends Model
 {
-    protected $primaryKey = "ID_CellUser";
     use HasFactory;
     
     protected $fillable = [
@@ -15,6 +14,6 @@ class CellUser extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class, 'ID_User', 'ID_CellUser');
+        return $this->belongsTo(User::class);
     }
 }

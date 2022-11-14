@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\ImageProduct;
 use App\Models\User;
+use PhpParser\Node\Expr\FuncCall;
 
 class Product extends Model
 {
-    protected $primaryKey = "ID_Product";
     use HasFactory;
 
     protected $fillable = [
@@ -22,19 +22,38 @@ class Product extends Model
 
 
     public function category(){
-        return $this->hasMany(Category::class, 'ID_Product', 'ID_Product');
+        return $this->hasMany(Category::class);
     }
 
     public function imageProduct(){
-        return $this->hasMany(ImageProduct::class, 'ID_Product', 'ID_Product');
+        return $this->hasMany(ImageProduct::class);
     }
 
     public function buy(){
         return $this->belongsToMany(
             User::class,
-            'buys',
-            'ID_Product',
-            'ID_User'
+            'buys'
+        );
+    }
+
+    public function wishlist(){
+        return $this->belongsToMany(
+            User::class,
+            'wishlists'
+        );
+    }
+
+    public function shopingcart(){
+        return $this->belongsToMany(
+            User::class,
+            'shopping_carts'
+        );       
+    }
+
+    public function comment(){
+        return $this->belongsToMany(
+            User::class,
+            'comments'
         );
     }
 }

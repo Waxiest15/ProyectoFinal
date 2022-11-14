@@ -8,7 +8,6 @@ use App\Models\Business;
 
 class CellBusiness extends Model
 {
-    protected $primaryKey = "ID_CellBusiness";
     use HasFactory;  
      
     protected $fillable = [
@@ -16,6 +15,6 @@ class CellBusiness extends Model
     ];
 
     public function business(){
-        return $this->belongsTo(Business::class, 'ID_Business', 'ID_CellBusiness' );
+        return $this->belongsTo(Business::class);
     }
 }

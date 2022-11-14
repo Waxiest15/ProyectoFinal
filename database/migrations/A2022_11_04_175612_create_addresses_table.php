@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->id('ID_Address');
-            $table->foreignId('ID_State')->constrained('states', 'ID_State')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('ID_City')->constrained('cities', 'ID_City')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('ID_Neighborhood')->constrained('neighborhoods', 'ID_Neighborhood')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('ID_Street')->constrained('streets', 'ID_Street')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->id();
+            $table->foreignId('state_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('city_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('neighborhood_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('street_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('numer');
             $table->timestamps();
         });
