@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('ID_User');
-            $table->string('name', 100);
-            $table->string('last_name', 100);
-            $table->integer('age');
-            $table->string('gender', 100);
-            $table->string('email', 100)->unique();
-            $table->string('password', 100);
-            $table->rememberToken();
+        Schema::create('image_users', function (Blueprint $table) {
+            $table->id('ID_ImageUser');
+            $table->foreignId('ID_User')->constrained('users', 'ID_User')->cascadeOnDelete();
+            $table->string('route', 100);
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('image_users');
     }
 };
