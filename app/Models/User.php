@@ -16,7 +16,6 @@ use App\Models\Pet;
 
 class User extends Authenticatable
 {
-    protected $primaryKey = "ID_User";
     use HasApiTokens, HasFactory, Notifiable;
 
     public function cellUser(){
