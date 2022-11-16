@@ -18,8 +18,11 @@ return new class extends Migration
             $table->string('name', 100);
             $table->json('size')->nullable();
             $table->float('weight')->nullable();
+            $table->float('price');
             $table->text('description');
+            $table->integer('amount');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('business_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

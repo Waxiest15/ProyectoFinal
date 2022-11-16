@@ -24,13 +24,22 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        \App\Models\User::factory(10)->state(new Sequence(
-            ['gender' => 'masculino'],
-            ['gender' => 'femenino'],
-            ['gender' => 'no-binario'],
-            ['gender' => 'mayionisaaa'],
-            ['gender' => 'helicóptero apache no-binario'],
-        ))
-        ->create();
+        //NO borrar xd
+        // \App\Models\User::factory(10)->state(new Sequence(
+        //     ['gender' => 'masculino'],
+        //     ['gender' => 'femenino'],
+        //     ['gender' => 'no-binario'],
+        //     ['gender' => 'mayionisaaa'],
+        //     ['gender' => 'helicóptero apache no-binario'],
+        // ))
+        // ->create();
+
+        // \App\Models\Business::factory(10);
+
+        $this->call([
+            StateSeeder::class,
+            CitySeeder::class,
+            NeighborhoodSeeder::class
+        ]);
     }
 }
