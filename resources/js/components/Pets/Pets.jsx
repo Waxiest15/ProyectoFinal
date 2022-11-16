@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
+import {PencilSquare, Trash3} from 'react-bootstrap-icons';
+
 import "/xampp/htdocs/ProyectoFinal/resources/css/app.css"
 
 function PetCard() {
@@ -15,7 +17,21 @@ function PetCard() {
         <Button as={Link} to="/ProyectoFinal/public/addPet">Add Pet</Button>
         <Card style={{ width: '40rem' }}>
             <h1>Mis mascotas</h1>
-            <Card.Header className="w-100">Nombre de mascota</Card.Header>
+            <hr />
+            <Row>
+                <Col>
+                <Card.Header className="w-100">Nombre de mascota</Card.Header>    
+                </Col>
+                <Col>
+                <Row>
+                    <Col className="text-end me-3">
+                    <Button className='me-1' as={Link} to="/ProyectoFinal/public/editPet" title="Editar informacion"><PencilSquare/></Button>
+                    <Button ><Trash3/></Button>    
+                    </Col>
+                </Row>
+                </Col>
+                
+            </Row>
             <Row ClassName="g-0">
                 <Col>
                     <Card.Img  src="images/Koda.jpg" style={{maxWidth: '300px', maxHeight: '300px', margin: "10px"}}/>

@@ -47,7 +47,7 @@ const Footer = () => <footer className="page-footer font-small blue pt-4" class=
 
 </footer>
 
-function CollapsibleExample() {
+function NavBar() {
   return (
     <>
     
@@ -94,7 +94,7 @@ function CollapsibleExample() {
         </Dropdown>
           </Nav>
           <Nav>
-          <Button className="me-2">
+          <Button className="me-2" as={Link} to="/ProyectoFinal/public/shoppingcart">
             <Cart/>
           </Button>
           <Button>
@@ -116,4 +116,4 @@ function CollapsibleExample() {
   );
 }
 
-export default CollapsibleExample;
+export default NavBar;
