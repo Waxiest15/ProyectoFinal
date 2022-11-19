@@ -16,61 +16,97 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name' => 'Comida Para Perros'
+            'name' => 'Comida Para Perros',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'Comida Para Gatos'
+            'name' => 'Comida Para Gatos',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'Comida Para Pájaros'
+            'name' => 'Comida Para Pájaros',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'Comida Para Anfibios'
+            'name' => 'Comida Para Anfibios Y Reptiles',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Collares',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Peceras',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Juguetes',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Aseo',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Mantenimiento',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Ropa Para Perros',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
-        ]);Category::create([
-            'name' => 'ooooo'
+            'name' => 'Ropa Para Gatos',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Accesorios Para Perro',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Accesorios Para Gato',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Accesorios Para Pájaros',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Accesorios Para Anfibios Y Reptiles',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Jaulas',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Camas Para Perros',
+            'physical' => True
         ]);
         Category::create([
-            'name' => 'ooooo'
+            'name' => 'Camas Para Gato',
+            'physical' => True
         ]);
 
+
+
+        ////
+        Category::create([
+            'name' => 'Baño',
+            'physical' => False
+        ]);
+        Category::create([
+            'name' => 'Estancia',
+            'physical' => False
+        ]);
+        Category::create([
+            'name' => 'Paseo',
+            'physical' => False
+        ]);
+        Category::create([
+            'name' => 'Veterinaria',
+            'physical' => False
+        ]);
+        
     }
 }

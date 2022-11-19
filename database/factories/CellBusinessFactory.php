@@ -17,7 +17,7 @@ class CellBusinessFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'phone' => $this->faker->e164PhoneNumber()  
         ];
     }
 }

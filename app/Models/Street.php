@@ -9,6 +9,10 @@ use App\Models\Address;
 class Street extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+        'name'
+    ];
 
     public function address(){
         return $this->hasMany(Address::class);

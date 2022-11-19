@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->integer('age');
-            $table->string('size', 100);
+            $table->string('size', 100)->nullable();//tamño en centímetros
             $table->string('color', 100);
             $table->text('description');
             $table->boolean('state');//perdida o no xd

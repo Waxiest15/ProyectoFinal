@@ -16,7 +16,11 @@ class Business extends Model
     protected $fillable = [
         'number',
         'email',
-        'password'
+        'password',
+        'description',
+        'distributor',
+        'rate',
+        'location_api'
     ];
 
     public function imageBusiness(){

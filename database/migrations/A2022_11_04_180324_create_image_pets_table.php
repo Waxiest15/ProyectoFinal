@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('image_pets', function (Blueprint $table) {
             $table->id();
-            $table->string('route', 100);
+            $table->string('route');
             $table->foreignId('pet_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

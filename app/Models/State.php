@@ -9,7 +9,9 @@ use App\Models\Address;
 class State extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'name'
+    ];
     public function address(){
         return $this->hasMany(Address::class);
     }

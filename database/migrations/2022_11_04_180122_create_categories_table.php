@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->boolean('physical');
             $table->string('name', 100)->unique();
             //$table->foreignId('ID_Category')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

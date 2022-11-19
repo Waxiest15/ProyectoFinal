@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('businesses', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100)->unique();
+            $table->text('description');
             $table->string('email', 100)->unique();
+            $table->boolean('distributor');
+            $table->float('rate');
             $table->string('password', 100);            
+            $table->json('location_api');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('image_users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('route', 100);
+            $table->string('route');
             $table->timestamps();
         });
     }

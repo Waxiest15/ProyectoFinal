@@ -11,7 +11,8 @@ class ImageUser extends Model
     use HasFactory;
 
     protected $fillable = [
-        'route'
+        'route',
+        'user_id'
     ];
 
     public function user(){

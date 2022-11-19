@@ -17,7 +17,8 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'physical' => $this->faker->boolean(),
+            'name' => $this->faker->word()            
         ];
     }
 }

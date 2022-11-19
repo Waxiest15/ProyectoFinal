@@ -7,6 +7,14 @@ namespace Database\Seeders;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
+use \App\Models\Business;
+use \App\Models\Street;
+use \App\Models\Category;
+use App\Models\CellUser;
+use App\Models\CellBusiness;
+use \App\Models\User;
+use \App\Models\ImageUser;
+use \App\Models\ImageBusiness;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,21 +33,38 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         //NO borrar xd
-        // \App\Models\User::factory(10)->state(new Sequence(
-        //     ['gender' => 'masculino'],
-        //     ['gender' => 'femenino'],
-        //     ['gender' => 'no-binario'],
-        //     ['gender' => 'mayionisaaa'],
-        //     ['gender' => 'helicóptero apache no-binario'],
-        // ))
-        // ->create();
+        User::factory(10)->state(new Sequence(
+            ['gender' => 'masculino'],
+            ['gender' => 'femenino'],
+            ['gender' => 'no-binario'],
+            ['gender' => 'mayionisaaa'],
+            ['gender' => 'helicóptero apache no-binario'],
+        ))
+        ->create()
+        ->each(function ($user) {
+            CellUser::factory(2)
+            ->create(['user_id' => $user->id]);
+            ImageUser::factory(2)
+            ->create(['user_id' => $user->id]);
+        });
 
-        // \App\Models\Business::factory(10);
+        Business::factory(10)
+        ->create()
+        ->each(function ($business){
+            CellBusiness::factory(2)
+            ->create(['business_id' => $business->id]);
+            ImageBusiness::factory(2)
+            ->create(['business_id' => $business->id]);
+        });
+        
+        Street::factory(10)->create();
 
         $this->call([
             StateSeeder::class,
             CitySeeder::class,
-            NeighborhoodSeeder::class
+            NeighborhoodSeeder::class,
+            CategorySeeder::class,
+            SpeciesBreedSeeder::class
         ]);
     }
 }

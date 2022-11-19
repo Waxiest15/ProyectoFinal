@@ -20,7 +20,10 @@ return new class extends Migration
             $table->float('weight')->nullable();
             $table->float('price');
             $table->text('description');
-            $table->integer('amount');
+            $table->float('rate');
+            $table->integer('amount')->nullable();
+            $table->boolean('enable');
+            $table->integer('deliverTime');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('business_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
