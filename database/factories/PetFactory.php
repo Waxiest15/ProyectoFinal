@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\SpeciesBreed;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,6 +25,8 @@ class PetFactory extends Factory
             'color' => $this->faker->hexColor(),
             'description' => $this->faker->paragraph(),
             'state' => $this->faker->boolean(),
+            'user_id' => User::inRandomOrder()->first()->id,
+            'species_breed_id' => SpeciesBreed::inRandomOrder()->first()->id
         ];
     }
 }

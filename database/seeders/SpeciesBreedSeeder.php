@@ -221,10 +221,6 @@ class SpeciesBreedSeeder extends Seeder
             'specie' => 'Gato',
             'breed' => 'Siamés'
         ]);
-        SpeciesBreed::create([
-            'specie' => 'Gato',
-            'breed' => 'Angora Turco'
-        ]);
 
         SpeciesBreed::create([
             'specie' => 'Gato',
@@ -320,11 +316,6 @@ class SpeciesBreedSeeder extends Seeder
             'specie' => 'Pájaros',
             'breed' => 'Ninfa'
         ]);
-
-        SpeciesBreed::create([
-            'specie' => 'Pájaros',
-            'breed' => 'Eclectus'
-        ]);
         SpeciesBreed::create([
             'specie' => 'Pájaros',
             'breed' => 'Diamantes'
@@ -406,7 +397,7 @@ class SpeciesBreedSeeder extends Seeder
         ]);
         SpeciesBreed::create([
             'specie' => 'Reptiles',
-            'breed' => 'Serpientes'
+            'breed' => 'Serpiente'
         ]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
+use App\Models\Business;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class AddressBusinessFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'business_id' => Business::inRandomOrder()->first()->id,
+            'address_id' => Address::inRandomOrder()->first()->id
         ];
     }
 }

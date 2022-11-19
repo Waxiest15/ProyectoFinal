@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('neighborhood_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('street_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->integer('numer');
+            $table->integer('number');
             $table->timestamps();
         });
     }

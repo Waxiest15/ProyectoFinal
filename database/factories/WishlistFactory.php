@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Address;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use \App\Models\User;
+use \App\Models\Product;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AddressUser>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Wishlist>
  */
-class AddressUserFactory extends Factory
+class WishlistFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +19,9 @@ class AddressUserFactory extends Factory
     public function definition()
     {
         return [
+            'date' => $this->faker->dateTime(),
             'user_id' => User::inRandomOrder()->first()->id,
-            'address_id' => Address::inRandomOrder()->first()->id
+            'product_id' => Product::inRandomOrder()->first()->id
         ];
     }
 }

@@ -17,7 +17,7 @@ class ImageProductFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'route' => 'app/public/Images_e/PetWebLogo.png' 
         ];
     }
 }
