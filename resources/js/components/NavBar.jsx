@@ -5,11 +5,12 @@ import {Form, Button} from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import {PersonCircle, Search, Bell, Cart, Facebook} from 'react-bootstrap-icons';
+import {PersonCircle, Search, Bell, Cart, Shop, Facebook, Whatsapp, Twitter, Envelope} from 'react-bootstrap-icons';
 import { Link, Outlet } from 'react-router-dom';
 
 
-const Footer = () => <footer className="page-footer font-small blue pt-4" class="footer">
+const Footer = () => 
+<footer className="page-footer font-small blue pt-4" class="footer">
     <div className="container-fluid text-center text-md-left" >
         <div className="row">
             <div className="col-md-6 mt-md-0 mt-3">
@@ -24,7 +25,7 @@ const Footer = () => <footer className="page-footer font-small blue pt-4" class=
                 <ul className="list-unstyled">
                     <li><a>PetWeb</a></li>
                     <li><a>Ser vendedor</a></li>
-                    <li><a>Politicas de privacidad</a></li>
+                    <li><Form.Label as={Link} to='/ProyectoFinal/public/politicas'>Terminos y condiciones</Form.Label></li>
                     <li><a></a></li>
                 </ul>
             </div>
@@ -32,10 +33,14 @@ const Footer = () => <footer className="page-footer font-small blue pt-4" class=
             <div className="col-md-3 mb-md-0 mb-3">
                 <h5 className="text-uppercase">Informacion de contacto</h5>
                 <ul className="list-unstyled">
-                    <li><a>Facebook</a></li>
-                    <li><a>Whatsapp</a></li>
-                    <li><a>Twitter</a></li>
-                    <li><a>Correo</a></li>
+                    <li class='d-flex align-items-center justify-content-center'>
+                      <a class="me-2" href='https://www.facebook.com/petwebmx'>Facebook</a><Facebook/></li>
+                    <li class='d-flex align-items-center justify-content-center'>
+                      <a class="me-2" href='https://wa.me/4492860016'>Whatsapp</a><Whatsapp/></li>
+                    <li class='d-flex align-items-center justify-content-center'>
+                      <a class="me-2" href='https://twitter.com/petwebmx'>Twitter</a><Twitter/></li>
+                    <li class='d-flex align-items-center justify-content-center'>
+                      <a class="me-2">Correo</a><Envelope/></li>
                 </ul>
             </div>
         </div>
@@ -75,10 +80,16 @@ function NavBar() {
                     className="me-2 w-100"
                     aria-label="Search"
                   />
-                  <Button variant="outline-success"><Search/></Button>
+                  <Button variant="outline-success" as={Link} to="/ProyectoFinal/public/result"><Search/></Button>
                 </Form>
           </Nav>
-          <Nav className="me-3">
+          <Nav className="me-3 gap-3">
+            <div >
+            <Button variant="Link" 
+            className='text-light d-flex align-items-center gap-3'
+            as={Link} to='/ProyectoFinal/public/bussiness'
+            >Quiero Vender <Shop color='white'/></Button>
+            </div>
           <Dropdown as={ButtonGroup}>
             <Button variant="success"><PersonCircle/></Button>
             <Dropdown.Toggle split variant="success" id="dropdown-spli  t-basic">Usuario {' '}</Dropdown.Toggle>
@@ -98,7 +109,7 @@ function NavBar() {
             <Cart/>
           </Button>
           <Button>
-            <Bell/>
+          <Bell/>
           </Button>
         </Nav> 
         </Navbar.Collapse>
