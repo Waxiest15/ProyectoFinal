@@ -33,27 +33,33 @@ class Product extends Model
         return $this->belongsToMany(
             User::class,
             'buys'
-        );
+        )
+        ->withPivot('date')
+        ->as('buys')
+        ->withTimestamps();
     }
 
     public function wishlist(){
         return $this->belongsToMany(
             User::class,
             'wishlists'
-        );
+        )->withPivot('date')
+        ->withTimestamps();
     }
 
     public function shopingcart(){
         return $this->belongsToMany(
             User::class,
             'shopping_carts'
-        );       
+        )->withPivot('date')
+        ->withTimestamps();
     }
 
     public function comment(){
         return $this->belongsToMany(
             User::class,
             'comments'
-        );
+        )->withPivot('date','comment')
+        ->withTimestamps();
     }
 }

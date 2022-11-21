@@ -48,28 +48,34 @@ class User extends Authenticatable
         return $this->belongsToMany(
             Product::class,
             'buys'
-        );
+        )
+        ->withPivot(['date'])
+        ->withTimestamps();
     }
 
     public function wishlist(){
         return $this->belongsToMany(
             Product::class,
             'wishlists'
-        );
+        )
+        ->withPivot(['date'])
+        ->withTimestamps();
     }
 
     public function shopingcart(){
         return $this->belongsToMany(
             Product::class,
             'shopping_carts'
-        );
+        )->withPivot(['date'])
+        ->withTimestamps();
     }
 
     public function comment(){
         return $this->belongsToMany(
             Product::class,
             'comments'
-        );
+        )->withPivot('date','comment')
+        ->withTimestamps();
     }
 
 

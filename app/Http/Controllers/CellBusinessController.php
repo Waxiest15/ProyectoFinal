@@ -35,7 +35,14 @@ class CellBusinessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'phone' => 'required|min:10',
+            'user_id' => 'required|numeric|min:1'
+        ]);
+        $cellBusiness = new CellBusiness();
+        $cellBusiness -> phone = $request -> phone;
+        $cellBusiness -> user_id = $request -> user_id;
+        $cellBusiness -> save();   
     }
 
     /**
@@ -44,9 +51,17 @@ class CellBusinessController extends Controller
      * @param  \App\Models\CellBusiness  $cellBusiness
      * @return \Illuminate\Http\Response
      */
-    public function show(CellBusiness $cellBusiness)
+    public function show(Request $request)
     {
-        //
+        $cellBusiness = CellBusiness::where('user_id',$request->user_id)->get();
+        $cells = [];
+
+        foreach($cellBusiness as $cell){
+            $cells[] = [
+                'phone' => $cell -> phone
+            ];
+        }
+        return response()->json($cells);
     }
 
     /**
@@ -69,7 +84,12 @@ class CellBusinessController extends Controller
      */
     public function update(Request $request, CellBusiness $cellBusiness)
     {
-        //
+        $request->validate([
+            'phone' => 'required|min:10',
+            'user_id' => 'required|numeric|min:1'
+        ]);
+        $cellBusiness = CellBusiness::find($request->user_id);
+        $cellBusiness -> phone = $request -> phone;
     }
 
     /**
@@ -78,8 +98,13 @@ class CellBusinessController extends Controller
      * @param  \App\Models\CellBusiness  $cellBusiness
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CellBusiness $cellBusiness)
+    public function destroy(Request $request)
     {
-        //
+        $request->validate([
+            'phone' => 'required|min:10',
+            'user_id' => 'required|numeric|min:1'
+        ]);
+        CellBusiness::where('user_id', $request->user_id)
+        ->where('phone', $request->phone)->delete();
     }
 }
