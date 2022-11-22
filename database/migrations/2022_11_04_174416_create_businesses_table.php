@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('name', 100)->unique();
             $table->text('description');
             $table->string('email', 100)->unique();
-            $table->boolean('distributor');
+            $table->boolean('distributor')->default(0);
             $table->float('rate');
             $table->string('password', 100);            
-            $table->json('location_api');
+            $table->json('location_api')->nullable();
             $table->timestamps();
         });
     }

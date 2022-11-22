@@ -20,9 +20,9 @@ return new class extends Migration
             $table->float('weight')->nullable();
             $table->float('price');
             $table->text('description');
-            $table->float('rate');
+            $table->float('rate')->default(3);
             $table->integer('amount')->nullable();
-            $table->boolean('enable');
+            $table->boolean('enable')->default(true);
             $table->integer('deliverTime');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('business_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();

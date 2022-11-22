@@ -44,9 +44,16 @@ class SpeciesBreedController extends Controller
      * @param  \App\Models\SpeciesBreed  $speciesBreed
      * @return \Illuminate\Http\Response
      */
-    public function show(SpeciesBreed $speciesBreed)
+    public function show()
     {
-        //
+        $s = [];
+        foreach(SpeciesBreed::all() as $spe){
+            $s [] = [
+                'specie' => $spe->specie,
+                'breed' => $spe->breed
+            ];
+        }
+        return response()->json($s);
     }
 
     /**

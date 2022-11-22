@@ -16,6 +16,7 @@ use App\Models\City;
 use App\Models\Neighborhood;
 use App\Models\State;
 use App\Models\Street;
+use App\Models\SpeciesBreed;
 
 class UserController extends Controller
 {
@@ -61,7 +62,7 @@ class UserController extends Controller
             //'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
         ]);
-        $user = User::find(Auth::user()->id);//PROBAR
+        $user = User::find($request->user_id);//PROBAR
         $product = Product::find($request->product_id);
         if($product -> amount==1){//Se resta el producto y si solo quedaba uno se desactiva
             $product -> amount = $product -> amount-1;
@@ -134,6 +135,7 @@ class UserController extends Controller
         foreach($user->buy as $product){//Iteramos en cada relación de los productos y usuarios
             $p [] = [
                 'product' => $product->name,//Generamos el nombre del producto
+                'product_price' => $product->price,
                 'date of buy' => $product->pivot->date//con base a la tabla intermediaria se obtiene la fecha de compra
             ];
         }
@@ -180,6 +182,9 @@ class UserController extends Controller
     }
 
     public function add_address(Request $request){
+        $request->validate([
+            'user_id' => 'required|numeric|min:1'
+        ]);
         $request->validate([//CHECAR
             //'user_id' => 'required|numeric',
         ]);
@@ -188,11 +193,13 @@ class UserController extends Controller
     }
 
     public function show_addresss(Request $request){
-        
+        $request->validate([
+            'user_id' => 'required|numeric|min:1'
+        ]);        
         $user = User::find($request->user_id);
         $p = [];
         foreach($user->addressUser as $add){
-            $p =[
+            $p [] =[
                 'address_id' => $add->pivot->address_id,
                 'state_id' => State::find($add->state_id)->name,
                 'city_id' => City::find($add->city_id)->name,
@@ -204,12 +211,21 @@ class UserController extends Controller
     }
 
     public function show_pets(Request $request){
+        $request->validate([
+            'user_id' => 'required|numeric|min:1'
+        ]);
         $pets = User::find($request->user_id);
         $p = [];
         
         foreach($pets->pet as $pett){
-            $p = [
-                'name' => $pett->name
+            $p [] = [
+                'name' => $pett->name,
+                'age' => $pett->age,
+                'color' => $pett->color,
+                'size' => $pett->size,
+                'description' => $pett->description,
+                'specie' => SpeciesBreed::find($pett->species_breed_id)->specie,
+                'breed' => SpeciesBreed::find($pett->species_breed_id)->breed,
             ];
         }
         return  response()->json($p);

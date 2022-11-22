@@ -51,7 +51,7 @@ class PetController extends Controller
         $pet -> color = $request -> color;
         $pet -> description = $request -> description;
         $pet -> user_id = $request -> user_id;
-        $pet -> species_breed_id = $request -> user_id;
+        $pet -> species_breed_id = $request -> species_breed_id;
 
         $pet->save();
     }
@@ -64,8 +64,7 @@ class PetController extends Controller
      */
     public function show(Request $request)
     {
-        // $pets = Pet::find($request->user_id);
-        // return $pets;
+        //
     }
 
     /**
@@ -97,8 +96,35 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pet $pet)
+    public function destroy(Request $request)
     {
-        //
+        $request->validate([
+            'pet_id' => 'required|numeric|min:1',
+            'user_id' => 'required|numeric|min:1'
+        ]);
+        Pet::where('user_id', $request->user_id)// $request->user_id
+        ->where('id', $request->pet_id)->delete();
     }
+
+    public function pet_lost()
+    {
+        $pets = Pet::where('state','=', 0)->get();
+        $p = [];
+        foreach($pets as $pet){//actualizo el update para poner cuando se perdió
+            $pet -> updated_at = now();
+            $pet -> save();
+        }
+        foreach($pets as $pet){
+            $p[] = [
+                'name' => $pet->name,
+                'age' => $pet->age,
+                'color' => $pet->color,
+                'description' => $pet->description,
+                'lost' => $pet->updated_at
+            ];
+        }
+        return $p;
+    }
+
+    
 }

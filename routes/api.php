@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AddressUserController;
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CellBusinessController;
 use App\Http\Controllers\CellUserController;
 use App\Http\Controllers\CityController;
@@ -8,6 +10,8 @@ use App\Http\Controllers\NeighborhoodController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\StreetController;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SpeciesBreedController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -43,7 +47,6 @@ Route::post('/user_quit_from_wishlist',[UserController::class, 'quit_from_wishli
 Route::post('/user_show_wishlist',[UserController::class, 'show_wishlist']);
 Route::post('/user_add_address',[UserController::class, 'add_address']);//Esta y la de abajo 
 Route::post('/user_show_addresss',[UserController::class, 'show_addresss']);
-
 Route::post('/user_show_pets',[UserController::class, 'show_pets']);
 
 
@@ -61,8 +64,9 @@ Route::post('/cellBusiness_destroy', [CellBusinessController::class, 'destroy'])
 
 
 //Addressstore
-Route::post('/address_store', [AddressController::class, 'store']);//Esta y la de arriba
+Route::post('/address_store', [AddressController::class, 'store']);//Esta y la de arriba 
 Route::get('/address_test', [AddressController::class, 'test']);
+
 //State
 Route::get('/state_show', [StateController::class, 'show']);
 Route::post('/state_show_by_id_state', [StateController::class, 'show_by_id_state']);
@@ -77,4 +81,17 @@ Route::get('/street_show', [StreetController::class, 'show']);
 
 //Pets
 Route::post('/pet_store', [PetController::class, 'store']);
-Route::post('/pet_show', [PetController::class, 'show']);
+Route::post('/pet_destroy', [PetController::class, 'destroy']);
+Route::get('/pet_lost', [PetController::class, 'pet_lost']);
+
+//SpeciesBreeds
+Route::get('/species_show', [SpeciesBreedController::class, 'show']);
+
+
+//Products
+Route::post('/product_store', [ProductController::class, 'store']);
+Route::get('/product_show', [ProductController::class, 'show']);
+
+
+//Business
+Route::post('/business_store', [BusinessController::class, 'store']);
