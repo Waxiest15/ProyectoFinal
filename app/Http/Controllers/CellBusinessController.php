@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CellBusiness;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CellBusinessController extends Controller
 {
@@ -37,11 +38,11 @@ class CellBusinessController extends Controller
     {
         $request->validate([
             'phone' => 'required|min:10',
-            'user_id' => 'required|numeric|min:1'
+            //'user_id' => 'required|numeric|min:1'
         ]);
         $cellBusiness = new CellBusiness();
         $cellBusiness -> phone = $request -> phone;
-        $cellBusiness -> user_id = $request -> user_id;
+        $cellBusiness -> user_id =  Auth::user()->id;//$request -> user_id;
         $cellBusiness -> save();   
     }
 
@@ -53,7 +54,7 @@ class CellBusinessController extends Controller
      */
     public function show(Request $request)
     {
-        $cellBusiness = CellBusiness::where('user_id',$request->user_id)->get();
+        $cellBusiness = CellBusiness::where('user_id', Auth::user()->id)->get();//CHECAR
         $cells = [];
 
         foreach($cellBusiness as $cell){
@@ -86,9 +87,9 @@ class CellBusinessController extends Controller
     {
         $request->validate([
             'phone' => 'required|min:10',
-            'user_id' => 'required|numeric|min:1'
+            //user_id' => 'required|numeric|min:1'
         ]);
-        $cellBusiness = CellBusiness::find($request->user_id);
+        $cellBusiness = CellBusiness::find(Auth::user()->id);//CHECAR
         $cellBusiness -> phone = $request -> phone;
     }
 
@@ -98,13 +99,13 @@ class CellBusinessController extends Controller
      * @param  \App\Models\CellBusiness  $cellBusiness
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request)//CHECAR
     {
         $request->validate([
             'phone' => 'required|min:10',
-            'user_id' => 'required|numeric|min:1'
+            //'user_id' => 'required|numeric|min:1'
         ]);
-        CellBusiness::where('user_id', $request->user_id)
+        CellBusiness::where('user_id', Auth::user()->id)// $request->user_id
         ->where('phone', $request->phone)->delete();
     }
 }

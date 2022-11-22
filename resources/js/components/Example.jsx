@@ -4,7 +4,8 @@ import View from 'react';
 import { Button, Card } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { Container } from 'postcss';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
+import { method } from 'lodash';
 
 
 function First(){
@@ -51,7 +52,7 @@ function Example() {
         name: '',
         last_name: '',
         last_name2: '',
-        birth: Date,
+        birth: '',
         gender: '',
         email: '',
         password: ''
@@ -60,32 +61,59 @@ function Example() {
     const [users, setUsers]=useState([])
 
     const [name, setName] = useState('')
-    const [last_name, setLast_name] = useState('')
+    const [last_name, setlast_name] = useState('')
     const [last_name2, setlast_name2] = useState('')
-    const [birth, setBirth] = useState(Date)
+    const [birth, setBirth] = useState('')
     const [gender, setGender] = useState('')
     const [email, setEmail] = useState('')
-     
+    const [password, setPassword] = useState('')
 
-    const onChange = (e) =>{
-        e.persist();
-        setformValue({...formValue, [e.target.name]: e.target.value});
-    }
+    // const onChange = (e) =>{
+    //     e.persist();
+    //     setformValue({...formValue, [e.target.name]: e.target.value});
+    // }
 
-    const handleSubmit = (e)=>{
-        if(e && e.preventDefault()) e.preventDefault();
-        const formData = new FormData;
-        formData.append('name', formValue.name);
-        formData.append('last_name', formValue.last_name);
-        formData.append('last_name2', formValue.last_name2);
-        formData.append('birth', formValue.birth);
-        formData.append('gender', formValue.gender);
-        formData.append('email', formValue.email);
-        formData.append('password', formValue.password);
-        //<--lo mismo pero con password
-        axios.post("http://localhost:80/ProyectoFinal/public/api/user_store",formData, {headers: {'Content-type': 'multipart/form-data', 
-        'Accept': 'application/json'}}
-        ).then(response => {
+    // const handleSubmit = (e)=>{
+    //     if(e && e.preventDefault()) e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append('name', formValue.name);
+    //     formData.append('last_name', formValue.last_name);
+    //     formData.append('last_name2', formValue.last_name2);
+    //     formData.append('birth', formValue.birth);
+    //     formData.append('gender', formValue.gender);
+    //     formData.append('email', formValue.email);
+    //     formData.append('password', formValue.password);
+    //     console.log(formData.entries);
+    //     //<--lo mismo pero con password
+    //     axios.post("http://localhost:80/ProyectoFinal/public/api/user_store",
+    //     formData, 
+    //     {headers: {'Content-type': 'multipart/form-data', 
+    //     'Accept': 'application/json'}}
+    //     ).then(response => {
+    //         if(response.status==200){
+    //             console.log('response');
+    //             setUsers(response.data);
+                
+
+    //         }
+    //     }) .catch(error =>{
+    //         console.log(error);
+    //     })
+
+    // }
+
+    const postData = async(e) => {
+        
+        e.preventDefault();
+        await axios.post('http://localhost:80/ProyectoFinal/public/api/user_store',{
+            name: name,
+            last_name: last_name,
+            last_name2: last_name2,
+            birth: birth,
+            gender: gender,
+            email: email,
+            password: password
+        }).then(response => {
             if(response.status==200){
                 console.log('response');
                 setUsers(response.data);
@@ -95,7 +123,6 @@ function Example() {
         }) .catch(error =>{
             console.log(error);
         })
-
     }
 
     return (
@@ -103,30 +130,30 @@ function Example() {
             <div className="row justify-content-center">
                 <div className="col-md-8">
                     <div className="card">
-                        <div className="card-header" >{name}</div>
-                        <Form onSubmit={handleSubmit}>
+                        <div className="card-header" ></div>
+                        <Form onSubmit={postData}>
 
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Nombre(s)</Form.Label>
-                                <Form.Control name='name' value={formValue.name} onChange={onChange}/>
+                                <Form.Control name='name' value={name} onChange={(e) => setName(e.target.value)}/>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Apellido Paterno</Form.Label>
-                                <Form.Control name='last_name' value={formValue.last_name} onChange={onChange}/>
+                                <Form.Control name='last_name' value={last_name} onChange={(e) => setlast_name(e.target.value)}/>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Apellido Materno</Form.Label>
-                                <Form.Control name='last_name2' value={formValue.last_name2} onChange={onChange}/>
+                                <Form.Control name='last_name2' value={last_name2} onChange={(e) => setlast_name2(e.target.value)}/>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>TEMP fecha de nacimiento</Form.Label>
-                                <Form.Control name='birth' value={formValue.birth} onChange={onChange}/>
+                                <Form.Control name='birth' value={birth} onChange={(e) => setBirth(e.target.value)}/>
                             </Form.Group>
 
-                            <Form.Select aria-label="Default select example" value={formValue.gender} onChange={onChange}>
+                            <Form.Select name='gender' aria-label="Default select example" value={gender} onChange={(e) => setGender(e.target.value)}>
                                 <option>Género</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
@@ -136,7 +163,7 @@ function Example() {
 
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" name='email' value={formValue.email} onChange={onChange}/>
+                                <Form.Control type="email" placeholder="Enter email" name='email' value={email} onChange={(e) => setEmail(e.target.value)}/>
                                 <Form.Text className="text-muted">
                                 We'll never share your email with anyone else.
                                 </Form.Text>
@@ -144,7 +171,7 @@ function Example() {
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" name='password' value={formValue.password} onChange={onChange}/>
+                                <Form.Control type="password" placeholder="Password" name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                                 <Form.Check type="checkbox" label="Check me out" />

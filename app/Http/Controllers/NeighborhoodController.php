@@ -44,9 +44,16 @@ class NeighborhoodController extends Controller
      * @param  \App\Models\Neighborhood  $neighborhood
      * @return \Illuminate\Http\Response
      */
-    public function show(Neighborhood $neighborhood)
+    public function show()
     {
-        //
+        $neighborhoods=[];
+        foreach(Neighborhood::all()->sortBy('name') as $st){//Realizamos un forech para cada valor aplicando students a program
+            $neighborhoods[]=[//Dentro de un vector ingresamos name y las name 
+                "id"=>$st->id,
+                "name"=>$st->name
+            ];
+        }
+        return response()->json($neighborhoods);
     }
 
     /**

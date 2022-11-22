@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AddressUser;
 use Illuminate\Http\Request;
 
+
 class AddressUserController extends Controller
 {
     /**
@@ -33,10 +34,17 @@ class AddressUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'user_id' => 'required|numeric',
+    //         'address_id' => 'required|numeric'
+    //     ]);
+    //     $addressUser = new AddressUser();
+    //     $addressUser -> user_id = $request->user_id;
+    //     $addressUser -> address_id = 
+
+    // }
 
     /**
      * Display the specified resource.

@@ -35,7 +35,25 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|alpha|max:100',
+            'age' => 'required|numeric|min:1',
+            'size' => 'numeric|max:100',
+            'color' => 'max:100',
+            'description' => 'alpha|max:9000',
+            'user_id' => 'required|numeric|min:1',
+            'species_breed_id' => 'required|numeric|min:1'
+        ]);
+        $pet = new Pet();
+        $pet -> name = $request -> name;
+        $pet -> age = $request -> age;
+        $pet -> size = $request -> size;
+        $pet -> color = $request -> color;
+        $pet -> description = $request -> description;
+        $pet -> user_id = $request -> user_id;
+        $pet -> species_breed_id = $request -> user_id;
+
+        $pet->save();
     }
 
     /**
@@ -44,9 +62,10 @@ class PetController extends Controller
      * @param  \App\Models\Pet  $pet
      * @return \Illuminate\Http\Response
      */
-    public function show(Pet $pet)
+    public function show(Request $request)
     {
-        //
+        // $pets = Pet::find($request->user_id);
+        // return $pets;
     }
 
     /**

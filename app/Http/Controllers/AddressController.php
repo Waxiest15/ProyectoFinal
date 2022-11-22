@@ -35,9 +35,26 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'state_id' => 'required|numeric',
+            'city_id' => 'required|numeric',
+            'neighborhood_id' => 'required|numeric',
+            'street_id' => 'required|numeric',
+            'number' => 'required|numeric'
+        ]);
+        $address = new Address();
+        $address -> state_id = $request ->state_id;
+        $address -> city_id = $request -> city_id;
+        $address -> neighborhood_id = $request -> neighborhood_id;
+        $address -> street_id = $request -> street_id;
+        $address -> number = $request -> number;
+        $address -> save();
+        return 'ok';
     }
 
+    public function last_address(){
+        return Address::all()->sortByDesc('updated_at')->first()->id;
+    }
     /**
      * Display the specified resource.
      *

@@ -5,8 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
+use Laravel\Ui\Presets\React;
+use PhpParser\Node\Expr\FuncCall;
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AddressController\last_address;
+use App\Models\City;
+use App\Models\Neighborhood;
+use App\Models\State;
+use App\Models\Street;
 
 class UserController extends Controller
 {
@@ -28,21 +37,31 @@ class UserController extends Controller
 
     public function make_comment(Request $request){//Crea un comentario con base al user_id, product_id y el comment
         $request->validate([
-            'user_id' => 'required|numeric',
+            //'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
             'comment' => 'required'
         ]);
-        $user = User::find($request->user_id);
+        $user = User::find(Auth::user()->id);//PROBAR
         return $user->comment()->attach($request->product_id, 
         ['date' => now(), 'comment' => $request->comment]);
+    }
+
+    public function delete_comment(Request $request){
+        $request->validate([
+            //'user_id' => 'required|numeric',
+            'product_id' => 'required|numeric',
+            'comment' => 'required'
+        ]);
+        $user = User::find(Auth::user()->id);//PROBAR
+        return $user->comment()->detach($request->product_id);//BORAR TODOS LOS COMENTARIOS HECHOS XD
     }
     
     public function buy_products(Request $request){//Al usuario comprar productos 
         $request->validate([
-            'user_id' => 'required|numeric',
+            //'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
         ]);
-        $user = User::find($request->user_id);
+        $user = User::find(Auth::user()->id);//PROBAR
         $product = Product::find($request->product_id);
         if($product -> amount==1){//Se resta el producto y si solo quedaba uno se desactiva
             $product -> amount = $product -> amount-1;
@@ -57,24 +76,60 @@ class UserController extends Controller
 
     public function add_shopping_cart_products(Request $request){//Al usuario ingresar productos a su carrito
         $request->validate([
-            'user_id' => 'required|numeric',
+            //'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
         ]);
-        $user = User::find($request->user_id);
+        $user = User::find(Auth::user()->id);//PROBAR
         return $user->shopingcart()->attach($request->product_id, ['date' => now()]);//Se agrega en la tabla shopingcart
     }
 
     public function quit_from_shopping_cart(Request $request){//Al usuario ingresar productos a su carrito
         $request->validate([//CHECAR
-            'user_id' => 'required|numeric',
+            //'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
         ]);
-        $user = User::find($request->user_id);
-        $user->shopingcart()->where($request->product_id)->delete();
+        $user = User::find(Auth::user()->id);//PROBAR
+        $user->shopingcart()->detach($request->product_id);
+    }
+
+    public function show_wishlist(Request $request){
+        $request->validate([//CHECAR
+            //'user_id' => 'required|numeric',
+            'product_id' => 'required|numeric',
+        ]);
+        $user = User::find($request->user_id);//PROBAR
+        $p = [];
+        foreach($user->wishlist as $product){
+            $p [] = [
+                'product' => $product->name,//Generamos el nombre del producto
+                'date add' => $product->pivot->date//con base a la tabla intermediaria se obtiene la fecha de compra
+            ];
+        }
+        return response()->json($p);
+    }
+
+    public function show_shopping_cart(Request $request){
+        $request->validate([//CHECAR
+            //'user_id' => 'required|numeric',
+            'product_id' => 'required|numeric',
+        ]);
+        $user = User::find($request->user_id);//PROBAR
+        $p = [];
+        foreach($user->shopingcart as $product){
+            $p [] = [
+                'product' => $product->name,//Generamos el nombre del producto
+                'date add' => $product->pivot->date//con base a la tabla intermediaria se obtiene la fecha de compra
+            ];
+        }
+        return response()->json($p);
     }
 
     public function past_shopping(Request $request){
-        $user = User::find($request->user_id);
+        $request->validate([//CHECAR
+            //'user_id' => 'required|numeric',
+            'product_id' => 'required|numeric',
+        ]);
+        $user = User::find($request->user_id);//PROBAR
         $p = [];
         foreach($user->buy as $product){//Iteramos en cada relación de los productos y usuarios
             $p [] = [
@@ -83,6 +138,24 @@ class UserController extends Controller
             ];
         }
         return response()->json($p);
+    }
+
+    public function add_wishlist_products(Request $request){//Al usuario ingresar productos a su wishlist
+        $request->validate([
+            //'user_id' => 'required|numeric',
+            'product_id' => 'required|numeric',
+        ]);
+        $user = User::find($request->user_id);//PROBAR
+        return $user->wishlist()->attach($request->product_id, ['date' => now()]);//Se agrega en la tabla wishlists
+    }
+
+    public function quit_from_wishlist(Request $request){//Al usuario ingresar quitar cosas de su wishlist
+        $request->validate([//CHECAR
+            //'user_id' => 'required|numeric',
+            'product_id' => 'required|numeric',
+        ]);
+        $user = User::find($request->user_id);//PROBAR
+        $user->wishlist()->detach($request->product_id);
     }
 
     public function store(Request $request){
@@ -106,9 +179,42 @@ class UserController extends Controller
         $user -> save();
     }
 
-    
+    public function add_address(Request $request){
+        $request->validate([//CHECAR
+            //'user_id' => 'required|numeric',
+        ]);
+        $user = User::find($request->user_id);
+        $user->addressUser()->attach(app(AddressController::class)->last_address());
+    }
 
-    
+    public function show_addresss(Request $request){
+        
+        $user = User::find($request->user_id);
+        $p = [];
+        foreach($user->addressUser as $add){
+            $p =[
+                'address_id' => $add->pivot->address_id,
+                'state_id' => State::find($add->state_id)->name,
+                'city_id' => City::find($add->city_id)->name,
+                'neighborhood_id' => Neighborhood::find($add->neighborhood_id)->name,
+                'street_id' => Street::find($add->street_id)->name
+            ];
+        }
+        return response()->json($p);
+    }
+
+    public function show_pets(Request $request){
+        $pets = User::find($request->user_id);
+        $p = [];
+        
+        foreach($pets->pet as $pett){
+            $p = [
+                'name' => $pett->name
+            ];
+        }
+        return  response()->json($p);
+    }
+
 
     public function showToken(){
         echo csrf_token();

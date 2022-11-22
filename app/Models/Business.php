@@ -42,6 +42,6 @@ class Business extends Model
         return $this->belongsToMany(
             Address::class,
             'address_businesses'
-        );
+        )->withTimestamps();
     }   
 }

@@ -44,9 +44,16 @@ class StreetController extends Controller
      * @param  \App\Models\Street  $street
      * @return \Illuminate\Http\Response
      */
-    public function show(Street $street)
+    public function show()
     {
-        //
+        $streets=[];
+        foreach(Street::all()->sortBy('name') as $st){
+            $streets[]=[//Dentro de un vector ingresamos name y las name 
+                "id"=>$st->id,
+                "name"=>$st->name
+            ];
+        }
+        return response()->json($streets);//mandamos un response en json 
     }
 
     /**

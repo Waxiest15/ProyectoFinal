@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CellUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CellUserController extends Controller
 {
@@ -37,11 +38,11 @@ class CellUserController extends Controller
     {
         $request->validate([
             'phone' => 'required|min:10',
-            'user_id' => 'required|numeric|min:1'
+            //'user_id' => 'required|numeric|min:1'
         ]);
         $cellUser = new CellUser();
         $cellUser -> phone = $request -> phone;
-        $cellUser -> user_id = $request -> user_id;
+        $cellUser -> user_id = Auth::user()->id;//$request -> user_id;//CHECAR
         $cellUser -> save();       
     }
 
@@ -53,7 +54,7 @@ class CellUserController extends Controller
      */
     public function show(Request $request)//Retorna un JSON con todos los teléfonos con base a un user_id
     {
-        $cellUser = CellUser::where('user_id',$request->user_id)->get();
+        $cellUser = CellUser::where('user_id',$request->user_id)->get();//CHECAR
         $cells = [];
 
         foreach($cellUser as $cell){
@@ -86,9 +87,9 @@ class CellUserController extends Controller
     {
         $request->validate([
             'phone' => 'required|min:10',
-            'user_id' => 'required|numeric|min:1'
+           //'user_id' => 'required|numeric|min:1'
         ]);
-        $cellUser = CellUser::find($request->user_id);
+        $cellUser = CellUser::find(Auth::user()->id);//CHECAR
         $cellUser -> phone = $request -> phone;
     }
 
@@ -102,9 +103,9 @@ class CellUserController extends Controller
     {
         $request->validate([
             'phone' => 'required|min:10',
-            'user_id' => 'required|numeric|min:1'
+            //'user_id' => 'required|numeric|min:1'
         ]);
-        CellUser::where('user_id', $request->user_id)
-        ->where('phone', $request->phone)->delete();
+        CellUser::where('user_id',Auth::user()->id)//CHECAR
+        ->where('phone', '=' ,$request->phone)->delete();
     }
 }

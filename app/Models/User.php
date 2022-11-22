@@ -41,7 +41,7 @@ class User extends Authenticatable
         return $this->belongsToMany(
             Address::class,
             'address_users'
-        );
+        )->withTimestamps();
     }
 
     public function buy(){
@@ -74,7 +74,7 @@ class User extends Authenticatable
         return $this->belongsToMany(
             Product::class,
             'comments'
-        )->withPivot('date','comment')
+        )->withPivot('date','comment','id')
         ->withTimestamps();
     }
 

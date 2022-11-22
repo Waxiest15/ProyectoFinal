@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Laravel\Ui\Presets\React;
 
 class StateController extends Controller
 {
@@ -44,9 +46,19 @@ class StateController extends Controller
      * @param  \App\Models\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function show(State $state)
+    public function show()
     {
-        //
+        $states=[];
+        foreach(State::all()->sortBy('name') as $st){//Realizamos un forech para cada valor aplicando students a program
+            $states[]=[//Dentro de un vector ingresamos name y las name 
+                "id"=>$st->id,
+                "name"=>$st->name
+            ];
+        }
+        return response()->json($states);//mandamos un response en json 
+    }
+    public function test2(Request $request){
+        return State::all()->where('name', '=', $request->name)->first()->id;
     }
 
     /**

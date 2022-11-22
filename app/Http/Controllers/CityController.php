@@ -46,7 +46,14 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-        //
+        $cities=[];
+        foreach(City::all()->sortBy('name') as $ct){//Realizamos un forech para cada valor aplicando students a program
+            $cities[]=[//Dentro de un vector ingresamos name y las name 
+                "id"=>$ct->id,
+                "name"=>$ct->name
+            ];
+        }
+        return response()->json($cities);
     }
 
     /**
