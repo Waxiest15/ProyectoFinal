@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Laravel\Ui\Presets\React;
 use PhpParser\Node\Expr\FuncCall;
@@ -170,6 +170,7 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => ['required', Password::min(8)->mixedCase()->numbers()]
         ]);
+        
         $user = new User();
         $user -> name = $request -> name;
         $user -> last_name = $request -> last_name;
@@ -231,6 +232,30 @@ class UserController extends Controller
         return  response()->json($p);
     }
 
+    public function register(Request $request){
+        $validator = Validator::make($request->all(),[
+            'name'=>'required|min:4',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|min:8',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Validation Error', $validator->error());
+        }
+
+        $user=User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>bcrypt($request->password)
+        ]);
+
+        $responseArray = [];
+        $responseArray['token'] = $user->createToken('MyApp')->accessToken;
+        $responseArray['name'] = $user->name;
+        return response()->json($responseArray, 200);
+    }
+    
+    
 
     public function showToken(){
         echo csrf_token();

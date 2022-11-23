@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AddressUserController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CellBusinessController;
 use App\Http\Controllers\CellUserController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\SpeciesBreedController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+
 
 
 /*
@@ -95,3 +97,12 @@ Route::get('/product_show', [ProductController::class, 'show']);
 
 //Business
 Route::post('/business_store', [BusinessController::class, 'store']);
+
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout.user');
+
+Route::get('/login', [AuthController::class, 'login'])->name('login'); 
+
+Route::middleware('auth:api')->get('/details',[AuthController::class, 'getTaskList']); //To verify from middleware
