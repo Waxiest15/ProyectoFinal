@@ -25,6 +25,11 @@
         
     </head>
     <body class="antialiased">
+
+        <script src="https://www.paypal.com/sdk/js?client-id=ATL-ZzvqOgt6cw4mFWdfD5thg5jox0KR49iLdQkXNGD_mStTecHMJmTN7QyXdHlPxcEQoVd33vOSjgQC&currency=USD"></script>
+    <!-- Set up a container element for the button -->
+    <div id="paypal-button-container"></div>
+    
        
 
         <div id="application">

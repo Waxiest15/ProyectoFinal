@@ -2,10 +2,22 @@ import Carousel from 'react-bootstrap/Carousel';
 import Container from 'react-bootstrap/Container';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import "/xampp/htdocs/ProyectoFinal/resources/css/app.css"
+import { Button } from 'react-bootstrap';
+
 
 function carousel() {
+
+  let navigate=useNavigate();
+  const navigateTo =(url)=>{
+    let path=url;
+    navigate('/'+url);
+  }
+
   return (
     <>
     
@@ -14,7 +26,7 @@ function carousel() {
       <Carousel.Item interval={1000}>
         <img
           className="d-block w-100"
-          src="images/Carrusel_1.jfif"
+          src="images/comida.jfif"
           alt="First slide"
           class="img-carrousel"
         />
@@ -76,7 +88,10 @@ function carousel() {
           <small className="text-muted">Last updated 3 mins ago</small>
         </Card.Footer>
       </Card>
-      <Card>
+      
+      
+      <Card as={Link} to='producto' style={{textDecoration: 'none', color: 'black'}} >
+        
         <Card.Img  variant="top" src="images/hulerojo.jpg" class="img-main-products"/>
         <Card.Body>
           <Card.Title>Bola de juguete de goma extradura</Card.Title>
@@ -87,6 +102,7 @@ function carousel() {
         <Card.Footer>
           <small className="text-muted">Last updated 3 mins ago</small>
         </Card.Footer>
+        
       </Card>
     </CardGroup>
     </div>

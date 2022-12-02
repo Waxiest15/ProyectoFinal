@@ -7,18 +7,12 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
 import Button  from 'react-bootstrap/Button';
 
-function paypal (){
-    
-}
-
-function ShoppingCart () {
+function WhisList () {
     return(
     <Container className="m-5">
-        <Row className='gap-3'>
-            <Col xs={10} className='w-75' >
-            <Card className="p-3 w-100">
+        <Card className="p-3 w-100">
             <Card.Title>
-                Carrito
+                Lista de deseados
             </Card.Title>
             <hr />
             <Row className="p-3"> 
@@ -40,24 +34,8 @@ function ShoppingCart () {
                 </Col>
             </Row>
         </Card>
-            </Col>
-            <Col>
-                <Card>
-                    <Card.Title className='text-center mt-3'>
-                        <h2>Total a pagar</h2>
-                        paypal>
-                    </Card.Title>
-                    
-                    <Card.Body>
-                        Total a pagar: $$$
-                        Cantidad de productos
-                        <Button className='w-100 mt-2'>Proceder a la compra</Button>
-                    </Card.Body>
-                </Card>
-            </Col>
-        </Row>
     </Container>
     );
 }
 
-export default ShoppingCart;
+export default WhisList;

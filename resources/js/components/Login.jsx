@@ -18,6 +18,7 @@ function Login(){
         <Form.Label>Correo electronico</Form.Label>
         <Form.Control
           type="email"
+          title='El correo electronico es invalido o esta mal escrito, intentalo de nuevo'
           autoFocus
           required
           placeholder="Correo electronico"
@@ -30,14 +31,12 @@ function Login(){
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Contraseña</Form.Label>
         <Form.Control
+        title='Contraseña incorrecta'
         type="password"
         placeholder="Contraseña"
         maxLength={"20"}
         required
         />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit

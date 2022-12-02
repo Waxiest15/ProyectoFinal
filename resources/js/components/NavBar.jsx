@@ -24,9 +24,10 @@ const Footer = () =>
                 <h5 className="text-uppercase">Acerca de</h5>
                 <ul className="list-unstyled">
                     <li><a>PetWeb</a></li>
-                    <li><a>Ser vendedor</a></li>
-                    <li><Form.Label as={Link} to='/ProyectoFinal/public/politicas'>Terminos y condiciones</Form.Label></li>
-                    <li><a></a></li>
+                    <li><Form.Label as={Link} to='about-us'>Nosotros</Form.Label></li>
+                    <li><Form.Label as={Link} to='politicas'>Terminos y condiciones</Form.Label></li>
+                    <li><Form.Label as={Link} to='mapa'>King Crimson!!!</Form.Label></li>
+                    <li><Form.Label as={Link} to='test'>Za hando!!!</Form.Label></li>
                 </ul>
             </div>
 
@@ -40,7 +41,7 @@ const Footer = () =>
                     <li class='d-flex align-items-center justify-content-center'>
                       <a class="me-2" href='https://twitter.com/petwebmx'>Twitter</a><Twitter/></li>
                     <li class='d-flex align-items-center justify-content-center'>
-                      <a class="me-2">Correo</a><Envelope/></li>
+                    <a class='me-2' href="mailto:petwebmx1@gmail.com?Subject=Correo%20desde%20la%20pagina">Correo</a><Envelope/></li>
                 </ul>
             </div>
         </div>
@@ -63,12 +64,12 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto" fill>
             <NavDropdown title="Servicios" id="collasible-nav-dropdown">
-              <NavDropdown.Item>Paseo</NavDropdown.Item>
-              <NavDropdown.Item>Aseo</NavDropdown.Item>
-              <NavDropdown.Item>Estetica</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to='paseo'>Paseo</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to='aseo'>Aseo</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to='estetica'>Estetica</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item>Nutricion</NavDropdown.Item>
-              <NavDropdown.Item>Mascotas Perdidas</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to='lostPet'>Mascotas Perdidas</NavDropdown.Item>
               <NavDropdown.Item>Servicios Funerarios</NavDropdown.Item>
               <NavDropdown.Item>Veterinaria</NavDropdown.Item>
               <NavDropdown.Item>Estadia</NavDropdown.Item>
@@ -80,32 +81,33 @@ function NavBar() {
                     className="me-2 w-100"
                     aria-label="Search"
                   />
-                  <Button variant="outline-success" as={Link} to="/ProyectoFinal/public/result"><Search/></Button>
+                  <Button variant="outline-success" as={Link} to="result"><Search/></Button>
                 </Form>
           </Nav>
           <Nav className="me-3 gap-3">
             <div >
             <Button variant="Link" 
             className='text-light d-flex align-items-center gap-3'
-            as={Link} to='/ProyectoFinal/public/bussiness'
+            as={Link} to='bussiness'
             >Quiero Vender <Shop color='white'/></Button>
             </div>
           <Dropdown as={ButtonGroup}>
             <Button variant="success"><PersonCircle/></Button>
             <Dropdown.Toggle split variant="success" id="dropdown-spli  t-basic">Usuario {' '}</Dropdown.Toggle>
             <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/ProyectoFinal/public/profile">Mi perfil</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/ProyectoFinal/public/pets">Mis mascotas</Dropdown.Item>
+                <Dropdown.Item as={Link} to="profile">Mi perfil</Dropdown.Item>
+                <Dropdown.Item as={Link} to="pets">Mis mascotas</Dropdown.Item>
                 <Dropdown.Item>Ajustes</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/ProyectoFinal/public/signin">Crear cuenta</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/ProyectoFinal/public/login">Acceder</Dropdown.Item>
+                <Dropdown.Item as={Link} to="signin">Crear cuenta</Dropdown.Item>
+                <Dropdown.Item as={Link} to="login">Acceder</Dropdown.Item>
+                <Dropdown.Item as={Link} to="wishList">Lista de deseos</Dropdown.Item>
                 <Dropdown.Divider/>
                 <Dropdown.Item>Salir</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
           </Nav>
           <Nav>
-          <Button className="me-2" as={Link} to="/ProyectoFinal/public/shoppingcart">
+          <Button className="me-2" as={Link} to="shoppingcart">
             <Cart/>
           </Button>
           <Button>
