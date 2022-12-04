@@ -12,7 +12,7 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
+    {//DELETE
         Schema::create('image_businesses', function (Blueprint $table) {
             $table->id();
             $table->string('route');

@@ -179,6 +179,9 @@ class UserController extends Controller
         $user -> gender = $request -> gender;
         $user -> email = $request -> email;
         $user -> password = $request -> password;
+        if($request->image){
+            $user -> image = $this->store_image($request);
+        }
         $user -> save();
     }
 
@@ -230,6 +233,13 @@ class UserController extends Controller
             ];
         }
         return  response()->json($p);
+    }
+
+    public function store_image($request){
+        $newImageName = uniqid() . '-' . $request->title . '.' .
+        $request->image->extension();
+
+        return $request->image->move(public_path('imagesUser'), $newImageName);
     }
 
     public function register(Request $request){

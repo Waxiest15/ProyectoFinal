@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->boolean('distributor')->default(0);
             $table->float('rate');
-            $table->string('password', 100);            
+            $table->string('password', 100); 
+            $table->string('image');           
             $table->json('location_api')->nullable();
             $table->timestamps();
         });

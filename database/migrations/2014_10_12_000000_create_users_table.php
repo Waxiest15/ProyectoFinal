@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('gender', 100);
             $table->string('email', 100)->unique();
             $table->string('password', 100);
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
