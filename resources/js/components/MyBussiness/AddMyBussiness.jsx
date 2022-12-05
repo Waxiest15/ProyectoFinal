@@ -156,7 +156,7 @@ function Map() {
         <p>lng: {lng}</p>
         </>
     );
-}
+}   
 
 function Distribuidor() {
   return(
