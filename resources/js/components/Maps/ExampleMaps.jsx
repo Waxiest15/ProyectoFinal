@@ -1,37 +1,54 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { useState, useRef } from 'react';
-import { Container } from 'react-bootstrap';
-import GoogleMapReact from 'google-map-react';
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { useState } from "react";
+import Container from 'react-bootstrap/Container';
 
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-function Map() {    
-    const defaultProps = {
-        center: {
-          lat: 10.99835602,
-          lng: 77.01502627
-        },
-        zoom: 11
-      };
-    
-      return (
-        // Important! Always set the container height explicitly
-        <div style={{ height: '100vh', width: '100%' }}>
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: "AIzaSyAsdXInYMGlY7iKwGOYoy2zuNnOUX9WeHQ" }}
-            defaultCenter={defaultProps.center}
-            defaultZoom={defaultProps.zoom}
-          >
-            <AnyReactComponent
-          lat={10.99835602}
-          lng={77.01502627}
-          text="My Marker"
-        />
-            
-          </GoogleMapReact>
-        </div>
-      );
+
+function Map() {
+
+  const [lat, setLat] = useState(21.87461477124801);
+  const [lng, setLng] = useState(-102.26663330211015);
+
+  function onDrag(e){
+    let lat = e.latLng.lat();
+    let lng = e.latLng.lng();
+  
+    setLat(lat);
+    setLng(lng);
+  
+    console.log("position: ", lat + " ", lng)
+  }
+
+    // Loads the map using API KEY
+
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: "AIzaSyAsdXInYMGlY7iKwGOYoy2zuNnOUX9WeHQ",
+    });
+
+    if (!isLoaded) return <div>Loading...</div>;
+    return (
+      <>
+        <Container className='border d-flex justify-content-center'>
+          <GoogleMap
+            zoom={14}
+            center={{ lat: lat, lng: lng }}
+            mapContainerStyle={{ width: 450, height: 450}}
+        >
+            <Marker
+                draggable={true}
+                onDragEnd={onDrag}
+                position={{ lat: lat, lng: lng }}
+            ></Marker>
+        </GoogleMap>
+        
+        </Container>
+        <p>lat: {lat}</p>
+        <p>lng: {lng}</p>
+        </>
+    );
 }
 export default Map;
+if (document.getElementById("Map")) {
+    ReactDOM.render(<Map />, document.getElementById("Map"));
+}

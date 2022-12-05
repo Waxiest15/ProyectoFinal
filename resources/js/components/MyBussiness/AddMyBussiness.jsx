@@ -115,32 +115,47 @@ function Test() {
 
 
 function Map() {
-  // Loads the map using API KEY
-  const { isLoaded } = useLoadScript({
-      googleMapsApiKey: "AIzaSyAsdXInYMGlY7iKwGOYoy2zuNnOUX9WeHQ"
-  });
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
 
-  
-  if (!isLoaded) return <div>Loading...</div>
-  
-  return (
-     <Container>
-       <GoogleMap className='w-100'
-          zoom={14}
-          center={{ lat:21.87461477124801, lng: -102.26663330211015 }}
-          mapContainerStyle={{ width: '100%', height: 600 }}
-      >    
-          <Marker draggable={true} id='mark' position={{ lat: 21.87444, lng: -102.26657 }}></Marker>
+  const [lat, setLat] = useState(21.87461477124801);
+  const [lng, setLng] = useState(-102.26663330211015);
 
-      </GoogleMap>
-      <label id='LatTxt' >Lat: {lat}</label>
-      <br />
-      <label id='LngTxt'>Lng: {lng}</label>
-     </Container>
-      
-  )
+  function onDrag(e){
+    let lat = e.latLng.lat();
+    let lng = e.latLng.lng();
+  
+    setLat(lat);
+    setLng(lng);
+  
+    console.log("position: ", lat + " ", lng)
+  }
+
+    // Loads the map using API KEY
+
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: "AIzaSyAsdXInYMGlY7iKwGOYoy2zuNnOUX9WeHQ",
+    });
+
+    if (!isLoaded) return <div>Loading...</div>;
+    return (
+      <>
+        <Container className='border d-flex justify-content-center'>
+          <GoogleMap
+            zoom={14}
+            center={{ lat: lat, lng: lng }}
+            mapContainerStyle={{ width: 450, height: 450}}
+        >
+            <Marker
+                draggable={true}
+                onDragEnd={onDrag}
+                position={{ lat: lat, lng: lng }}
+            ></Marker>
+        </GoogleMap>
+        
+        </Container>
+        <p>lat: {lat}</p>
+        <p>lng: {lng}</p>
+        </>
+    );
 }
 
 function Distribuidor() {

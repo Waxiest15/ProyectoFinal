@@ -1,0 +1,44 @@
+[
+    {
+      "fechaPago": "03/12/2022",
+      "compras": [
+        {
+          "status": "Entregado",
+          "fechaLlgada": "llegada",
+          "descripcion": "texto",
+          "unidades": 1,
+          "proveedor": "proveedor",
+          "imagen": "images/collar.jpg"
+        },
+        {
+          "status": "En camino",
+          "fechaLlgada": "llegada",
+          "descripcion": "texto",
+          "unidades": 2,
+          "proveedor": "proveedor",
+          "imagen": "images/sueterPerro.jfif"
+        },
+        {
+          "status": "Cancelado",
+          "fechaLlgada": "llegada",
+          "descripcion": "texto",
+          "unidades": 3,
+          "proveedor": "proveedor",
+          "imagen": "images/pedigrie.png"
+        }
+      ]
+    },
+    {
+      "fechaPago": "18/11/2022",
+      "compras": [
+        {
+          "status": "Entregado",
+          "fechaLlgada": "llegada",
+          "descripcion": "texto",
+          "unidades": 1,
+          "proveedor": "proveedor",
+          "imagen": "images/wiskas.jfif"
+        }
+      ]
+    }
+  ]

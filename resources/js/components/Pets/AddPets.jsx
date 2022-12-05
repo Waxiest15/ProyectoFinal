@@ -39,7 +39,7 @@ function AddPet() {
                     type="text" 
                     name="petName"
                     maxLength={"100"}
-                    pattern="[A-Za-z]{1,100}" 
+                    pattern="[A-Za-z ]{1,100}" 
                     placeholder="Escribe su nombre"
                     required
                     ></Form.Control></Form.Label>

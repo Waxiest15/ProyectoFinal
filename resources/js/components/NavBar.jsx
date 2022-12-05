@@ -81,7 +81,7 @@ function NavBar() {
                     className="me-2 w-100"
                     aria-label="Search"
                   />
-                  <Button variant="outline-success" as={Link} to="result"><Search/></Button>
+                  <Button variant="outline-success" className='' as={Link} to="result"><Search className='mt-1'/></Button>
                 </Form>
           </Nav>
           <Nav className="me-3 gap-3">
@@ -101,6 +101,7 @@ function NavBar() {
                 <Dropdown.Item as={Link} to="signin">Crear cuenta</Dropdown.Item>
                 <Dropdown.Item as={Link} to="login">Acceder</Dropdown.Item>
                 <Dropdown.Item as={Link} to="wishList">Lista de deseos</Dropdown.Item>
+                <Dropdown.Item as={Link} to="boughts">Compras</Dropdown.Item>
                 <Dropdown.Divider/>
                 <Dropdown.Item>Salir</Dropdown.Item>
             </Dropdown.Menu>

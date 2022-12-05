@@ -19,6 +19,9 @@ import Product from "./SpecificProduct";
 import Paseo from "./Services/Paseo";
 import Aseo from "./Services/Aseo";
 import Estetica from "./Services/Estetica";
+import AddProduct from "./User/AddProduct";
+
+import Bought from "./User/Compras";
 
 import LostPet from "./Pets/MascotaPerdida";
 
@@ -53,6 +56,8 @@ export default function App() {
                         <Route path="aseo" element={<Aseo />}/>
                         <Route path="estetica" element={<Estetica />}/>
                         <Route path="lostPet" element={<LostPet />}/>
+                        <Route path="boughts" element={<Bought />}/>
+                        <Route path="result/newproduct" element={<AddProduct />}/>
 
                         <Route path="test" element={<Test />}/>
                     </Route>

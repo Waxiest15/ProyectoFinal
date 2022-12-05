@@ -1,33 +1,64 @@
 [{
-    "img": "images/hulerojo.jpg",
-    "name": "pelota de hule rojo de alta resitencia",
-    "price": 288
-    }, {
-    "img": "images/collarGato.jpg",
-    "name": "Collar de gato diversos diseños",
-    "price": 232
-    }, {
-    "img": "images/dogChow.jfif",
-    "name": "Alimento de perro dog chow para perros pequeños",
-    "price": 215
-    }, {
-    "img": "images/pastoSintetico.jfif",
-    "name": "Tapete de pasto sintetico para el perro lavable",
-    "price": 298
-    }, {
-    "img": "images/pecherasPerro.jfif",
-    "name": "Pechera de perra para sacar a pasear",
-    "price": 266
-    }, {
-    "img": "images/pedigrie.png",
-    "name": "Alimento pedigrie para perros grandes 17kg",
-    "price": 266
-    }, {
-    "img": "images/sueterGato.jfif",
-    "name": "Sueteres para gatos diversos modelos",
-    "price": 268
-    }, {
-    "img": "images/sueterPerro.jfif",
-    "name": "Sueter para perro estilo leñador",
-    "price": 212
-    }]
+
+  "id":1,
+  "img": "images/hulerojo.jpg",
+  "name": "pelota de hule rojo de alta resitencia",
+  "price": 288,
+  "category": "juguete"
+  }, {
+  "id":2,
+  "img": "images/collarGato.jpg",
+  "name": "Collar de gato diversos diseños",
+  "price": 232,
+  "category": "collares"
+  }, {
+  "id":3,
+  "img": "images/dogChow.jfif",
+  "name": "Alimento de perro dog chow para perros pequeños",
+  "price": 215,
+  "category": "alimento"
+  }, {
+  "id":4,
+  "img": "images/pastoSintetico.jfif",
+  "name": "Tapete de pasto sintetico para el perro lavable",
+  "price": 298,
+  "category": "accesorio"
+  }, {
+  "id":5,
+  "img": "images/pecherasPerro.jfif",
+  "name": "Pechera de perra para sacar a pasear",
+  "price": 266,
+  "category": "collares"
+  }, {
+  "id":6,
+  "img": "images/pedigrie.png",
+  "name": "Alimento pedigrie para perros grandes 17kg",
+  "price": 266,
+  "category": "alimento"
+  }, {
+  "id":7,
+  "img": "images/sueterGato.jfif",
+  "name": "Sueteres para gatos diversos modelos",
+  "price": 268,
+  "category": "ropa"
+  }, {
+  "id":8,
+  "img": "images/sueterPerro.jfif",
+  "name": "Sueter para perro estilo leñador",
+  "price": 212,
+  "category": "ropa"
+},
+{
+  "id":9,
+  "img": "images/varioscollares.jfif",
+  "name": "Diveross collares para gato",
+  "price": 212,
+  "category": "collares"
+},
+{
+  "id":10,
+  "img": "images/wiskas.jfif",
+  "name": "Alimento Wiskas para gato de 9kg",
+  "price": 212,
+  "category": "alimento"
+}]

@@ -6,9 +6,14 @@ import Image from 'react-bootstrap/Image'
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
 import Button  from 'react-bootstrap/Button';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
-function paypal (){
-    
+function Paypal (){
+    return (
+        <PayPalScriptProvider options={{ "client-id": "AYcwDoQW6grHeC8qKSjVp35vNRUvhOljz6lpx4ki8H-91IX_LvNlpmO4kewWra8d8wTAPbrZ9NC9g_nl" }}>
+            <PayPalButtons style={{ layout: "horizontal" }} />
+        </PayPalScriptProvider>
+    );
 }
 
 function ShoppingCart () {
@@ -45,7 +50,7 @@ function ShoppingCart () {
                 <Card>
                     <Card.Title className='text-center mt-3'>
                         <h2>Total a pagar</h2>
-                        paypal>
+                        <Paypal></Paypal>
                     </Card.Title>
                     
                     <Card.Body>
