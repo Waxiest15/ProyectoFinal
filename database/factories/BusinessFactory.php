@@ -23,13 +23,14 @@ class BusinessFactory extends Factory
         'Negocio S'];
 
         return [
-            'name' =>  (strval($companies[$this->faker->numberBetween(0,20)]) . strval($this->faker->randomFloat(5, 0, 5400))),
+            'name' =>  (strval($companies[$this->faker->numberBetween(0,19)]) . strval($this->faker->randomFloat(5, 0, 5400))),
             'description' => $this->faker->realText(),
             'email' => $this->faker->unique()->safeEmail(),
             'distributor' => $this->faker->boolean(),
             'rate' => $this->faker->numberBetween(1,5),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            'location_api' => json_encode(['lon' => $this->faker->randomFloat(3, 4513, 22300), 'lat' => $this->faker->randomFloat(3, 4513, 22300)])
+            'location_api' => json_encode(['lon' => $this->faker->randomFloat(3, 4513, 22300), 'lat' => $this->faker->randomFloat(3, 4513, 22300)]),
+            'image' => 'public/images/ElPolooYon.png',
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use App\Models\Business;
 
@@ -38,28 +39,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required|alpha|max:100',
-        //     'size' => '',
-        //     'weight' => 'numeric|min:1',
-        //     'price' => 'required|numeric|min:1',
-        //     'description' => 'required|min:20',
-        //     'rate' => 'numeric',
-        //     'amount' => 'required|numeric',
-        //     'enable' => 'boolean',
-        //     'deliverTime' => 'required|numeric|min:1',
-        //     'category_id' => 'required|numeric|min:1',
-        //     'business_id' => 'required|numeric|min:1'
-        // ]);
+        $request->validate([
+            'name' => 'required|max:100',
+            'size' => 'max:100',
+            'weight' => 'numeric|min:1',
+            'price' => 'required|numeric|min:1',
+            'description' => 'required|min:20',
+            'rate' => 'numeric',
+            'amount' => 'required|numeric',
+            'deliverTime' => 'required|numeric|min:1',
+            'category_id' => 'required|numeric|min:1',
+            'business_id' => 'required|numeric|min:1'
+        ]);
         $product = new Product();
         $product -> name = $request -> name;
         $product -> size = $request -> size;
         $product -> weight = $request ->weight;
         $product -> price = $request -> price;
-        $product -> rate = $request -> rate;
         $product -> description = $request -> description;
+        $product -> rate = $request -> rate;
         $product -> amount = $request -> amount;
-        $product -> enable = $request -> enable;
+        if($request->image){
+            $product -> image = $request -> image;
+        }
+        //$product -> enable = $request -> enable;
         $product -> deliverTime = $request -> deliverTime;
         $product -> category_id = $request -> category_id;
         $product -> business_id = $request -> business_id;
@@ -84,6 +87,7 @@ class ProductController extends Controller
                 'rate' => $product->rate,
                 'description' => $product->description,
                 'amount'=> $product->amount,
+                'image'=> $product->image,
                 'deliverTime' => $product->deliverTime,
                 'category_id' => Category::find($product->category_id)->name,
                 'business_id' => Business::find($product->business_id)->name

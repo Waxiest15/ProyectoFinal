@@ -8,6 +8,10 @@ use App\Models\CellUser;
 use App\Models\ImageUser;
 use App\Models\Address;
 use App\Models\AddressUser;
+use App\Models\State;
+use App\Models\City;
+use App\Models\Neighborhood;
+use App\Models\Street;
 use App\Models\Product;
 use App\Models\Pet;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,19 +36,58 @@ class User extends Authenticatable
         return $this->hasMany(Pet::class);
     }
 
-    public function dataAddressUser(){
-        return $this->hasManyThrough(
-            Address::class, 
-            AddressUser::class
-        );
-    }
+    // public function dataAddressUser(){
+    //     return $this->hasManyThrough(
+    //         Address::class, 
+    //         AddressUser::class
+    //     );
+    // }
 
-    public function addressUser(){
+    // public function addressUser(){
+    //     return $this->belongsToMany(
+    //         Address::class,
+    //         'address_users'
+    //     )->withTimestamps();
+    // }
+
+    //info state
+    public function state(){
         return $this->belongsToMany(
-            Address::class,
-            'address_users'
+            State::class,
+            'addresses'
         )->withTimestamps();
     }
+
+
+    public function city(){
+        return $this->belongsToMany(
+            City::class,
+            'addresses'
+        )->withTimestamps();
+    }
+
+    public function neighborhood(){
+        return $this->belongsToMany(
+            Neighborhood::class,
+            'addresses'
+        )->withTimestamps();
+    }
+
+    public function street(){
+        return $this->belongsToMany(
+            Street::class,
+            'addresses'
+        )
+        ->withPivot(['number'])
+        ->withPivot('id')
+        ->withTimestamps();
+    }
+
+
+
+
+
+
 
     public function buy(){
         return $this->belongsToMany(

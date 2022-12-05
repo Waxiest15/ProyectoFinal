@@ -26,7 +26,8 @@ class PetFactory extends Factory
             'description' => $this->faker->paragraph(),
             'state' => $this->faker->boolean(),
             'user_id' => User::inRandomOrder()->first()->id,
-            'species_breed_id' => SpeciesBreed::inRandomOrder()->first()->id
+            'species_breed_id' => SpeciesBreed::inRandomOrder()->first()->id,
+            'image' => 'public/images/ElPolooYon.png',
         ];
     }
 }

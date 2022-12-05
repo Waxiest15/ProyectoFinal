@@ -11,15 +11,15 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('address_users', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('address_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->timestamps();
-        });
-    }
+    // public function up()
+    // {
+    //     Schema::create('address_users', function (Blueprint $table) {
+    //         $table->id();
+    //         $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            
+    //         $table->timestamps();
+    //     });
+    // }
 
     /**
      * Reverse the migrations.

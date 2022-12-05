@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\ImageProduct;
+use App\Models\Business;
 use App\Models\User;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -19,6 +20,10 @@ class Product extends Model
         'weight',
         'description'
     ];
+
+    public function business(){
+        return $this->belongsTo(Business::class);
+    }
 
 
     public function category(){

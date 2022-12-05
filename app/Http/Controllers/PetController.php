@@ -50,6 +50,9 @@ class PetController extends Controller
         $pet -> size = $request -> size;
         $pet -> color = $request -> color;
         $pet -> description = $request -> description;
+        if($request->image){
+            $pet -> image = $request -> image; 
+        }
         $pet -> user_id = $request -> user_id;
         $pet -> species_breed_id = $request -> species_breed_id;
 

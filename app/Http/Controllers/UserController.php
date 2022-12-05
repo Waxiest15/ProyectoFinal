@@ -103,7 +103,8 @@ class UserController extends Controller
         foreach($user->wishlist as $product){
             $p [] = [
                 'product' => $product->name,//Generamos el nombre del producto
-                'date add' => $product->pivot->date//con base a la tabla intermediaria se obtiene la fecha de compra
+                'date add' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
+                'image' => $product->image,
             ];
         }
         return response()->json($p);
@@ -119,7 +120,8 @@ class UserController extends Controller
         foreach($user->shopingcart as $product){
             $p [] = [
                 'product' => $product->name,//Generamos el nombre del producto
-                'date add' => $product->pivot->date//con base a la tabla intermediaria se obtiene la fecha de compra
+                'date add' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
+                'image' => $product->image,
             ];
         }
         return response()->json($p);
@@ -136,7 +138,8 @@ class UserController extends Controller
             $p [] = [
                 'product' => $product->name,//Generamos el nombre del producto
                 'product_price' => $product->price,
-                'date of buy' => $product->pivot->date//con base a la tabla intermediaria se obtiene la fecha de compra
+                'date of buy' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
+                'image' => $product->image,
             ];
         }
         return response()->json($p);
@@ -185,34 +188,34 @@ class UserController extends Controller
         $user -> save();
     }
 
-    public function add_address(Request $request){
-        $request->validate([
-            'user_id' => 'required|numeric|min:1'
-        ]);
-        $request->validate([//CHECAR
-            //'user_id' => 'required|numeric',
-        ]);
-        $user = User::find($request->user_id);
-        $user->addressUser()->attach(app(AddressController::class)->last_address());
-    }
+    // public function add_address(Request $request){
+    //     $request->validate([
+    //         'user_id' => 'required|numeric|min:1'
+    //     ]);
+    //     $request->validate([//CHECAR
+    //         //'user_id' => 'required|numeric',
+    //     ]);
+    //     $user = User::find($request->user_id);
+    //     $user->addressUser()->attach(app(AddressController::class)->last_address());
+    // }
 
-    public function show_addresss(Request $request){
-        $request->validate([
-            'user_id' => 'required|numeric|min:1'
-        ]);        
-        $user = User::find($request->user_id);
-        $p = [];
-        foreach($user->addressUser as $add){
-            $p [] =[
-                'address_id' => $add->pivot->address_id,
-                'state_id' => State::find($add->state_id)->name,
-                'city_id' => City::find($add->city_id)->name,
-                'neighborhood_id' => Neighborhood::find($add->neighborhood_id)->name,
-                'street_id' => Street::find($add->street_id)->name
-            ];
-        }
-        return response()->json($p);
-    }
+    // public function show_addresss(Request $request){
+    //     $request->validate([
+    //         'user_id' => 'required|numeric|min:1'
+    //     ]);        
+    //     $user = User::find($request->user_id);
+    //     $p = [];
+    //     foreach($user->addressUser as $add){
+    //         $p [] =[
+    //             'address_id' => $add->pivot->address_id,
+    //             'state_id' => State::find($add->state_id)->name,
+    //             'city_id' => City::find($add->city_id)->name,
+    //             'neighborhood_id' => Neighborhood::find($add->neighborhood_id)->name,
+    //             'street_id' => Street::find($add->street_id)->name
+    //         ];
+    //     }
+    //     return response()->json($p);
+    // }
 
     public function show_pets(Request $request){
         $request->validate([
@@ -235,12 +238,75 @@ class UserController extends Controller
         return  response()->json($p);
     }
 
-    public function store_image($request){
-        $newImageName = uniqid() . '-' . $request->title . '.' .
-        $request->image->extension();
+    // public function store_image($request){
+    //     $newImageName = uniqid() . '-' . $request->title . '.' .
+    //     $request->image->extension();
 
-        return $request->image->move(public_path('imagesUser'), $newImageName);
+    //     return $request->image->move(public_path('imagesUser'), $newImageName);
+    // }
+
+    public function show_state(Request $request){
+        $request->validate([
+                    'user_id' => 'required|numeric|min:1'
+                ]);        
+        $user = User::find($request->user_id);
+        $state = [];
+        foreach($user->state as $st){
+            $state [] = [
+                'state_id' => $st->pivot->state_id,
+                'state' => $st->name
+            ];
+        }
+        return  response()->json($state);
     }
+
+    public function show_city(Request $request){
+        $request->validate([
+                    'user_id' => 'required|numeric|min:1'
+                ]);        
+        $user = User::find($request->user_id);
+        $city = [];
+        foreach($user->city as $ct){
+            $state [] = [
+                'city_id' => $ct->pivot->city_id,
+                'city' => $ct->name
+            ];
+        }
+        return  response()->json($city);
+    }
+
+    public function show_neighborhood(Request $request){
+        $request->validate([
+                    'user_id' => 'required|numeric|min:1'
+                ]);        
+        $user = User::find($request->user_id);
+        $neighborhood = [];
+        foreach($user->neighborhood as $nb){
+            $neighborhood [] = [
+                'neighborhood_id' => $nb->pivot->neighborhood_id,
+                'neighborhood' => $nb->name
+            ];
+        }
+        return  response()->json($neighborhood);
+    }
+
+    public function show_street(Request $request){
+        $request->validate([
+                    'user_id' => 'required|numeric|min:1'
+                ]);        
+        $user = User::find($request->user_id);
+        $street = [];
+        foreach($user->street as $st){
+            $street [] = [
+                'id' => $st->pivot->id,
+                'address_numer' => $st->pivot->number,
+                'street_id' => $st->pivot->street_id,
+                'street' => $st->name
+            ];
+        }
+        return  response()->json($street);
+    }
+
 
     public function register(Request $request){
         $validator = Validator::make($request->all(),[

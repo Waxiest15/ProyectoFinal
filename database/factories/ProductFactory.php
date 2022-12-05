@@ -20,7 +20,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->asciify('Producto-*****'),
-            'size' => json_encode('{length:' . strval($this->faker->randomFloat(2, 0, 500)) . 
+            'size' => ('{length:' . strval($this->faker->randomFloat(2, 0, 500)) . 
                 ', width:' . strval($this->faker->randomFloat(2, 0, 500)) .
                 ', tall:' . strval($this->faker->randomFloat(2, 0, 500)) . '}'),//en cm
             'weight' => $this->faker->randomFloat(2, 1, 50),
@@ -30,6 +30,7 @@ class ProductFactory extends Factory
             'amount' => $this->faker->numberBetween(1, 100),
             'enable' => $this->faker->boolean(),
             'deliverTime' => $this->faker->numberBetween(1, 32),
+            'image' => 'public/images/ElPolooYon.png',
             'category_id' => Category::inRandomOrder()->first()->id,
             'business_id' => Business::inRandomOrder()->first()->id
         ];

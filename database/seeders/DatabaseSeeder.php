@@ -54,16 +54,12 @@ class DatabaseSeeder extends Seeder
         ->each(function ($user) {
             CellUser::factory(2)
             ->create(['user_id' => $user->id]);
-            ImageUser::factory(2)
-            ->create(['user_id' => $user->id]);
         });
 
         Business::factory(10)
         ->create()
         ->each(function ($business){
             CellBusiness::factory(2)
-            ->create(['business_id' => $business->id]);
-            ImageBusiness::factory(2)
             ->create(['business_id' => $business->id]);
         });
         
@@ -78,20 +74,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Address::factory(10)->create();
-        Product::factory(10)->create()
-        ->each(function ($product){
-            ImageProduct::factory(2)
-            ->create(['product_id' => $product->id]);
-        });
+        Product::factory(10)->create();
 
-        Pet::factory(10)->create()
-        ->each(function ($pet){
-            ImagePet::factory(10)
-            ->create(['pet_id' => $pet->id]);
-        });
+        Pet::factory(10)->create();
 
-        AddressUser::factory(10)->create();
-        AddressBusiness::factory(10)->create();
         Buy::factory(10)->create();
         Wishlist::factory(10)->create();
         ShoppingCart::factory(10)->create();

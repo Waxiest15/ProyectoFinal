@@ -51,6 +51,10 @@ Route::post('/user_add_address',[UserController::class, 'add_address']);//Esta y
 Route::post('/user_show_addresss',[UserController::class, 'show_addresss']);
 Route::post('/user_show_pets',[UserController::class, 'show_pets']);
 
+Route::post('/user_show_state',[UserController::class, 'show_state']);
+Route::post('/user_show_city', [UserController::class, 'show_city']);
+Route::post('/user_show_neighborhood', [UserController::class, 'show_neighborhood']);
+Route::post('/user_show_street', [UserController::class, 'show_street']);
 
 //Routes CellUser show_addresss
 Route::post('/cellUser_store', [CellUserController::class, 'store']);
@@ -95,7 +99,10 @@ Route::post('/product_store', [ProductController::class, 'store']);
 Route::get('/product_show', [ProductController::class, 'show']);
 
 
+
 //Business
+Route::post('/business_store', [BusinessController::class, 'store']);
+Route::get('/business_product_shows/{id}', [BusinessController::class, 'show_products']);
 Route::post('/business_store', [BusinessController::class, 'store']);
 
 

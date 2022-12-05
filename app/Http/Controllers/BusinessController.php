@@ -56,10 +56,31 @@ class BusinessController extends Controller
         $business -> distributor = $request -> distributor;
         $business -> rate = $request -> rate;
         $business -> password = $request -> password;
+        if($request->image){
+            $business -> image = $this->store_image($request);
+        }
         $business -> location_api = $request -> location_api;
         $business -> save();
     }
 
+    public function show_products($id){
+        $business = Business::find($id);
+        $products = [];
+        foreach($business->dataCategory as $pr){
+            $products [] = [
+                'id' => $pr->pivot->id,
+                'name' => $pr->pivot->name,
+                'price' => $pr->pivot->price,
+                'description' => $pr->pivot->description,
+                'size' => $pr->pivot->size,
+                'weight' => $pr->pivot->weight,
+                'amount' => $pr->pivot->amount,
+                'image' => $pr->pivot->image,
+                'category' => $pr->name
+            ];
+        }
+        return  response()->json($products);
+    }
     /**
      * Display the specified resource.
      *
@@ -105,7 +126,7 @@ class BusinessController extends Controller
         //
     }
     public function add_address(Request $request){
-        $request->validate([
+        $request->validate([//MODIFICAR
             'business_id' => 'required|numeric|min:1'
         ]);
         $request->validate([//CHECAR
@@ -115,7 +136,7 @@ class BusinessController extends Controller
         $business->addressBusiness()->attach(app(AddressController::class)->last_address());
     }
 
-    public function show_addresss(Request $request){
+    public function show_addresss(Request $request){//MODIFICAR
         $request->validate([
             'business_id' => 'required|numeric|min:1'
         ]);        

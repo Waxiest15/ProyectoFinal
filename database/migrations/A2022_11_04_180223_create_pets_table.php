@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('size', 100)->nullable();//tamño en centímetros
             $table->string('color', 100)->nullable();
             $table->text('description')->nullable();
+            $table->text('description_lost')->nullable();
             $table->boolean('state')->default(1);//perdida o no xd
+            $table->string('image')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('species_breed_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

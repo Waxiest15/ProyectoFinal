@@ -12,8 +12,10 @@ import ShoppingCart from "./User/ShoppingCart";
 import SearchResult from "./SearchResult";
 import AddBussiness from "./MyBussiness/AddMyBussiness";
 import Politicas from "./Nosotros/Politicas";
+import AddAddress from './addAddress';
 
 import { BrowserRouter, Route, Routes, Router} from "react-router-dom"
+
 
 export default function App() {
     return (
@@ -33,6 +35,7 @@ export default function App() {
                         <Route path="result" element={<SearchResult />}/>
                         <Route path="bussiness" element={<AddBussiness />}/>
                         <Route path="politicas" element={<Politicas />}/>
+                        <Route path="addAddress" element={<AddAddress />}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

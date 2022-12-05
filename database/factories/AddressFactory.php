@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Neighborhood;
 use App\Models\State;
 use App\Models\Street;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,7 +26,9 @@ class AddressFactory extends Factory
             'state_id' => State::inRandomOrder()->first()->id,
             'city_id' => City::inRandomOrder()->first()->id,
             'neighborhood_id' => Neighborhood::inRandomOrder()->first()->id,
-            'street_id' => Street::inRandomOrder()->first()->id
-        ];
+            'street_id' => Street::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
+            'business_id' => null
+        ]; 
     }
 }
