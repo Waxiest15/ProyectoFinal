@@ -47,25 +47,25 @@ function ShowProduct() {
                     <>
                         <Container>
                             <Row>
-                                <Col>
+                                <Col className="rounded border p-2">
                                     <img
-                                        className="w-50"
+                                        className="w-50 mx-auto d-block"
                                         src={"../" + producto.img}
                                     />
                                 </Col>
-                                <Col className="rounded border me-3 p-3">
+                                <Col className="me-3 p-3">
                                     <Card.Text>
-                                        Nombre: {producto.name}
+                                        <h4>{producto.name}</h4>
                                     </Card.Text>
-                                    <Card.Text>Rate: {producto.rate}</Card.Text>
+                                    <Card.Text>Rate: {producto.rate}/5</Card.Text>
                                     <Card.Text>
-                                        Precio: {producto.price}
-                                    </Card.Text>
-                                    <Card.Text>
-                                        Tiempo de llegada: sabe
+                                        Precio: ${producto.price}
                                     </Card.Text>
                                     <Card.Text>
-                                        Stock: {producto.stock}
+                                        Tiempo de llegada: 
+                                    </Card.Text>
+                                    <Card.Text>
+                                        Unidades disponibles: {producto.stock}
                                     </Card.Text>
                                 </Col>
                             </Row>
@@ -73,7 +73,7 @@ function ShowProduct() {
                             <Row>
                                 <Col>
                                     <Card.Text>Caracterisitcas</Card.Text>
-                                    <Container className="border w-50 d-block ms-0">
+                                    <Container className="w-50 d-block ms-0">
                                         <ListGroup comment="flush">
                                             <ListGroup.Item>
                                                 Marca: {producto.marca}
@@ -89,8 +89,9 @@ function ShowProduct() {
                                             </ListGroup.Item>
                                         </ListGroup>
                                     </Container>
-                                    <Card.Text>Descripcion:</Card.Text>
+                                    <Card.Text className="mt-2"><h4>Descripcion:</h4></Card.Text>
                                     <Form.Control
+                                    className="text-justify"
                                         value={producto.desc}
                                         readOnly
                                         as="textarea"

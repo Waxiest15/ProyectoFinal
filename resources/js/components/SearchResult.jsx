@@ -17,8 +17,11 @@ import { ProductionQuantityLimits } from "@mui/icons-material";
 
 function SearchResult() {
     const Duplicates = Data.map((tags) => tags.category);
-    const noDuplicates = [...new Set(Duplicates)];
+    const [pivote, setPivote]=useState([...new Set(Duplicates)]);
+    const [noDuplicates, setNoDuplicates]=useState(pivote);
+    const [helper, setHelper]=useState('');
     const [selectedTag, setSelectedTag] = useState("");
+
 
     const [index, setIndex] = useState("");
     const [productos, setProductos] = useState(Data);
@@ -70,10 +73,13 @@ function SearchResult() {
                 </Button>
                 <Form.Group className="d-flex gap-2">
                     <Form.Label>categoria: </Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control 
+                    type="text"
+                    onChange={(e)=>setHelper(e.target.value.toString())}
+                    />
                     <Button
                         className="d-block m-2 ms-auto "
-                        onClick={() => [...noDuplicates, "queso"]}
+                        onClick={() => setNoDuplicates([...noDuplicates, helper])}
                     >
                         Add
                     </Button>

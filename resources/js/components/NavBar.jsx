@@ -102,6 +102,7 @@ function NavBar() {
                 <Dropdown.Item as={Link} to="login">Acceder</Dropdown.Item>
                 <Dropdown.Item as={Link} to="wishList">Lista de deseos</Dropdown.Item>
                 <Dropdown.Item as={Link} to="boughts">Compras</Dropdown.Item>
+                <Dropdown.Item as={Link} to="admin">Admin</Dropdown.Item>
                 <Dropdown.Divider/>
                 <Dropdown.Item>Salir</Dropdown.Item>
             </Dropdown.Menu>
