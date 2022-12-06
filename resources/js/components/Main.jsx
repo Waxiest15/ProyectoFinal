@@ -4,7 +4,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/Card';
 
 import "/xampp/htdocs/ProyectoFinal/resources/css/app.css"
-
+const token = sessionStorage.getItem('token');//obtener token 
 function carousel() {
   return (
     <>

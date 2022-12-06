@@ -112,4 +112,5 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout.user');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login'); 
 
+
 Route::middleware('auth:api')->get('/details',[AuthController::class, 'getTaskList']); //To verify from middleware

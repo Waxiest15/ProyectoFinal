@@ -11,7 +11,7 @@ use Illuminate\Validation\Rules\Password;
 class AuthController extends Controller
 {
     public function register(Request $request){
-        $validator = Validator::make($request->all(),[
+        $request->validate([
             'name' => 'required|alpha|max:100',
             'last_name' => 'required|alpha|max:100',
             'last_name2' => 'required|alpha|max:100',
@@ -20,10 +20,10 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => ['required', Password::min(8)->mixedCase()->numbers()]
         ]);
-
-        if($validator->fails()){
-            return $this->sendError('Validation Error', $validator->error());
-        }
+        
+        // if($request->fails()){
+        //     return $this->sendError('Validation Error', $request->error());
+        // }
 
         $user=User::create([
             'name'=>$request->name,
@@ -44,6 +44,7 @@ class AuthController extends Controller
     public function login(Request $request){
         
         if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
+            /** @var \App\Models\MyUserModel $user **/
             $user = Auth::user();
             $responseArray = [];
             $responseArray['token'] = $user->createToken('MyApp')->accessToken;

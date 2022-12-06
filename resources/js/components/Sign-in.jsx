@@ -6,6 +6,9 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import {useState} from 'react';
 import axios from 'axios';
+import Alert from 'react-bootstrap/Alert';
+import { useNavigate } from "react-router-dom";
+
 // const [users, setUsers]=useState([])
 
 
@@ -55,19 +58,23 @@ function Signin() {
   // const [gender, setGender] = useState('')
   // const [email, setEmail] = useState('')
   // const [password, setPassword] = useState('')
-
+  const navigate = useNavigate();
+  const [gender, setGender] = useState('')
   const [formValue, setFormValue] = useState({
     name: '',
     last_name: '',
     last_name2: '',
     birth: '',
-    gender: '',
+    //gender: '',
     email: '',
     password: '',
     //image: null
   })
-
   const [users, setUsers] = useState(['']);
+  
+  const [textError, setTextError] = useState('');
+  const [formOk, setFormOk] = useState(true);
+
 
   function handleChange(e){
     if(e.target.checked){
@@ -83,20 +90,23 @@ function Signin() {
     /*concatena al formValue,    email         lo que escriba el usuario como email */
   }
 
+  
+
   const handleFileChange = (e) => setForm({...formValue, [e.target.name]: e.target.files[0]})
 
   const postData = async(e) => {
+    setFormOk(true);
     if (e && e.preventDefault()) e.preventDefault(); e.preventDefault();
     const formData = new FormData();
     formData.append("name", formValue.name)
     formData.append("last_name", formValue.last_name)
     formData.append("last_name2", formValue.last_name2)
     formData.append("birth", formValue.birth)
-    formData.append("gender", formValue.gender)
+    formData.append("gender", gender)
     formData.append("email", formValue.email)
     formData.append("password", formValue.password)
     //formData.append("image", formValue.image)
-    await axios.post('http://localhost:80/ProyectoFinal/public/api/user_store',
+    await axios.post('http://localhost:80/ProyectoFinal/public/api/register',
     formData,
     {headers: {'Content-Type': 'multipart/form-data',
     'Accept':'application/json'}}
@@ -104,11 +114,16 @@ function Signin() {
         if(response.status==200){
             console.log('response');
             setUsers(response.data);
-            
+            let tokenForm = response.data.token;//obtener token 
+            sessionStorage.setItem('token', tokenForm)//guardan token 
+            navigate("/ProyectoFinal/public/");
 
         }
     }) .catch(error =>{
-        console.log(error);
+        
+        setFormOk(false);
+        setTextError('Contraseña o correo incorrecto');
+        console.log(error.response.data);
     })
   }
 
@@ -175,35 +190,20 @@ function Signin() {
             onChange={onChange}
             />
         </Form.Group>
-
-        <Form.Group controlId="gender">
-        <Form.Label>Genero</Form.Label>
-          <Form.Check
-                name='genderCheck'
-                value="Male"
-                type="radio"
-                aria-label="radio 1"
-                label="Hombre"
-                checked={value}
-                onChange={handleChange}
-            />
-            <Form.Check
-                name='genderCheck'
-                value="Female"
-                type="radio"
-                aria-label="radio 2"
-                label="Mujer"
-                onChange={handleChange}
-                />
-            <Form.Check
-                name='genderCheck'
-                value="Other"
-                type="radio"
-                aria-label="radio 2"
-                label="Otro"
-                onChange={handleChange}
-                />
+        <Col>
+          <Form.Group className="mb-3" controlId="gender">
+          <Form.Label>Gender</Form.Label>
+            <Form.Select
+              name="category"
+              onChange={(e) => setGender(e.target.value)}
+            >
+              <option value="">Plese, select your gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Nonbinary">Nonbinary</option>
+            </Form.Select>
         </Form.Group>
+          </Col>       
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Correo electronico</Form.Label>
