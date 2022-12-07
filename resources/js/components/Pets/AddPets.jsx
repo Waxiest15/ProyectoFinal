@@ -35,10 +35,11 @@ function AddPet() {
                 <Form.Group className="mb-0">
                     <Form.Label className="w-100">Nombre: 
                     <Form.Control 
+                    title='Solo se aceptan caracteres alfabeticos [a-z]'
                     type="text" 
                     name="petName"
                     maxLength={"100"}
-                    pattern="[A-Za-z]{1,100}" 
+                    pattern="[A-Za-z ]{1,100}" 
                     placeholder="Escribe su nombre"
                     required
                     ></Form.Control></Form.Label>
@@ -84,6 +85,7 @@ function AddPet() {
                     <Form.Group className="mb-0">
                     <Form.Label className="w-100">Pelaje: 
                     <Form.Control className="w-100" 
+                    
                     name="breed"
                     type="text" 
                     placeholder="Describe su pelaje"

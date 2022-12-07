@@ -7,8 +7,9 @@ import Card from 'react-bootstrap/Card';
 import {useState} from 'react';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
+import  { useContext } from 'react'
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from '../components/AuthContext';
 // const [users, setUsers]=useState([])
 
 
@@ -58,7 +59,12 @@ function Signin() {
   // const [gender, setGender] = useState('')
   // const [email, setEmail] = useState('')
   // const [password, setPassword] = useState('')
+
+  // Auth Context
+  const { setUserLogged, setUser } = useContext(AuthContext);
+
   const navigate = useNavigate();
+
   const [gender, setGender] = useState('')
   const [formValue, setFormValue] = useState({
     name: '',
@@ -113,17 +119,27 @@ function Signin() {
     ).then(response => {
         if(response.status==200){
             console.log('response');
-            setUsers(response.data);
-            let tokenForm = response.data.token;//obtener token 
-            sessionStorage.setItem('token', tokenForm)//guardan token 
-            navigate("/ProyectoFinal/public/");
+            //console.log(response.data);
+            console.log(response.data.user);
+            // setUsers(response.data);
+            // console.log(response.data)
+            // let tokenForm = response.data.token;//obtener token 
+            // sessionStorage.setItem('token', tokenForm)//guardan token 
+            // sessionStorage.setItem('user', response.data.user_id)
+
+            sessionStorage.setItem('token', response.data.token);
+            //setUserLogged(true);
+          
+            sessionStorage.setItem('user', response.data.user.id);
+            //setUser(response.data.user);
+            
+            navigate("/ProyectoFinal/public/addAddress");
 
         }
     }) .catch(error =>{
-        
         setFormOk(false);
         setTextError('Contraseña o correo incorrecto');
-        console.log(error.response.data);
+        console.log(error);
     })
   }
 
@@ -147,6 +163,7 @@ function Signin() {
             onChange={onChange}
             />
         </Form.Group>
+
         <Row>
           <Col>
           <Form.Group className="mb-3" controlId="formBasicLastNames">
@@ -162,6 +179,7 @@ function Signin() {
             onChange={onChange}
             />
         </Form.Group>  
+
           </Col>
           <Col>
           <Form.Group className="mb-3" controlId="formBasicLastNames">
@@ -177,6 +195,7 @@ function Signin() {
             onChange={onChange}
             />
         </Form.Group>
+
           </Col>
         </Row>
         <Form.Group className="mb-3" controlId="birthDate">
@@ -190,6 +209,7 @@ function Signin() {
             onChange={onChange}
             />
         </Form.Group>
+        
         <Col>
           <Form.Group className="mb-3" controlId="gender">
           <Form.Label>Gender</Form.Label>

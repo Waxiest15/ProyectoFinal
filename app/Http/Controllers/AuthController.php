@@ -35,10 +35,13 @@ class AuthController extends Controller
             'password'=>bcrypt($request->password)
         ]);
 
-        $responseArray = [];
-        $responseArray['token'] = $user->createToken('MyApp')->accessToken;
-        $responseArray['name'] = $user->name;
-        return response()->json($responseArray, 200);
+        // $responseArray = [];
+        // $responseArray['token'] = $user->createToken('MyApp')->accessToken;
+        // $responseArray['user_id'] = $user->id;
+        // return response()->json($responseArray, 200);
+        
+        $token = $user->createToken('LaravelAuthApp')->accessToken;
+        return response()->json(['token' => $token, 'user' => $user], 200);
     }
     
     public function login(Request $request){
@@ -48,7 +51,7 @@ class AuthController extends Controller
             $user = Auth::user();
             $responseArray = [];
             $responseArray['token'] = $user->createToken('MyApp')->accessToken;
-            $responseArray['name'] = $user->name;
+            $responseArray['user'] = $user;
             return response()->json($responseArray, 200);
         } else {
             return response()->json(['error'=>'Unauthorised'], 203);

@@ -49,14 +49,13 @@ class AddressController extends Controller
         $address -> neighborhood_id = $request -> neighborhood_id;
         $address -> street_id = $request -> street_id;
         $address -> number = $request -> number;
-        if($request->user_id){
-            $address -> user_id = $request -> user_id;
-        }
-        else if($request->business_id){
+        $address -> user_id = $request -> user_id;
+        $address -> save();
+        if($request->business_id){
             $address -> business_id = $request -> business_id;
         }
-        $address -> save();
-        return 'ok';
+        
+        return response();
     }
 
     public function last_address(){

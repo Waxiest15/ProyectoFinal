@@ -9,13 +9,30 @@ import Login from "./Login";
 import AddPet  from "./Pets/AddPets";
 import EditPet  from "./Pets/EditPets";
 import ShoppingCart from "./User/ShoppingCart";
+import WhisList from "./User/WishList";
 import SearchResult from "./SearchResult";
 import AddBussiness from "./MyBussiness/AddMyBussiness";
 import Politicas from "./Nosotros/Politicas";
+import AboutUs from "./Nosotros/AboutUs";
+import Maps from "./Maps/ExampleMaps";
+import Product from "./SpecificProduct";
+import Paseo from "./Services/Paseo";
+import Aseo from "./Services/Aseo";
+import Estetica from "./Services/Estetica";
+import AddProduct from "./User/AddProduct";
+import ShowProduct from './User/ShowProduct';
+import Admin from './User/Admin';
+
+import Bought from "./User/Compras";
+
+import LostPet from "./Pets/MascotaPerdida";
+
+import Test from "./Test";
+
 import AddAddress from './addAddress';
 
-import { BrowserRouter, Route, Routes, Router} from "react-router-dom"
 
+import { BrowserRouter, Route, Routes, Router} from "react-router-dom"
 
 export default function App() {
     return (
@@ -32,10 +49,25 @@ export default function App() {
                         <Route path="addPet" element={<AddPet />}/>
                         <Route path="editPet" element={<EditPet />}/>
                         <Route path="shoppingcart" element={<ShoppingCart />}/>
+                        <Route path="wishList" element={<WhisList />}/>
                         <Route path="result" element={<SearchResult />}/>
                         <Route path="bussiness" element={<AddBussiness />}/>
                         <Route path="politicas" element={<Politicas />}/>
+                        <Route path="about-us" element={<AboutUs />}/>
+                        <Route path="mapa" element={<Maps />}/>
+                        <Route path="producto" element={<Product />}/>
+                        <Route path="paseo" element={<Paseo />}/>
+                        <Route path="aseo" element={<Aseo />}/>
+                        <Route path="estetica" element={<Estetica />}/>
+                        <Route path="lostPet" element={<LostPet />}/>
+                        <Route path="boughts" element={<Bought />}/>
+                        <Route path="result/newproduct" element={<AddProduct />}/>
+                        <Route path="result/:pro" element={<ShowProduct/>}/>
+                        <Route path="admin" element={<Admin/>}/>
                         <Route path="addAddress" element={<AddAddress />}/>
+
+
+                        <Route path="test" element={<Test />}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

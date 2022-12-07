@@ -97,6 +97,8 @@ Route::get('/species_show', [SpeciesBreedController::class, 'show']);
 //Products
 Route::post('/product_store', [ProductController::class, 'store']);
 Route::get('/product_show', [ProductController::class, 'show']);
+Route::post('/product_show_cat', [ProductController::class, 'show_cat']);
+Route::post('/product_show_cat_3/{category_id}', [ProductController::class, 'show_cat_3']);
 
 
 
@@ -114,3 +116,7 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 
 Route::middleware('auth:api')->get('/details',[AuthController::class, 'getTaskList']); //To verify from middleware
+
+Route::middleware('auth:api')->get('/user_id', function (Request $request) {
+    return $request->user()->id;
+});

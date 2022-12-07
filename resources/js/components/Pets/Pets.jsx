@@ -20,7 +20,7 @@ function PetCard() {
             <hr />
             <Row>
                 <Col>
-                <Card.Header className="w-100">Nombre de mascota</Card.Header>    
+                <Card.Header className="w-100 text-center">Nombre de mascota</Card.Header>    
                 </Col>
                 <Col>
                 <Row>

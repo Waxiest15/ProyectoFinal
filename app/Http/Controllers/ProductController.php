@@ -75,10 +75,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show()
     {
         $p = [];
-        foreach($products = Product::all() as $product){
+        foreach(Product::all() as $product){
             $p [] = [
                 'name' => $product->name,
                 'size' => $product->size,
@@ -91,6 +91,50 @@ class ProductController extends Controller
                 'deliverTime' => $product->deliverTime,
                 'category_id' => Category::find($product->category_id)->name,
                 'business_id' => Business::find($product->business_id)->name
+            ];
+        }
+        return response()->json($p);
+    }
+
+    public function show_cat_3($category_id)
+    {
+        $pp = Product::where('category_id', $category_id)->limit(3)->get();
+        $p = [];
+        foreach($pp as $pro){
+            $p [] = [
+                'name' => $pro->name,
+                'size' => $pro->size,
+                'weight' => $pro->weight,
+                'price' => $pro->price,
+                'rate' => $pro->rate,
+                'description' => $pro->description,
+                'amount'=> $pro->amount,
+                'image'=> $pro->image,
+                'deliverTime' => $pro->deliverTime,
+                'category_id' => Category::find($pro->category_id)->name,
+                'business_id' => Business::find($pro->business_id)->name
+            ];
+        }
+        return response()->json($p);
+    }
+
+    public function show_cat(Request $request)
+    {
+        $pp = Product::where('category_id', $request->category_id)->get();
+        $p = [];
+        foreach($pp as $pro){
+            $p [] = [
+                'name' => $pro->name,
+                'size' => $pro->size,
+                'weight' => $pro->weight,
+                'price' => $pro->price,
+                'rate' => $pro->rate,
+                'description' => $pro->description,
+                'amount'=> $pro->amount,
+                'image'=> $pro->image,
+                'deliverTime' => $pro->deliverTime,
+                'category_id' => Category::find($pro->category_id)->name,
+                'business_id' => Business::find($pro->business_id)->name
             ];
         }
         return response()->json($p);

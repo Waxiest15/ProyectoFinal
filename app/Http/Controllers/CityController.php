@@ -44,7 +44,7 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function show(City $city)
+    public function show()
     {
         $cities=[];
         foreach(City::all()->sortBy('name') as $ct){//Realizamos un forech para cada valor aplicando students a program

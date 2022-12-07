@@ -10,30 +10,33 @@ function ProfileCard() {
   return (
     <div class="div_card-profile">
         <Container>
-        <Card className="w-50 p-3">
+        <Card className="w-75 p-3">
         <h1>MI perfil</h1>
-          <Card.Header className="w-100 text-center">Nombre</Card.Header>
+          <Card.Header className="w-100 text-center">Fernando Robles Castorena</Card.Header>
       <Row>
         <Col>
-          <Card.Img  src="images/profile-default.webp" />  
+          <Card.Img  src="images/profile-default.webp"
+          className='w-75 mx-auto d-block'
+           />  
         </Col>
         <Col>
           <ListGroup className="list-group-flush">
             <Row>
               <Col>
-              <ListGroup.Item>Edad: </ListGroup.Item>  
+              <ListGroup.Item>Edad: 21</ListGroup.Item>  
               </Col>
               <Col>
-              <ListGroup.Item>Genero: </ListGroup.Item>
+              <ListGroup.Item>Genero: M</ListGroup.Item>
               </Col>
             </Row>
-            <ListGroup.Item>Direccion: </ListGroup.Item>
-            <ListGroup.Item>Informacion de contacto</ListGroup.Item>
-            <ListGroup.Item>Correo: </ListGroup.Item>
-            <ListGroup.Item>Telefono: </ListGroup.Item>
+            <ListGroup.Item>Direccion: Col. Inventada, Calle imaginaria, No: 123</ListGroup.Item>
+            <ListGroup.Item><strong>Informacion de contacto</strong></ListGroup.Item>
+            <ListGroup.Item>Correo: inventino@gmail.com</ListGroup.Item>
+            <ListGroup.Item>Telefono: 449 879 6542</ListGroup.Item>
           </ListGroup>  
         </Col>
       </Row>
+      <p>Direccion de envio: Col. Villanos, C. Heisenerg 103</p>
       <Row>
         <Col>
         <Card.Body>

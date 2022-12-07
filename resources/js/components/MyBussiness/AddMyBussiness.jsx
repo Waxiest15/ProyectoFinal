@@ -6,6 +6,157 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { Image } from 'react-bootstrap';
 import { useState } from 'react';
+import { send } from 'emailjs-com';
+
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { Textarea } from 'react-bootstrap-icons';
+
+const getCoordinates = event => {
+  setLat(event.latLng.lat());
+  setLng(event.latLng.lng());
+console.log('lat: ', event.latLng.lat());
+console.log('lng: ', event.latLng.lng());
+}
+
+function Test() {
+
+  const [toSend, setToSend] = useState({
+      from_name: '',
+      to_name: '',
+      message: '',
+      reply_to: '',
+    });
+  
+    const onSubmit = (e) => {
+      e.preventDefault();
+      send(
+        'service_1apb3ca',
+        'template_bjb4bgr',
+        toSend,
+        '_22Q-TAjQCCZvZ5Gg'
+      )
+        .then((response) => {
+          console.log('SUCCESS!', response.status, response.text);
+        })
+        .catch((err) => {
+          console.log('FAILED...', err);
+        });
+    };
+  
+    const handleChange = (e) => {
+      setToSend({ ...toSend, [e.target.name]: e.target.value });
+    };
+  
+    return (
+      <Container>
+          <Card className='p-3 gap-3 w-75 mx-auto'>
+            <Card.Header className='text-center'><h1>Distribuidor</h1></Card.Header>
+          <Form onSubmit={onSubmit}>
+            <Form.Group>
+              <Form.Label>
+                  Nombre
+              </Form.Label>
+              <Form.Control
+              type='text'
+              name='from_name'
+              placeholder='Nombre de tu empresa'
+              value={toSend.from_name}
+              onChange={handleChange}
+            />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>
+              Para
+              </Form.Label>
+              <Form.Control
+              type='text'
+              name='to_name'
+              placeholder='Para quien'
+              value={toSend.to_name}
+              onChange={handleChange}
+            />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Escribe tu mensaje:</Form.Label>
+              <Form.Control
+              as='textarea'
+              rows={7}
+              type='text'
+              name='message'
+              placeholder='Tu mensaje'
+              value={toSend.message}
+              onChange={handleChange}
+            />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>
+                Tu correo:
+              </Form.Label>
+              <Form.Control
+              type='email'
+              name='reply_to'
+              placeholder='A donde mandamos la respuesta'
+              value={toSend.reply_to}
+              onChange={handleChange}
+            />
+
+            </Form.Group>
+            <Container >
+            <Button type='submit' className='d-block mx-auto mt-3 w-25'>Submit</Button>
+            </Container>
+            </Form>
+          </Card>
+      </Container>
+    ); 
+}
+
+
+function Map() {
+
+  const [lat, setLat] = useState(21.87461477124801);
+  const [lng, setLng] = useState(-102.26663330211015);
+
+  function onDrag(e){
+    let lat = e.latLng.lat();
+    let lng = e.latLng.lng();
+  
+    setLat(lat);
+    setLng(lng);
+  
+    console.log("position: ", lat + " ", lng)
+  }
+
+    // Loads the map using API KEY
+
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: "AIzaSyAsdXInYMGlY7iKwGOYoy2zuNnOUX9WeHQ",
+    });
+
+    if (!isLoaded) return <div>Loading...</div>;
+    return (
+      <>
+        <Container className='border d-flex justify-content-center'>
+          <GoogleMap
+            zoom={14}
+            center={{ lat: lat, lng: lng }}
+            mapContainerStyle={{ width: 450, height: 450}}
+        >
+            <Marker
+                draggable={true}
+                onDragEnd={onDrag}
+                position={{ lat: lat, lng: lng }}
+            ></Marker>
+        </GoogleMap>
+        
+        </Container>
+        <p>lat: {lat}</p>
+        <p>lng: {lng}</p>
+        </>
+    );
+}   
 
 function Distribuidor() {
   return(
@@ -131,16 +282,18 @@ function MyBussines() {
         </Row>
         <hr />
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Ubicacion</Form.Label>
+          <Form.Label>Selecciona la ubicacion de tu negocio (mueve el cursor rojo en pantalla)</Form.Label>
           <Container className='border text-center'>
-            <Image src='images/googleMaps.png'></Image>
+            <Map/>
           </Container>
         </Form.Group>
         <Container className='text-center'>
         <Button 
         className='w-25'
         variant="primary" 
-        type="submit">
+        
+        onClick={getCoordinates}
+        >
           Submit
         </Button>
         </Container>
@@ -159,6 +312,8 @@ function BussinessForm() {
   console.log('value is:', event.target.value);
   }
 
+  
+
   return (  
     <>
       <Container className='p-5'>
@@ -170,13 +325,14 @@ function BussinessForm() {
       name='tipoNegocio'
       onChange={whichMenu}
       >
+        <option value="0">Seleccione el modelo de su negocio</option>
         <option value="1">Mi negocio</option>
         <option value="2">Como Distribuidor</option>
       </Form.Select>
       </Form.Group>
 
         
-      <div>{message=='1' ? <MyBussines></MyBussines> : <Distribuidor />}
+      <div>{message=='1' ? <MyBussines></MyBussines> : <Test />}
 
       </div>
       
