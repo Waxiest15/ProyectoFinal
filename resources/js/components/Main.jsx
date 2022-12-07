@@ -31,31 +31,31 @@ function carousel() {
           class="img-carrousel"
         />
         <Carousel.Caption>
-          <h3>primera</h3>
+          
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={1000}>
         <img
           className="d-block w-100"
-          src="images/Carrusel_2.jfif"
+          src="images/perrosPanoramica.png"
           alt="Second slide"
           class="img-carrousel"
         />
         <Carousel.Caption>
-          <h3>Segunda pantalla</h3>
+          
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="images/Carrusel_3.jpg"
+          src="images/perrosPanoramica_1.png"
           alt="Third slide"
           class="img-carrousel"
         />
         <Carousel.Caption>
-          <h3>Tercera pantalla</h3>
+          
           <p>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
           </p>
@@ -63,9 +63,9 @@ function carousel() {
       </Carousel.Item>
     </Carousel>
     <br />
-    <CardGroup>
+    <CardGroup xs sm lg>
       <Card>
-        <Card.Img variant="top" src="images/collar.jpg" class="img-main-products" />
+        <Card.Img variant="top" src="images/collar.jpg" className='w-100 mx-auto' />
         <Card.Body>
           <Card.Title>Collar rosa para perro</Card.Title>
           <Card.Text>
@@ -77,7 +77,7 @@ function carousel() {
         </Card.Footer>
       </Card>
       <Card>
-        <Card.Img variant="top" src="images/comerLento.jpg" class="img-main-products"/>
+        <Card.Img variant="top" src="images/comerLento.jpg" className='w-100 mx-auto'/>
         <Card.Body>
           <Card.Title>Tazon antiestres</Card.Title>
           <Card.Text>
@@ -92,7 +92,7 @@ function carousel() {
       
       <Card as={Link} to='producto' style={{textDecoration: 'none', color: 'black'}} >
         
-        <Card.Img  variant="top" src="images/hulerojo.jpg" class="img-main-products"/>
+        <Card.Img  variant="top" src="images/hulerojo.jpg" className='w-100 mx-auto '/>
         <Card.Body>
           <Card.Title>Bola de juguete de goma extradura</Card.Title>
           <Card.Text>

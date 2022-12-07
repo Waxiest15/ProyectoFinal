@@ -42,7 +42,6 @@ function ShowProduct() {
     return (
         <Container className="m-3">
             <Card className="p-3 gap-3">
-                <h1>Aqui</h1>
                 {Product.filter((id) => id.id == pro).map((producto) => (
                     <>
                         <Container>
@@ -102,7 +101,6 @@ function ShowProduct() {
                         </Container>
                     </>
                 ))}
-                <h1>Aca</h1>
 
                 <Container>
                     <h3>Comentarios</h3>

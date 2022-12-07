@@ -4,10 +4,13 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 function getToday(){
   var today = new Date();
-  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  var diaHoy = today.getDate();
+  if(diaHoy.toString().length<=1) diaHoy='0'+diaHoy
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+diaHoy; //'2022-12-03'
   var dateTime = date;
 
   var hoy = document.getElementById('birthDate');
@@ -156,7 +159,7 @@ function Signin() {
         />
       </Form.Group>
 
-      <Button id='btn_submit' variant="primary" type='submit'>
+      <Button id='btn_submit' variant="primary" as={Link} to='/ProyectoFinal/public/'>
         Submit
       </Button>
     </Form>

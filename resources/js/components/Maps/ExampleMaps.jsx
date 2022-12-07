@@ -23,7 +23,7 @@ function Map() {
     // Loads the map using API KEY
 
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "AIzaSyAsdXInYMGlY7iKwGOYoy2zuNnOUX9WeHQ",
+        googleMapsApiKey: import.meta.env.key,  
     });
 
     if (!isLoaded) return <div>Loading...</div>;

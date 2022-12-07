@@ -37,8 +37,8 @@ function SearchResult() {
 
     return (
         <Container className="d-flex p-3">
-            <Container className="w-25 border ms-0">
-                <h4>Filtros</h4>
+            <Container className="w-25 border rounded ms-0">
+                <h4 className="text-center mt-2">Filtros</h4>
                 <Form.Group>
                     <Form.Label>Categorias</Form.Label>
                     <Form.Select
@@ -85,7 +85,7 @@ function SearchResult() {
                     </Button>
                     {/*SAbe */}
                 </Form.Group>
-                <Container className="border d-flex flex-wrap">
+                <Container className="d-flex flex-wrap">
                     {productos
                         .filter(
                             (product) =>
