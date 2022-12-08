@@ -3,8 +3,10 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import {useRef, useState, useEffect} from "react";
-
+import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 function Login(){ 
+  const navigate = useNavigate();
   return (
     <>
     <div class="login-div">
@@ -38,7 +40,7 @@ function Login(){
         required
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" as={Link} to='/ProyectoFinal/public/'>
         Submit
       </Button>
     </Form>
