@@ -4,10 +4,10 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
-import {useState} from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
-import  { useContext } from 'react'
+import { useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../components/AuthContext';
 // const [users, setUsers]=useState([])
@@ -15,32 +15,34 @@ import { AuthContext } from '../components/AuthContext';
 
 
 function Signin() {
-  
-  function getToday(){
+
+  function getToday() {
     var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var diaHoy = today.getDate();
+    if (diaHoy.toString().length <= 1) diaHoy = '0' + diaHoy
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + diaHoy; //'2022-12-03'
     var dateTime = date;
 
     var hoy = document.getElementById('birthDate');
-    
-    hoy.max=date;
+
+    hoy.max = date;
   }
 
   function confirmPassword() {
     let pssw;
     let psswC;
 
-    pssw=document.getElementById('password').value;
-    psswC=document.getElementById('confirmPassword').value;
+    pssw = document.getElementById('password').value;
+    psswC = document.getElementById('confirmPassword').value;
 
     console.log('password: ', pssw);
     console.log('password Confirm: ', psswC);
 
-    if(pssw!=psswC){
-      document.getElementById('btn_submit').disabled=true;
+    if (pssw != psswC) {
+      document.getElementById('btn_submit').disabled = true;
       console.log('No son iguales')
-    }else{
-      document.getElementById('btn_submit').disabled=false;
+    } else {
+      document.getElementById('btn_submit').disabled = false;
     }
   }
 
@@ -48,7 +50,7 @@ function Signin() {
   //   var ele = document.getElementsByName('gender');
   //   for(i = 0; i < ele.length; i++) {
   //       if(ele[i].checked)
-        
+
   //   }
   // }
 
@@ -77,30 +79,30 @@ function Signin() {
     //image: null
   })
   const [users, setUsers] = useState(['']);
-  
+
   const [textError, setTextError] = useState('');
   const [formOk, setFormOk] = useState(true);
 
 
-  function handleChange(e){
-    if(e.target.checked){
+  function handleChange(e) {
+    if (e.target.checked) {
       setFormValue.gender = e.value;
     }
-    
-      
+
+
   }
 
   const onChange = (e) => {
     e.persist();
-    setFormValue({...formValue, [e.target.name]: e.target.value})
+    setFormValue({ ...formValue, [e.target.name]: e.target.value })
     /*concatena al formValue,    email         lo que escriba el usuario como email */
   }
 
-  
 
-  const handleFileChange = (e) => setForm({...formValue, [e.target.name]: e.target.files[0]})
 
-  const postData = async(e) => {
+  const handleFileChange = (e) => setForm({ ...formValue, [e.target.name]: e.target.files[0] })
+
+  const postData = async (e) => {
     setFormOk(true);
     if (e && e.preventDefault()) e.preventDefault(); e.preventDefault();
     const formData = new FormData();
@@ -113,155 +115,159 @@ function Signin() {
     formData.append("password", formValue.password)
     //formData.append("image", formValue.image)
     await axios.post('http://localhost:80/ProyectoFinal/public/api/register',
-    formData,
-    {headers: {'Content-Type': 'multipart/form-data',
-    'Accept':'application/json'}}
-    ).then(response => {
-        if(response.status==200){
-            console.log('response');
-            //console.log(response.data);
-            console.log(response.data.user);
-            // setUsers(response.data);
-            // console.log(response.data)
-            // let tokenForm = response.data.token;//obtener token 
-            // sessionStorage.setItem('token', tokenForm)//guardan token 
-            // sessionStorage.setItem('user', response.data.user_id)
-
-            sessionStorage.setItem('token', response.data.token);
-            //setUserLogged(true);
-          
-            sessionStorage.setItem('user', response.data.user.id);
-            //setUser(response.data.user);
-            
-            navigate("/ProyectoFinal/public/addAddress");
-
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json'
         }
-    }) .catch(error =>{
-        setFormOk(false);
-        setTextError('Contraseña o correo incorrecto');
-        console.log(error);
+      }
+    ).then(response => {
+      if (response.status == 200) {
+        console.log('response');
+        //console.log(response.data);
+        console.log(response.data.user);
+        // setUsers(response.data);
+        // console.log(response.data)
+        // let tokenForm = response.data.token;//obtener token 
+        // sessionStorage.setItem('token', tokenForm)//guardan token 
+        // sessionStorage.setItem('user', response.data.user_id)
+
+        sessionStorage.setItem('token', response.data.token);
+        //setUserLogged(true);
+
+        sessionStorage.setItem('user', response.data.user.id);
+        //setUser(response.data.user);
+
+        navigate("/ProyectoFinal/public/addAddress");
+
+      }
+    }).catch(error => {
+      setFormOk(false);
+      setTextError('Contraseña o correo incorrecto');
+      console.log(error);
     })
   }
 
   return (
     <Container className="w-50">
-        <Card className="m-3 p-3">
-          <Card.Header className="text-center">
-            <h1>Registro</h1>
-          </Card.Header>
+      <Card className="m-3 p-3">
+        <Card.Header className="text-center">
+          <h1>Registro</h1>
+        </Card.Header>
         <Form onSubmit={postData}>
-        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Nombre(s)</Form.Label>
             <Form.Control
-            name="name"
-            type="text"
-            maxLength={"100"}
-            pattern="[A-Za-z]{1,100}" 
-            placeholder="Escribe tu nombre(s)"
-            required
-            value={formValue.name} 
-            onChange={onChange}
+              name="name"
+              type="text"
+              maxLength={"100"}
+              pattern="[A-Za-z]{1,100}"
+              placeholder="Escribe tu nombre(s)"
+              required
+              value={formValue.name}
+              onChange={onChange}
             />
-        </Form.Group>
+          </Form.Group>
 
-        <Row>
-          <Col>
-          <Form.Group className="mb-3" controlId="formBasicLastNames">
-            <Form.Label>Apellido paterno</Form.Label>
-            <Form.Control
-            name="last_name"
-            type="text"
-            placeholder="Apellido paterno"
-            maxLength={"100"}
-            pattern="[A-Za-z]{1,100}" 
-            required
-            value={formValue.last_name} 
-            onChange={onChange}
-            />
-        </Form.Group>  
+          <Row>
+            <Col>
+              <Form.Group className="mb-3" controlId="formBasicLastNames">
+                <Form.Label>Apellido paterno</Form.Label>
+                <Form.Control
+                  name="last_name"
+                  type="text"
+                  placeholder="Apellido paterno"
+                  maxLength={"100"}
+                  pattern="[A-Za-z]{1,100}"
+                  required
+                  value={formValue.last_name}
+                  onChange={onChange}
+                />
+              </Form.Group>
 
-          </Col>
-          <Col>
-          <Form.Group className="mb-3" controlId="formBasicLastNames">
-            <Form.Label>Apellido Materno</Form.Label>
-            <Form.Control
-            name="last_name2"
-            type="text"
-            placeholder="Apellido materno"
-            maxLength={"100"}
-            pattern="[A-Za-z]{1,100}" 
-            required
-            value={formValue.last_name2} 
-            onChange={onChange}
-            />
-        </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group className="mb-3" controlId="formBasicLastNames">
+                <Form.Label>Apellido Materno</Form.Label>
+                <Form.Control
+                  name="last_name2"
+                  type="text"
+                  placeholder="Apellido materno"
+                  maxLength={"100"}
+                  pattern="[A-Za-z]{1,100}"
+                  required
+                  value={formValue.last_name2}
+                  onChange={onChange}
+                />
+              </Form.Group>
 
-          </Col>
-        </Row>
-        <Form.Group className="mb-3" controlId="birthDate">
+            </Col>
+          </Row>
+          <Form.Group className="mb-3" controlId="birthDate">
             <Form.Label>Fecha de nacimiento</Form.Label>
             <Form.Control
-            onSelect={getToday}
-            name="birth"
-            type="date" 
-            required
-            value={formValue.birth} 
-            onChange={onChange}
+              onSelect={getToday}
+              name="birth"
+              type="date"
+              required
+              value={formValue.birth}
+              onChange={onChange}
             />
-        </Form.Group>
-        
-        <Col>
-          <Form.Group className="mb-3" controlId="gender">
-          <Form.Label>Gender</Form.Label>
-            <Form.Select
-              name="category"
-              onChange={(e) => setGender(e.target.value)}
-            >
-              <option value="">Plese, select your gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Nonbinary">Nonbinary</option>
-            </Form.Select>
-        </Form.Group>
-          </Col>       
+          </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Correo electronico</Form.Label>
-        <Form.Control
-        title='Solo se aceptan caracteres alfabeticos [a-z] especiales (%?+- etc), debe tener el formato example@extension.algo[.algo]'
-        name='email'
-        type="email"
-        placeholder="Escribe tu correo" 
-        pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
-        maxLength={100}
-        required
-        value={formValue.email} 
-        onChange={onChange}
-        />
-      </Form.Group>
+          <Col>
+            <Form.Group className="mb-3" controlId="gender">
+              <Form.Label>Género</Form.Label>
+              <Form.Select
+                name="category"
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option value="">Agrega tu género</option>
+                <option value="Male">Masculino</option>
+                <option value="Female">Femenido</option>
+                <option value="Nonbinary">Nonbinario</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Contraseña</Form.Label>
-        <Form.Control 
-        name="password"
-        type="password" 
-        // pattern="(?=.*?[#?!@$%^&*-\]\[]){8,20}[A-Za-z]"
-        placeholder="Password" 
-        value={formValue.password}
-        onChange={onChange} />
-      </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Correo electronico</Form.Label>
+            <Form.Control
+              title='Solo se aceptan caracteres alfabeticos [a-z] especiales (%?+- etc), debe tener el formato example@extension.algo[.algo]'
+              name='email'
+              type="email"
+              placeholder="Escribe tu correo"
+              pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+              maxLength={100}
+              required
+              value={formValue.email}
+              onChange={onChange}
+            />
+          </Form.Group>
 
-      {/* <Form.Group controlId="formFileLg" className="mb-3" >
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Contraseña</Form.Label>
+            <Form.Control
+              name="password"
+              type="password"
+              // pattern="(?=.*?[#?!@$%^&*-\]\[]){8,20}[A-Za-z]"
+              placeholder="Contraseña"
+              value={formValue.password}
+              onChange={onChange} />
+          </Form.Group>
+
+          {/* <Form.Group controlId="formFileLg" className="mb-3" >
         <Form.Label>imagen</Form.Label>
         <Form.Control type="file" size="lg" 
         value={formValue.image} 
         onChange={handleFileChange}/>
       </Form.Group> */}
-      <Button variant="primary" type='submit'>
-        Submit
-      </Button>
-    </Form>
-        </Card>
+          <Button variant="primary" type='submit'>
+            Submit
+          </Button>
+        </Form>
+      </Card>
     </Container>
   );
 }

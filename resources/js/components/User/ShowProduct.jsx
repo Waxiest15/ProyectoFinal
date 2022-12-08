@@ -14,7 +14,7 @@ function Comments() {
     return (
         <>
             {Data.map((comment) => (
-                <Card className="mx-auto w-75 mb-2">
+                <Card className=" w-100 mb-2">
                     <Card.Body>
                         <Card.Text>
                             <Row>

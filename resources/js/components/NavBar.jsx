@@ -16,7 +16,10 @@ const Footer = () =>
       <div className="row">
         <div className="col-md-6 mt-md-0 mt-3">
           <h5 className="text-uppercase">PetWeb</h5>
-          <p>Empresa dedicada a ayudarte a encontrar lo mejor de lo mejor para tu mascota</p>
+          <p>Empresa dedicada a ayudarte a encontrar lo mejor de lo mejor para tu mascota. <br />
+          ¡Tenemos todos los productos que buscas: alimentos, ropa, accesorios y más! <br/>
+          Además contamos con variedad de servicios.
+          <hr /></p>
         </div>
 
         <hr className="clearfix w-100 d-md-none pb-0" />
@@ -27,8 +30,6 @@ const Footer = () =>
             <li><a>PetWeb</a></li>
             <li><Form.Label as={Link} to='about-us'>Nosotros</Form.Label></li>
             <li><Form.Label as={Link} to='politicas'>Terminos y condiciones</Form.Label></li>
-            <li><Form.Label as={Link} to='mapa'>King Crimson!!!</Form.Label></li>
-            <li><Form.Label as={Link} to='test'>Za hando!!!</Form.Label></li>
           </ul>
         </div>
 
@@ -128,29 +129,29 @@ function NavBar() {
               </Nav.Link>
               <Nav.Link className="d-flex gap-1">
                 <NavDropdown
-                className='border w-75'
+                className='xw-75'
                   title="Usuario"
                   id="basic-nav-dropdown"
                 >
-                  <NavDropdown.Item  as={Link} to='profile'>
+                  <NavDropdown.Item className='text-center' as={Link} to='profile'>
                     Mi perfil
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to='pets'>
+                  <NavDropdown.Item className='text-center' as={Link} to='pets'>
                     Mis mascotas
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to='signin'>
+                  <NavDropdown.Item className='text-center' as={Link} to='signin'>
                     Crear cuenta
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to='login'>
+                  <NavDropdown.Item className='text-center' as={Link} to='login'>
                     Acceder
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to='wishList'>
+                  <NavDropdown.Item className='text-center' as={Link} to='wishList'>
                     Lista de deseos
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to='boughts'>
+                  <NavDropdown.Item className='text-center' as={Link} to='boughts'>
                     Compras
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to='admin'>
+                  <NavDropdown.Item className='text-center' as={Link} to='admin'>
                     Admin
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
