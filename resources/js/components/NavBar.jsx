@@ -134,7 +134,7 @@ function NavBar() {
                                 <NavDropdown.Item as={Link} to="estetica">
                                     Estetica
                                 </NavDropdown.Item>
-                                <NavDropdown.Divider />
+                                <NavDropdown.Divider /> 
                                 <NavDropdown.Item>Nutricion</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="lostPet">
                                     Mascotas Perdidas
