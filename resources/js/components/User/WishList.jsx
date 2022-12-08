@@ -1,41 +1,63 @@
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Image from 'react-bootstrap/Image'
-import ListGroup from 'react-bootstrap/ListGroup';
-import Form from 'react-bootstrap/Form';
-import Button  from 'react-bootstrap/Button';
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Image from "react-bootstrap/Image";
+import ListGroup from "react-bootstrap/ListGroup";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
-function WhisList () {
-    return(
-    <Container className="m-5">
-        <Card className="p-3 w-100">
-            <Card.Title>
-                Lista de deseados
-            </Card.Title>
-            <hr />
-            <Row className="p-3"> 
-                <Col className='p-1 text-center border' >
-                    <Image src="images/hulerojo.jpg" style={{maxWidth: "250px", maxHeight: "250px"}}>
+import { Trash } from "react-bootstrap-icons";
 
-                    </Image>
-                </Col>
-                <Col xs={8}>
-                    <Card.Body>
-                    <ListGroup className="list-group-flush">
-                        <ListGroup.Item>Nombre:</ListGroup.Item>
-                        <ListGroup.Item>Descripcion:</ListGroup.Item>
-                        <ListGroup.Item>Precio:</ListGroup.Item>
-                        <ListGroup.Item>Rate:</ListGroup.Item>
+import Data from "../JSONs/products.json";
+import { useState } from "react";
 
-                    </ListGroup>
-                    </Card.Body>
-                </Col>
+function ShoppingCart() {
+    const [cart, setCart] = useState(Data);
+
+    const removeItem = (index) => {
+        setCart(cart.filter((o, i) => index !== i));
+    };
+    return (
+        <Container className="m-5">
+            <Row className="gap-3">
+            <Card.Title>Lista de deseados</Card.Title>
+                    <hr />
+                    {cart.map((item, index) => (
+                        <Card className="p-3 w-100 my-2" >
+                            <Button className="ms-auto" onClick={() => removeItem(index)}><Trash/></Button>
+                            <Row className="p-3" as={Link} to={'../result/'+item.id} style={{textDecoration: 'none'}}>
+                                <Col className="p-1 text-center border">
+                                    <Image
+                                        src={item.img}
+                                        style={{
+                                            maxWidth: "250px",
+                                            maxHeight: "250px",
+                                        }}
+                                    ></Image>
+                                </Col>
+                                <Col xs={8}>
+                                    <Card.Body>
+                                        <ListGroup className="list-group-flush">
+                                            <ListGroup.Item>
+                                                {item.name}
+                                            </ListGroup.Item>
+                                            <ListGroup.Item>
+                                                Precio: ${item.price}
+                                            </ListGroup.Item>
+                                            <ListGroup.Item>
+                                                Rate: {item.rate}
+                                            </ListGroup.Item>
+                                        </ListGroup>
+                                    </Card.Body>
+                                </Col>
+                            </Row>
+                        </Card>
+                    ))}
             </Row>
-        </Card>
-    </Container>
+        </Container>
     );
 }
 
-export default WhisList;
+export default ShoppingCart;

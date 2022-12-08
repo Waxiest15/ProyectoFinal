@@ -22,7 +22,7 @@ import Estetica from "./Services/Estetica";
 import AddProduct from "./User/AddProduct";
 import ShowProduct from './User/ShowProduct';
 import Admin from './User/Admin';
-
+import AdminPanel from './User/Administracion';
 import Bought from "./User/Compras";
 
 import LostPet from "./Pets/MascotaPerdida";
@@ -49,6 +49,9 @@ export default function App() {
                         <Route path="shoppingcart" element={<ShoppingCart />}/>
                         <Route path="wishList" element={<WhisList />}/>
                         <Route path="result" element={<SearchResult />}/>
+
+                        <Route path=":productoS" element={<SearchResult />}/>
+
                         <Route path="bussiness" element={<AddBussiness />}/>
                         <Route path="politicas" element={<Politicas />}/>
                         <Route path="about-us" element={<AboutUs />}/>
@@ -62,6 +65,7 @@ export default function App() {
                         <Route path="result/newproduct" element={<AddProduct />}/>
                         <Route path="result/:pro" element={<ShowProduct/>}/>
                         <Route path="admin" element={<Admin/>}/>
+                        <Route path="panel" element={<AdminPanel/>}/>
 
 
                         <Route path="test" element={<Test />}/>

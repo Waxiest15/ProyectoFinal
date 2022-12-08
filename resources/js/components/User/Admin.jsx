@@ -24,7 +24,7 @@ function Admin() {
                     <Form.Group className="mb-3" controlId="Checkbox">
                         <Form.Check type="checkbox" label="Recuerdame" />
                     </Form.Group>
-                    <Button variant="primary" as={Link} to='/ProyectoFinal/public/'>
+                    <Button variant="primary" as={Link} to='/ProyectoFinal/public/panel'>
                         Acceder
                     </Button>
                 </Form>

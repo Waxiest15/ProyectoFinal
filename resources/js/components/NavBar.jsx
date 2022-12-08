@@ -17,6 +17,7 @@ import {
     Envelope,
 } from "react-bootstrap-icons";
 import { Link, Outlet } from "react-router-dom";
+import { useState } from "react";
 
 const Footer = () => (
     <footer className="page-footer font-small blue pt-4" class="footer">
@@ -107,16 +108,19 @@ const Footer = () => (
 );
 
 function NavBar() {
+
+ 
+  const [search, setSearch]=useState("");
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container className="p-2">
-                    <Navbar.Brand as={Link} to="/ProyectoFinal/public/">
-                        PetWeb
-                    </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="me-auto" fill>
+                <Navbar.Brand as={Link} to="/ProyectoFinal/public/">
+                            PetWeb
+                        </Navbar.Brand>
+                    <Nav className="me-auto">
+                        
+                        <Nav.Link className="d-flex">
                             <NavDropdown
                                 title="Servicios"
                                 id="collasible-nav-dropdown"
@@ -143,6 +147,7 @@ function NavBar() {
                             </NavDropdown>
                             <Form className="d-flex ms-3">
                                 <Form.Control
+                                    onChange={(e)=>setSearch(e.target.value.toString())}
                                     type="search"
                                     placeholder="Buscar"
                                     className="me-2 w-100"
@@ -152,77 +157,75 @@ function NavBar() {
                                     variant="outline-success"
                                     className=""
                                     as={Link}
-                                    to="result"
+                                    to={search=="" ? "result" : search}
                                 >
                                     <Search className="mt-1" />
                                 </Button>
                             </Form>
-                        </Nav>
-                        <Nav className="me-3 gap-3">
-                            <div>
-                                <Button
+                        </Nav.Link>
+                        
+                    </Nav>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="me-3 gap-3 ms-auto">
+                          <Nav.Link>
+                          <Button
                                     variant="Link"
-                                    className="text-light d-flex align-items-center gap-3"
+                                    className="text-light d-flex align-items-center gap-2"
                                     as={Link}
                                     to="bussiness"
                                 >
                                     Quiero Vender <Shop color="white" />
                                 </Button>
-                            </div>
-                            <Dropdown as={ButtonGroup}>
-                                <Button variant="success">
-                                    <PersonCircle />
-                                </Button>
-                                <Dropdown.Toggle
-                                    split
-                                    variant="success"
-                                    id="dropdown-spli  t-basic"
+                          </Nav.Link>
+                            <Nav.Link className="d-flex gap-1">
+                                <NavDropdown
+                                className="justify-content-center"
+                                    title="Usuario"
+                                    id="basic-nav-dropdown"
                                 >
-                                    Usuario{" "}
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item as={Link} to="profile">
+                                    <NavDropdown.Item as={Link} to='profile'>
                                         Mi perfil
-                                    </Dropdown.Item>
-                                    <Dropdown.Item as={Link} to="pets">
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to='pets'>
                                         Mis mascotas
-                                    </Dropdown.Item>
-                                    <Dropdown.Item>Ajustes</Dropdown.Item>
-                                    <Dropdown.Item as={Link} to="signin">
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to='signin'>
                                         Crear cuenta
-                                    </Dropdown.Item>
-                                    <Dropdown.Item as={Link} to="login">
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to='login'>
                                         Acceder
-                                    </Dropdown.Item>
-                                    <Dropdown.Item as={Link} to="wishList">
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to='wishList'>
                                         Lista de deseos
-                                    </Dropdown.Item>
-                                    <Dropdown.Item as={Link} to="boughts">
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to='boughts'>
                                         Compras
-                                    </Dropdown.Item>
-                                    <Dropdown.Item as={Link} to="admin">
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to='admin'>
                                         Admin
-                                    </Dropdown.Item>
-                                    <Dropdown.Divider />
-                                    <Dropdown.Item>Salir</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </Nav>
-                        <Nav xs sm lg>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item>
+                                        Salir
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav.Link>
                             <Nav.Link>
-                                <Button
+                            <Button
                                     className="me-2"
                                     as={Link}
                                     to="shoppingcart"
                                 >
                                     <Cart />
                                 </Button>
-                            </Nav.Link>
-                            <Nav.Link>
                                 <Button>
                                     <Bell />
                                 </Button>
                             </Nav.Link>
+                        </Nav>
+                        <Nav xs sm lg className="d-flex flex-wrap">
+                            <Nav.Link></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
