@@ -15,6 +15,7 @@ import {
     Whatsapp,
     Twitter,
     Envelope,
+    Star,
 } from "react-bootstrap-icons";
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
@@ -210,6 +211,9 @@ function NavBar() {
                                     to="shoppingcart"
                                 >
                                     <Cart />
+                                </Button>
+                                <Button className="me-2">
+                                    <Star />
                                 </Button>
                                 <Button>
                                     <Bell />
