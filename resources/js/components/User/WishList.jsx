@@ -22,7 +22,7 @@ function ShoppingCart() {
     return (
         <Container className="m-5">
             <Row className="gap-3">
-            <Card.Title>Lista de deseados</Card.Title>
+            <Card.Title>Wish List </Card.Title>
                     <hr />
                     {cart.map((item, index) => (
                         <Card className="p-3 w-100 my-2" >
@@ -44,7 +44,7 @@ function ShoppingCart() {
                                                 {item.name}
                                             </ListGroup.Item>
                                             <ListGroup.Item>
-                                                Precio: ${item.price}
+                                                Price: ${item.price}
                                             </ListGroup.Item>
                                             <ListGroup.Item>
                                                 Rate: {item.rate}

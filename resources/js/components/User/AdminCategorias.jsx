@@ -23,6 +23,24 @@ function SearchResult() {
     const [pivote, setPivote] = useState([...new Set(Duplicates)]);
     const [noDuplicates, setNoDuplicates] = useState(pivote);
     const [helper, setHelper] = useState("");
+
+    function AvailableCategoires() {
+        return (
+            <Form.Group>
+                <Form.Label>Available Categories</Form.Label>
+                <Form.Select
+                    type="select"
+                    onChange={(e) => setSelectedTag(e.target.value)}
+                >
+                    <option value="">Choose one</option>
+                    {noDuplicates.map((tags) => (
+                        <option value={tags}>{tags}</option>
+                    ))}
+                </Form.Select>
+            </Form.Group>
+        );
+    }
+
     const [selectedTag, setSelectedTag] = useState("");
 
     const [index, setIndex] = useState("");
@@ -40,50 +58,58 @@ function SearchResult() {
     return (
         <Container className="d-flex p-3">
             <Container>
-                <Form.Group className="d-flex gap-2">
-                    <Form.Label>categoria: </Form.Label>
-                    <Form.Control
-                        type="text"
-                        onChange={(e) => setHelper(e.target.value.toString())}
-                    />
-                    <Button
-                        className="d-block m-2 ms-auto "
-                        onClick={() =>
-                            setNoDuplicates([...noDuplicates, helper])
-                        }
-                    >
-                        Add
-                    </Button>
-                    {/*SAbe */}
-                </Form.Group>
-                <Container className="d-flex flex-wrap">
+                <Container className="p-0 my-3">
+                    <Row>
+                        <Col className="align middle my-auto">
+                            <Form.Group className="d-flex gap-2">
+                                <Form.Label className="">Category: </Form.Label>
+                                <Form.Control
+                                    className="w-100"
+                                    type="text"
+                                    onChange={(e) =>
+                                        setHelper(e.target.value.toString())
+                                    }
+                                />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Button
+                                onClick={() =>
+                                    setNoDuplicates([...noDuplicates, helper])
+                                }
+                            >
+                                Add
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container>
+                <Container className="d-flex flex-wrap p-0">
                     <Row className="w-100">
                         <Col className="">
-                            <Form.Group>
-                                <Form.Label>Categorias</Form.Label>
-                                <Form.Select
-                                    type="select"
-                                    onChange={(e) =>
-                                        setSelectedTag(e.target.value)
-                                    }
-                                >
-                                    <option value="">Seleccione una</option>
-                                    {noDuplicates.map((tags) => (
-                                        <option value={tags}>{tags}</option>
-                                    ))}
-                                </Form.Select>
-                            </Form.Group>
+                            <AvailableCategoires />
                         </Col>
                         <Col className="d-flex align-middle">
                             <Form.Group className="">
                                 <Form.Label>Eliminar</Form.Label>
-                                <Container className="d-flex gap-2">
-
+                                <Container className="d-flex gap-2 p-0">
                                     <Form.Control
                                         readOnly
                                         value={selectedTag}
                                     />
-                                    <Button onClick={()=>setNoDuplicates(noDuplicates.filter((erase)=>!erase.includes(selectedTag)))}>Quitar</Button>
+                                    <Button
+                                        onClick={() =>
+                                            setNoDuplicates(
+                                                noDuplicates.filter(
+                                                    (erase) =>
+                                                        !erase.includes(
+                                                            selectedTag
+                                                        )
+                                                )
+                                            )
+                                        }
+                                    >
+                                        Quitar
+                                    </Button>
                                 </Container>
                             </Form.Group>
                         </Col>

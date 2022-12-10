@@ -57,7 +57,7 @@ function ShoppingCart() {
         <Container className="m-5">
             <Row className="gap-3">
                 <Col xs={10} className="w-75">
-                    <Card.Title>Carrito</Card.Title>
+                    <Card.Title>Shopping Cart</Card.Title>
                     <hr />
                     {cart.map((item, index) => (
                         <Card className="p-3 w-100 my-2">
@@ -79,7 +79,7 @@ function ShoppingCart() {
                                                 {item.name}
                                             </ListGroup.Item>
                                             <ListGroup.Item>
-                                                Precio: ${item.price}
+                                                Price: ${item.price}
                                             </ListGroup.Item>
                                             <ListGroup.Item>
                                                 Rate: {item.rate}
@@ -94,7 +94,7 @@ function ShoppingCart() {
                 <Col>
                     <Card>
                         <Card.Title className="text-center mt-3 p-3">
-                            <h2>Total a pagar</h2>
+                            <h2>Total amount</h2>
                             <p>${cart.reduce(
                                 (accumulator, currentValue) =>
                                     accumulator + currentValue.price,

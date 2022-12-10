@@ -12,14 +12,14 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-
 import { useParams } from "react-router-dom";
 
 import Data from "../JSONs/products.json";
-import { LP2 } from "./AdminCategorias"
+import { LP2 } from "./AdminCategorias";
+
+
 
 function SearchResult() {
-
     function NewProduct() {
         const [file, setFile] = useState();
         const [id, setId] = useState(Data.at(Data.length));
@@ -42,14 +42,14 @@ function SearchResult() {
         }
 
         return (
-            <Container>
+            <Container className="p-0 ">
                 <Card className="p-3 my-3">
                     <Form>
                         <Form.Group className="mb-3" controlId="productName">
-                            <Form.Label>Nombre</Form.Label>
+                            <Form.Label>Name</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="Descripcion corta"
+                                placeholder="Short description"
                                 required
                                 onChange={(e) => setName(e.target.value)}
                             />
@@ -61,7 +61,7 @@ function SearchResult() {
                                     className="mb-3"
                                     controlId="productBrand"
                                 >
-                                    <Form.Label>Imagen</Form.Label>
+                                    <Form.Label>Image</Form.Label>
                                     <Form.Control
                                         inputProps={{ accept: "image/*" }}
                                         onChange={handleChange}
@@ -79,7 +79,7 @@ function SearchResult() {
                                     className="mb-3 d-flex gap-2"
                                     controlId="productPrice"
                                 >
-                                    <Form.Label>Precio</Form.Label>
+                                    <Form.Label>Price: </Form.Label>
                                     <Form.Control
                                         type="number"
                                         min={0}
@@ -95,7 +95,7 @@ function SearchResult() {
                                     className="d-flex gap-2"
                                     controlId="productStock"
                                 >
-                                    <Form.Label>Stock:</Form.Label>
+                                    <Form.Label>Stock: </Form.Label>
                                     <Form.Control
                                         type="number"
                                         min={0}
@@ -111,44 +111,54 @@ function SearchResult() {
 
                         <hr />
 
-                        <h2>Detalles del producto</h2>
+                        <h2>Product Details</h2>
                         <Form.Group className="mb-3" controlId="productDesc">
-                            <Form.Label>Descricpion</Form.Label>
+                            <Form.Label>Description</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="Descripcion larga"
+                                placeholder="Long description"
                                 required
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="productBrand">
-                            <Form.Label>Marca</Form.Label>
+                            <Form.Label>Brand</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="Marca"
+                                placeholder="Brand"
                                 onChange={(e) => setMarca(e.target.value)}
                             />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="productSize">
-                            <Form.Label>Tamaño</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Unidades en centimetros"
-                                onChange={(e) => setTamaño(e.target.value)}
-                            />
-                        </Form.Group>
+                        <Container className="d-flex gap-3 p-0 justify-content-center">
+                            <Form.Group
+                                className="mb-3 me-auto w-100"
+                                controlId="productSize"
+                            >
+                                <Form.Label>Size</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="cm"
+                                    onChange={(e) => setTamaño(e.target.value)}
+                                />
+                            </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="productWeight">
-                            <Form.Label>Peso:</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Peso en KG"
-                                onChange={(e)=>setPeso(e.target.value)}
-                            />
-                        </Form.Group>
+                            <Form.Group
+                                className="mb-3 w-100"
+                                controlId="productWeight"
+                            >
+                                <Form.Label>Weight:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="kg"
+                                    onChange={(e) => setPeso(e.target.value)}
+                                />
+                            </Form.Group>
+                        </Container>
+
                         <Button
+                            className="d-block mx-auto w-25"
                             onClick={() =>
                                 setProductos([
                                     ...productos,
@@ -171,7 +181,7 @@ function SearchResult() {
                             }
                             variant="primary"
                         >
-                            Submit
+                            Add
                         </Button>
                     </Form>
                 </Card>
@@ -185,15 +195,11 @@ function SearchResult() {
     let condicion;
 
     if (productoS != null) {
-        console.log("si jala");
         condicion = productoS;
     } else {
-        console.log("no jala");
         condicion = "";
     }
 
-    
-    
     const Duplicates = Data.map((tags) => tags.category);
     const [pivote, setPivote] = useState([...new Set(Duplicates)]);
     const [noDuplicates, setNoDuplicates] = useState(pivote);
@@ -217,26 +223,27 @@ function SearchResult() {
             <Container className="w-25 border rounded ms-0 brder">
                 <h4 className="text-center mt-2">Filtros</h4>
                 <Form.Group>
-                    <Form.Label>Categorias</Form.Label>
+                    <Form.Label>Categories</Form.Label>
                     <Form.Select
                         type="select"
                         onChange={(e) => setSelectedTag(e.target.value)}
                     >
-                        <option value="">Seleccione una</option>
+                        <option value="">Choose one</option>
                         {LP2.map((tags) => (
                             <option value={tags}>{tags}</option>
                         ))}
                     </Form.Select>
+                    
                 </Form.Group>
                 <Form.Group className="d-block gap-1">
-                    <Form.Label>Precio</Form.Label>
+                    <Form.Label>Price: </Form.Label>
                     <Form.Range
                         controlId="maxCost"
                         min={40}
                         max={1000}
                         onChange={(e) => setQuery(e.target.value)}
                     />
-                    <p>Maximo: ${query}</p>
+                    <p>Max cost: ${query}</p>
                 </Form.Group>
             </Container>
 
@@ -247,10 +254,10 @@ function SearchResult() {
                 >
                     Add product
                 </Button>
-                <Container>
-                    {active ? <NewProduct></NewProduct> : <></>}
+                <Container className="p-0">
+                    {active ? <NewProduct /> : <></>}
                 </Container>
-                <Container className="d-flex flex-wrap">
+                <Container className="d-flex flex-wrap p-0">
                     {productos
                         .filter(
                             (product) =>
@@ -262,13 +269,16 @@ function SearchResult() {
                         )
                         .map((product, index) => (
                             <>
-                                <Container className="p-0 w-100 ">
+                                <Button className="w-auto ms-auto mx-2">
+                                    Edit
+                                </Button>
                                 <Button
-                                            className="w-auto d-block ms-auto"
-                                            onClick={() => removeItem(index)}
-                                        >
-                                            Quitar
-                                        </Button>
+                                    className="w-auto"
+                                    onClick={() => removeItem(index)}
+                                >
+                                    Remove
+                                </Button>
+                                <Container className="p-0 w-100 ">
                                     <Card
                                         className="p-3 m-1 w-100"
                                         style={{
@@ -276,7 +286,6 @@ function SearchResult() {
                                             color: "black",
                                         }}
                                     >
-                                        
                                         <Row>
                                             <Col>
                                                 <Card.Img
@@ -290,27 +299,24 @@ function SearchResult() {
                                                 <Card.Body>
                                                     <p>{product.name}</p>
                                                     <p>
-                                                        tag: {product.category}
+                                                        Tags: {product.category}
                                                     </p>
-                                                    <p>
-                                                        Calificacion:{" "}
-                                                        {product.rate}
-                                                    </p>
+                                                    <p>Rate: {product.rate}</p>
                                                     <p>
                                                         Stock: {product.stock}
                                                     </p>
                                                     <p>
-                                                        Marca: {product.marca}
+                                                        Brand: {product.marca}
                                                     </p>
                                                     <p>
-                                                        Tamaño {product.tamaño}{" "}
-                                                        Peso {product.peso}
+                                                        Size {product.tamaño}{" "}
+                                                        Weight {product.peso}
                                                     </p>
                                                     <p></p>
                                                 </Card.Body>
                                             </Col>
                                         </Row>
-                                        <Card.Footer>
+                                        <Card.Footer className="mt-3">
                                             {product.desc}
                                         </Card.Footer>
                                     </Card>

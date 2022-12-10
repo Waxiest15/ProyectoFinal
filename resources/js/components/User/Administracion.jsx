@@ -12,24 +12,24 @@ function AdminPanel() {
     return (
         <Container className="m-0 p-2 w-100">
             <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
-                <Row >
-                    <Col sm={3}>
+                <Row>
+                    <Col sm={2}>
                         <Nav variant="pills" className="flex-column gap-3">
                             <Nav.Item>
-                                <Nav.Link eventKey="first">Productos</Nav.Link>
+                                <Nav.Link eventKey="first">Products</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="second">Categorias</Nav.Link>
+                                <Nav.Link eventKey="second">Tags</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="third">Perfil</Nav.Link>
+                                <Nav.Link eventKey="third">Bussiness profile</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Col>
                     <Col  className='border'>
                         <Tab.Content>
-                            <Tab.Pane eventKey="first">
-                                <AdminProducto></AdminProducto>
+                            <Tab.Pane eventKey="first" className="">
+                                <AdminProducto/>
                             </Tab.Pane>
                             <Tab.Pane eventKey="second">
                                 <AdminCategorias />

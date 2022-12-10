@@ -23,13 +23,13 @@ function Bought() {
             <Col xs sm>
               <Card.Text>
                 <h4 class={datos.status=='Entregado' ? 'text-success' : datos.status=='Cancelado' ? "text-danger" : "text-warning"}>{datos.status}</h4>
-                <p>Llego el {datos.fechaLlgada}</p>
+                <p>Arriva date {datos.fechaLlgada}</p>
                 <p>{datos.descripcion}</p>
-                <p>Unidades: {datos.unidades}</p>
+                <p>Units: {datos.unidades}</p>
               </Card.Text>
             </Col>
             <Col>
-            <p>Vendido por: {datos.proveedor}</p>
+            <p>Sold by: {datos.proveedor}</p>
             </Col>
           </Row>
           

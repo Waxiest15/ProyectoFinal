@@ -20,7 +20,7 @@ function ProfileAdmin() {
             <Container>
                 {read ? <Button onClick={() => setRead(!read)}>Editar</Button> : <></>}
                 <Card className="w-75 p-3">
-                    <h1>MI perfil</h1>
+                    <h1>Bussines profile</h1>
                     <Card.Header className="w-100 text-center">
                     <Form.Group className="d-flex w-100 ">
                         <Form.Control
@@ -45,7 +45,7 @@ function ProfileAdmin() {
                                     <Col>
                                         <Form.Group className="d-flex">
                                             <Form.Label className="my-auto me-2">
-                                                Edad:
+                                                Age:
                                             </Form.Label>
                                             <Form.Control
                                                 type="text"
@@ -57,7 +57,7 @@ function ProfileAdmin() {
                                     <Col>
                                         <Form.Group className="d-flex">
                                             <Form.Label className="my-auto me-2">
-                                                Genero:
+                                                Gender:
                                             </Form.Label>
                                             <Form.Control
                                                 readOnly={read}
@@ -68,7 +68,7 @@ function ProfileAdmin() {
                                 </Row>
                                 <Form.Group className="d-flex">
                                     <Form.Label className="my-auto me-2">
-                                        Domicilo:
+                                        Residence:
                                     </Form.Label>
                                     <Form.Control
                                         readOnly={read}
@@ -76,11 +76,11 @@ function ProfileAdmin() {
                                     />
                                 </Form.Group>
                                 <ListGroup.Item>
-                                    <strong>Informacion de contacto</strong>
+                                    <strong>Contact info</strong>
                                 </ListGroup.Item>
                                 <Form.Group className="d-flex">
                                     <Form.Label className="my-auto me-2">
-                                        Correo:
+                                        Email:
                                     </Form.Label>
                                     <Form.Control
                                         readOnly={read}
@@ -89,7 +89,7 @@ function ProfileAdmin() {
                                 </Form.Group>
                                 <Form.Group className="d-flex">
                                     <Form.Label className="my-auto me-2">
-                                        Telefono:
+                                        Phone:
                                     </Form.Label>
                                     <Form.Control
                                         readOnly={read}
@@ -100,7 +100,7 @@ function ProfileAdmin() {
                         </Col>
                     </Row>
                     <Form.Group className="d-flex w-100 ">
-                        <Form.Label className="my-auto me-2">Envio:</Form.Label>
+                        <Form.Label className="my-auto me-2">Send to:</Form.Label>
                         <Form.Control
                             className="w-100 my-auto"
                             readOnly={read}
@@ -111,7 +111,7 @@ function ProfileAdmin() {
                     </Form.Group>
                     <Form.Group className="d-flex w-100 ">
                         <Form.Label className="my-auto me-2">
-                            Contraseña:
+                            Password:
                         </Form.Label>
                         <Form.Control
                             type={see ? "password" : "text"}
@@ -126,15 +126,15 @@ function ProfileAdmin() {
                             <EyeSlash />
                         </Button>
                     </Form.Group>
-                    {!read ? <Button onClick={()=>setRead(!read)}>Guardar</Button> : <></>}
+                    {!read ? <Button onClick={()=>setRead(!read)}>Save</Button> : <></>}
                     <Row>
                         <Col>
                             <Card.Body>
-                                <Card.Title>Mascotas</Card.Title>
+                                <Card.Title>Pets</Card.Title>
                                 <Row>
-                                    <Col>Nombre</Col>
-                                    <Col>Especie</Col>
-                                    <Col>Raza</Col>
+                                    <Col>Name</Col>
+                                    <Col>?</Col>
+                                    <Col>Breed</Col>
                                 </Row>
                             </Card.Body>
                         </Col>

@@ -56,26 +56,26 @@ function SearchResult() {
             <Container className="w-25 border rounded ms-0">
                 <h4 className="text-center mt-2">Filtros</h4>
                 <Form.Group>
-                    <Form.Label>Categorias</Form.Label>
+                    <Form.Label>Tags</Form.Label>
                     <Form.Select
                         type="select"
                         onChange={(e) => setSelectedTag(e.target.value)}
                     >
-                        <option value="">Seleccione una</option>
+                        <option value="">Chose one</option>
                         {noDuplicates.map((tags) => (
                             <option value={tags}>{tags}</option>
                         ))}
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className="d-block gap-1">
-                    <Form.Label>Precio</Form.Label>
+                    <Form.Label>Price</Form.Label>
                     <Form.Range
                         controlId="maxCost"
                         min={40}
                         max={1000}
                         onChange={(e) => setQuery(e.target.value)}
                     />
-                    <p>Maximo: ${query}</p>
+                    <p>Max cost: ${query}</p>
                 </Form.Group>
             </Container>
 

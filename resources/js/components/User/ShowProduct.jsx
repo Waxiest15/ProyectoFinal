@@ -10,15 +10,19 @@ import { Container } from "react-bootstrap";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useState } from "react";
 
-function getToday(){
+function getToday() {
     var today = new Date();
     var diaHoy = today.getDate();
-    if(diaHoy.toString().length<=1) diaHoy='0'+diaHoy
-  
-    
-    var date = today.getDate() + "/" + (today.getMonth()+1) + "/" + today.getFullYear();
+    if (diaHoy.toString().length <= 1) diaHoy = "0" + diaHoy;
+
+    var date =
+        today.getDate() +
+        "/" +
+        (today.getMonth() + 1) +
+        "/" +
+        today.getFullYear();
     return date;
-  }
+}
 
 function Comments() {
     const [newComment, setNewComment] = useState(Data);
@@ -51,33 +55,43 @@ function Comments() {
                 </Card>
             ))}
             <Form>
-                <Form.Label>Agregar comentarios</Form.Label>
+                <Form.Label>Add comment</Form.Label>
                 <Form.Group className="d-flex gap-3 my-2">
-                    <Form.Label>Calficiacacion</Form.Label>
+                    <Form.Label>Rate</Form.Label>
                     <Form.Control
                         style={{ width: "auto" }}
                         min={0}
                         max={5}
                         step={0.1}
                         required
-                        onChange={(e)=>setRate(e.target.value)}
+                        onChange={(e) => setRate(e.target.value)}
                         type="number"
                     />
                 </Form.Group>
                 <Form.Group>
                     <Form.Control
-                    as="textarea" 
-                    rows={3} 
-                    required
-                    onChange={(e)=>setComment(e.target.value)}
+                        as="textarea"
+                        rows={3}
+                        required
+                        onChange={(e) => setComment(e.target.value)}
                     />
                     <Button
                         className="mt-2"
                         onClick={() =>
-                            setNewComment([...newComment, { user: "Admin", rate: rate, comment, comment, date, date }])
+                            setNewComment([
+                                ...newComment,
+                                {
+                                    user: "Admin",
+                                    rate: rate,
+                                    comment,
+                                    comment,
+                                    date,
+                                    date,
+                                },
+                            ])
                         }
                     >
-                        Comentar
+                        Comment
                     </Button>
                 </Form.Group>
             </Form>
@@ -110,19 +124,17 @@ function ShowProduct() {
                                                 Rate: {producto.rate}/5
                                             </Card.Text>
                                             <Card.Text>
-                                                Precio: ${producto.price}
+                                                Price: ${producto.price}
                                             </Card.Text>
+                                            <Card.Text>Arrive time:</Card.Text>
                                             <Card.Text>
-                                                Tiempo de llegada:
-                                            </Card.Text>
-                                            <Card.Text>
-                                                Unidades disponibles:{" "}
+                                                Stock:{" "}
                                                 {producto.stock}
                                             </Card.Text>
                                         </Col>
                                         <Col className="border rounded gap-3 m-1 py-5">
                                             <h5 class="text-center">
-                                                Pagar ahora
+                                                Pay now
                                             </h5>
                                             <PayPalScriptProvider
                                                 options={{
@@ -138,10 +150,10 @@ function ShowProduct() {
                                             </PayPalScriptProvider>
                                             <Container className="d-flex flex-wrap gap-3">
                                                 <Button className="w-100">
-                                                    Agregar al Carrito
+                                                    Add to cart
                                                 </Button>
                                                 <Button className="w-100">
-                                                    Agregar lista de deseos
+                                                    Add to wishlist
                                                 </Button>
                                             </Container>
                                         </Col>
@@ -151,25 +163,25 @@ function ShowProduct() {
                             <hr />
                             <Row>
                                 <Col>
-                                    <Card.Text>Caracterisitcas</Card.Text>
+                                    <Card.Text>Characteristics</Card.Text>
                                     <Container className="w-50 d-block ms-0">
                                         <ListGroup comment="flush">
                                             <ListGroup.Item>
-                                                Marca: {producto.marca}
+                                                Brand: {producto.marca}
                                             </ListGroup.Item>
                                             <ListGroup.Item>
-                                                Modelo: {producto.modelo}
+                                                Model: {producto.modelo}
                                             </ListGroup.Item>
                                             <ListGroup.Item>
-                                                Tamaño: {producto.tamaño}cm
+                                                Size: {producto.tamaño}cm
                                             </ListGroup.Item>
                                             <ListGroup.Item>
-                                                Peso: {producto.peso}kg
+                                                Weight: {producto.peso}kg
                                             </ListGroup.Item>
                                         </ListGroup>
                                     </Container>
                                     <Card.Text className="mt-2">
-                                        <h4>Descripcion:</h4>
+                                        <h4>Description:</h4>
                                     </Card.Text>
                                     <Form.Control
                                         className="text-justify"
@@ -185,7 +197,7 @@ function ShowProduct() {
                 ))}
 
                 <Container>
-                    <h3>Comentarios</h3>
+                    <h3>Comments</h3>
                     <Comments></Comments>
                 </Container>
             </Card>
