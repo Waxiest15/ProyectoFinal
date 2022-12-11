@@ -36,30 +36,34 @@ class UserController extends Controller
         return response()->json($UsersR);//mandamos un response en json 
     }
 
+    public function show_user($id){
+        return response()->json(User::find($id));//mandamos un response en json 
+    }
+
     public function make_comment(Request $request){//Crea un comentario con base al user_id, product_id y el comment
         $request->validate([
-            //'user_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
             'comment' => 'required'
         ]);
-        $user = User::find(Auth::user()->id);//PROBAR
+        $user = User::find($request->user_id);//PROBAR
         return $user->comment()->attach($request->product_id, 
         ['date' => now(), 'comment' => $request->comment]);
     }
 
     public function delete_comment(Request $request){
         $request->validate([
-            //'user_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
             'comment' => 'required'
         ]);
-        $user = User::find(Auth::user()->id);//PROBAR
+        $user = User::find($request->user_id);//PROBAR
         return $user->comment()->detach($request->product_id);//BORAR TODOS LOS COMENTARIOS HECHOS XD
     }
     
     public function buy_products(Request $request){//Al usuario comprar productos 
         $request->validate([
-            //'user_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
         ]);
         $user = User::find($request->user_id);//PROBAR
@@ -77,10 +81,10 @@ class UserController extends Controller
 
     public function add_shopping_cart_products(Request $request){//Al usuario ingresar productos a su carrito
         $request->validate([
-            //'user_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
         ]);
-        $user = User::find(Auth::user()->id);//PROBAR
+        $user = User::find($request->user_id);//PROBAR
         return $user->shopingcart()->attach($request->product_id, ['date' => now()]);//Se agrega en la tabla shopingcart
     }
 
@@ -89,13 +93,13 @@ class UserController extends Controller
             //'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
         ]);
-        $user = User::find(Auth::user()->id);//PROBAR
+        $user = User::find($request->user_id);//PROBAR
         $user->shopingcart()->detach($request->product_id);
     }
 
     public function show_wishlist(Request $request){
         $request->validate([//CHECAR
-            //'user_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
         ]);
         $user = User::find($request->user_id);//PROBAR
@@ -110,17 +114,16 @@ class UserController extends Controller
         return response()->json($p);
     }
 
-    public function show_shopping_cart(Request $request){
-        $request->validate([//CHECAR
-            //'user_id' => 'required|numeric',
-            'product_id' => 'required|numeric',
-        ]);
-        $user = User::find($request->user_id);//PROBAR
+    public function show_shopping_cart($user_id){
+        $user = User::find($user_id);//PROBAR
         $p = [];
         foreach($user->shopingcart as $product){
             $p [] = [
+                'product_id' => $product->id,
+                'product_price' => $product->price,
+                'product_des' => $product->description,
                 'product' => $product->name,//Generamos el nombre del producto
-                'date add' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
+                'date_add' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
                 'image' => $product->image,
             ];
         }
@@ -129,7 +132,7 @@ class UserController extends Controller
 
     public function past_shopping(Request $request){
         $request->validate([//CHECAR
-            //'user_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
         ]);
         $user = User::find($request->user_id);//PROBAR
@@ -147,7 +150,7 @@ class UserController extends Controller
 
     public function add_wishlist_products(Request $request){//Al usuario ingresar productos a su wishlist
         $request->validate([
-            //'user_id' => 'required|numeric',
+            'user_id' => 'required|numeric',
             'product_id' => 'required|numeric',
         ]);
         $user = User::find($request->user_id);//PROBAR

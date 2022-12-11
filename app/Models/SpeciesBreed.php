@@ -15,8 +15,4 @@ class SpeciesBreed extends Model
         'breed'
     ];
 
-
-    public function pet(){
-        return $this->hasOne(Pet::class);
-    }
 }

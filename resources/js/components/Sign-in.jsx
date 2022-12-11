@@ -9,8 +9,8 @@ import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
 import { useContext } from 'react'
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from '../components/AuthContext';
-// const [users, setUsers]=useState([])
+import { AuthContext } from '../AuthContext';
+import React from 'react';
 
 
 
@@ -28,44 +28,11 @@ function Signin() {
     hoy.max = date;
   }
 
-  function confirmPassword() {
-    let pssw;
-    let psswC;
-
-    pssw = document.getElementById('password').value;
-    psswC = document.getElementById('confirmPassword').value;
-
-    console.log('password: ', pssw);
-    console.log('password Confirm: ', psswC);
-
-    if (pssw != psswC) {
-      document.getElementById('btn_submit').disabled = true;
-      console.log('No son iguales')
-    } else {
-      document.getElementById('btn_submit').disabled = false;
-    }
-  }
-
-  // function getGender(){
-  //   var ele = document.getElementsByName('gender');
-  //   for(i = 0; i < ele.length; i++) {
-  //       if(ele[i].checked)
-
-  //   }
-  // }
-
-  // const [name, setName] = useState('')
-  // const [last_name, setlast_name] = useState('')
-  // const [last_name2, setlast_name2] = useState('')
-  // const [birth, setBirth] = useState('')
-  // const [gender, setGender] = useState('')
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
+  const navigate = useNavigate();
 
   // Auth Context
-  const { setUserLogged, setUser } = useContext(AuthContext);
 
-  const navigate = useNavigate();
+  
 
   const [gender, setGender] = useState('')
   const [formValue, setFormValue] = useState({
@@ -73,12 +40,10 @@ function Signin() {
     last_name: '',
     last_name2: '',
     birth: '',
-    //gender: '',
     email: '',
     password: '',
-    //image: null
   })
-  const [users, setUsers] = useState(['']);
+  // const [users, setUsers] = useState(['']);
 
   const [textError, setTextError] = useState('');
   const [formOk, setFormOk] = useState(true);
@@ -97,10 +62,6 @@ function Signin() {
     setFormValue({ ...formValue, [e.target.name]: e.target.value })
     /*concatena al formValue,    email         lo que escriba el usuario como email */
   }
-
-
-
-  const handleFileChange = (e) => setForm({ ...formValue, [e.target.name]: e.target.files[0] })
 
   const postData = async (e) => {
     setFormOk(true);
@@ -127,17 +88,17 @@ function Signin() {
         console.log('response');
         //console.log(response.data);
         console.log(response.data.user);
-        // setUsers(response.data);
         // console.log(response.data)
         // let tokenForm = response.data.token;//obtener token 
         // sessionStorage.setItem('token', tokenForm)//guardan token 
-        // sessionStorage.setItem('user', response.data.user_id)
+        localStorage.setItem('user', response.data.user_id)
 
-        sessionStorage.setItem('token', response.data.token);
-        //setUserLogged(true);
+        localStorage.setItem('token', response.data.token);
 
-        sessionStorage.setItem('user', response.data.user.id);
+        localStorage.setItem('user', response.data.user);
         //setUser(response.data.user);
+
+        console.log('test->',response.data.token);
 
         navigate("/ProyectoFinal/public/addAddress");
 
@@ -256,13 +217,6 @@ function Signin() {
               value={formValue.password}
               onChange={onChange} />
           </Form.Group>
-
-          {/* <Form.Group controlId="formFileLg" className="mb-3" >
-        <Form.Label>imagen</Form.Label>
-        <Form.Control type="file" size="lg" 
-        value={formValue.image} 
-        onChange={handleFileChange}/>
-      </Form.Group> */}
           <Button variant="primary" type='submit'>
             Submit
           </Button>

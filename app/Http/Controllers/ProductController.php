@@ -69,6 +69,23 @@ class ProductController extends Controller
         $product -> save();
     }
 
+    public function show_specific($id)
+    {
+        $product = Product::find($id);
+        return response()->json(['id' => $product->id,
+        'name' => $product->name,
+        'size' => $product->size,
+        'weight' => $product->weight,
+        'price' => $product->price,
+        'rate' => $product->rate,
+        'description' => $product->description,
+        'amount'=> $product->amount,
+        'image'=> $product->image,
+        'deliverTime' => $product->deliverTime,
+        'category_id' => Category::find($product->category_id)->name,
+        'business_id' => Business::find($product->business_id)->name]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -80,6 +97,7 @@ class ProductController extends Controller
         $p = [];
         foreach(Product::all() as $product){
             $p [] = [
+                'id' => $product->id,
                 'name' => $product->name,
                 'size' => $product->size,
                 'weight' => $product->weight,
@@ -102,6 +120,7 @@ class ProductController extends Controller
         $p = [];
         foreach($pp as $pro){
             $p [] = [
+                'id' => $pro->id,
                 'name' => $pro->name,
                 'size' => $pro->size,
                 'weight' => $pro->weight,

@@ -29,6 +29,7 @@
         "emailjs-com": "^3.2.0",
         "react-bootstrap": "^2.5.0",
         "react-bootstrap-icons": "^1.9.1",
+        "react-icons": "^4.7.1",
         "react-router-dom": "^6.4.3"
     }
 }

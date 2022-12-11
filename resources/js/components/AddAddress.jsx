@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { redirect } from "react-router-dom";
 
 // Context
-import { AuthContext } from '../components/AuthContext';
 
 
 function AddAddress() {
@@ -19,7 +18,6 @@ function AddAddress() {
   const navigate = useNavigate();
 
   // Auth Context USER
-  const { user } = useContext(AuthContext);
 
   const [states, setStates] = useState([])//Put all the States in a State
   const [cities, setCities] = useState([])//Put all the Cities in a State

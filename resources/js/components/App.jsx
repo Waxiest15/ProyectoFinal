@@ -20,7 +20,7 @@ import Paseo from "./Services/Paseo";
 import Aseo from "./Services/Aseo";
 import Estetica from "./Services/Estetica";
 import AddProduct from "./User/AddProduct";
-import ShowProduct from './User/ShowProduct';
+import ShowProduct from './SpecificProduct';
 import Admin from './User/Admin';
 
 import Bought from "./User/Compras";
@@ -32,7 +32,7 @@ import Test from "./Test";
 import AddAddress from './addAddress';
 
 
-import { BrowserRouter, Route, Routes, Router} from "react-router-dom"
+import { BrowserRouter,  Route, Routes, Router} from "react-router-dom"
 
 export default function App() {
     return (
@@ -65,7 +65,6 @@ export default function App() {
                         <Route path="result/:pro" element={<ShowProduct/>}/>
                         <Route path="admin" element={<Admin/>}/>
                         <Route path="addAddress" element={<AddAddress />}/>
-
 
                         <Route path="test" element={<Test />}/>
                     </Route>

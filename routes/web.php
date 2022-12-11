@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 /*
@@ -20,6 +21,11 @@ Route::get('/', function () {
 Route::get('/{path?}', function () {
     return view('welcome');
 });
+
+Route::fallback(function () {
+    return view('welcome');
+});
+
 
 Route::get('/token', [UserController::class, 'showToken']);
 //Auth::routes();
