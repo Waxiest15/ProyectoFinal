@@ -94,7 +94,7 @@ class User extends Authenticatable
             Product::class,
             'buys'
         )
-        ->withPivot(['date'])
+        ->withPivot(['date','id'])
         ->withTimestamps();
     }
 
@@ -103,7 +103,7 @@ class User extends Authenticatable
             Product::class,
             'wishlists'
         )
-        ->withPivot(['date'])
+        ->withPivot(['date','id'])
         ->withTimestamps();
     }
 
@@ -111,7 +111,7 @@ class User extends Authenticatable
         return $this->belongsToMany(
             Product::class,
             'shopping_carts'
-        )->withPivot(['date'])
+        )->withPivot(['date','id'])
         ->withTimestamps();
     }
 

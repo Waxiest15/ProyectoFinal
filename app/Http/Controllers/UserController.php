@@ -88,13 +88,9 @@ class UserController extends Controller
         return $user->shopingcart()->attach($request->product_id, ['date' => now()]);//Se agrega en la tabla shopingcart
     }
 
-    public function quit_from_shopping_cart(Request $request){//Al usuario ingresar productos a su carrito
-        $request->validate([//CHECAR
-            //'user_id' => 'required|numeric',
-            'product_id' => 'required|numeric',
-        ]);
-        $user = User::find($request->user_id);//PROBAR
-        $user->shopingcart()->detach($request->product_id);
+    public function quit_from_shopping_cart($product_id, $user_id){//Al usuario ingresar productos a su carrito
+        $user = User::find($user_id);//PROBAR
+        $user->shopingcart()->detach($product_id);
     }
 
     public function show_wishlist(Request $request){
@@ -119,9 +115,11 @@ class UserController extends Controller
         $p = [];
         foreach($user->shopingcart as $product){
             $p [] = [
+                'id' => $product->pivot->id,
                 'product_id' => $product->id,
                 'product_price' => $product->price,
                 'product_des' => $product->description,
+                'rate' => $product->rate,
                 'product' => $product->name,//Generamos el nombre del producto
                 'date_add' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
                 'image' => $product->image,

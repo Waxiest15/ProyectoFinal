@@ -43,14 +43,15 @@ Route::post('/user_store',[UserController::class, 'store']);
 //Pa comprar
 Route::post('/user_buy',[UserController::class, 'buy_products']);
 Route::post('/user_past_shopping',[UserController::class, 'past_shopping']);
-// Route::post('/user_make_comment',[UserController::class, 'make_comment']);
-// Route::post('/user_delete_comment',[UserController::class, 'delete_comment']);
 
+
+//Shoping Cart
 Route::post('/user_add_shopping_cart_products',[UserController::class, 'add_shopping_cart_products']);
-Route::post('/user_show_shopping_cart/{user_id}',
+Route::get('/user_show_shopping_cart/{user_id}',
 [UserController::class, 'show_shopping_cart']);
+Route::delete('quit_from_shopping_cart/{id}',[ShoppingCartController::class, 'delete_product']);
+Route::delete('clear_cart/{id}',[ShoppingCartController::class, 'clear_cart']); 
 
-Route::post('/user_quit_from_shopping_cart',[UserController::class, 'quit_from_shopping_cart']);
 
 //User->Wishlist
 Route::post('/user_add_wishlist_products',[UserController::class, 'add_wishlist_products']);

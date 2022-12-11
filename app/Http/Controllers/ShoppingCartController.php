@@ -14,4 +14,16 @@ class ShoppingCartController extends Controller
         }
         return response($r);
     }
+
+    
+    public function delete_product($id){
+        $s = ShoppingCart::find($id);
+        $s -> delete();
+        return response('deleted');
+    }
+
+    public function clear_cart($id){
+        ShoppingCart::where('user_id',$id)->delete();
+        return response('deleted');
+    }
 }
