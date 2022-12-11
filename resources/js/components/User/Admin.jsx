@@ -13,18 +13,18 @@ function Admin() {
                         <Form.Label>Admin</Form.Label>
                         <Form.Control 
                         type="email" 
-                        placeholder="Usuario" 
+                        placeholder="Admin user" 
                         />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="adminPassword">
-                        <Form.Label>Contraseña</Form.Label>
-                        <Form.Control type="password" placeholder="Contraseña" />
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="Checkbox">
-                        <Form.Check type="checkbox" label="Recuerdame" />
+                        <Form.Check type="checkbox" label="check me out" />
                     </Form.Group>
-                    <Button variant="primary" as={Link} to='/ProyectoFinal/public/'>
+                    <Button variant="primary" as={Link} to='/ProyectoFinal/public/panel'>
                         Acceder
                     </Button>
                 </Form>

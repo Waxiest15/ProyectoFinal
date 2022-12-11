@@ -5,7 +5,7 @@
         {
           "status": "Entregado",
           "fechaLlgada": "llegada",
-          "descripcion": "texto",
+          "descripcion": "Collar para perro diversos colores",
           "unidades": 1,
           "proveedor": "proveedor",
           "imagen": "images/collar.jpg"
@@ -13,7 +13,7 @@
         {
           "status": "En camino",
           "fechaLlgada": "llegada",
-          "descripcion": "texto",
+          "descripcion": "Abrigo para perro chico diseño de leñador ",
           "unidades": 2,
           "proveedor": "proveedor",
           "imagen": "images/sueterPerro.jfif"
@@ -21,7 +21,7 @@
         {
           "status": "Cancelado",
           "fechaLlgada": "llegada",
-          "descripcion": "texto",
+          "descripcion": "Alimento para perro marca pedigrie 17Kg ",
           "unidades": 3,
           "proveedor": "proveedor",
           "imagen": "images/pedigrie.png"
@@ -34,7 +34,7 @@
         {
           "status": "Entregado",
           "fechaLlgada": "llegada",
-          "descripcion": "texto",
+          "descripcion": "Alimento para gatos marca wiskas 9kg",
           "unidades": 1,
           "proveedor": "proveedor",
           "imagen": "images/wiskas.jfif"
