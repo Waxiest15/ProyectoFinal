@@ -49,7 +49,7 @@ export default function App() {
                         <Route path="addPet" element={<AddPet />}/>
                         <Route path="editPet" element={<EditPet />}/>
                         <Route path="shoppingcart" element={<ShoppingCart />}/>
-                        <Route path="wishList" element={<WhisList />}/>
+                        <Route path="wishlist" element={<WhisList />}/>
                         <Route path="result" element={<SearchResult />}/>
                         <Route path="bussiness" element={<AddBussiness />}/>
                         <Route path="politicas" element={<Politicas />}/>

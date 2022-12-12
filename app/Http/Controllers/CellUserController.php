@@ -38,12 +38,12 @@ class CellUserController extends Controller
     {
         $request->validate([
             'phone' => 'required|min:10',
-            //'user_id' => 'required|numeric|min:1'
+            'user_id' => 'required|numeric|min:1'
         ]);
         $cellUser = new CellUser();
-        $cellUser -> phone = $request -> phone;
-        $cellUser -> user_id = Auth::user()->id;//$request -> user_id;//CHECAR
-        $cellUser -> save();       
+        $cellUser->phone = $request->phone;
+        $cellUser->user_id = $request->user_id; //$request -> user_id;//CHECAR
+        $cellUser->save();
     }
 
     /**
@@ -52,14 +52,15 @@ class CellUserController extends Controller
      * @param  \App\Models\CellUser  $cellUser
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)//Retorna un JSON con todos los teléfonos con base a un user_id
+    public function show($user_id) //Retorna un JSON con todos los teléfonos con base a un user_id
     {
-        $cellUser = CellUser::where('user_id',$request->user_id)->get();//CHECAR
+        $cellUser = CellUser::where('user_id', $user_id)->get(); //CHECAR
         $cells = [];
 
-        foreach($cellUser as $cell){
+        foreach ($cellUser as $cell) {
             $cells[] = [
-                'phone' => $cell -> phone
+                'cell_id' => $cell->id,
+                'phone' => $cell->phone
             ];
         }
         return response()->json($cells);
@@ -83,14 +84,15 @@ class CellUserController extends Controller
      * @param  \App\Models\CellUser  $cellUser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)//Módifica el número con base a el user_id
+    public function update(Request $request) //Módifica el número con base a el user_id
     {
         $request->validate([
             'phone' => 'required|min:10',
-           //'user_id' => 'required|numeric|min:1'
+            'cell_id' => 'required|numeric'
         ]);
-        $cellUser = CellUser::find(Auth::user()->id);//CHECAR
-        $cellUser -> phone = $request -> phone;
+        $cellUser = CellUser::find($request->cell_id); //CHECAR
+        $cellUser->phone = $request->phone;
+        $cellUser->save();
     }
 
     /**
@@ -99,13 +101,9 @@ class CellUserController extends Controller
      * @param  \App\Models\CellUser  $cellUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($cell_id)
     {
-        $request->validate([
-            'phone' => 'required|min:10',
-            //'user_id' => 'required|numeric|min:1'
-        ]);
-        CellUser::where('user_id',Auth::user()->id)//CHECAR
-        ->where('phone', '=' ,$request->phone)->delete();
+        CellUser::find($cell_id)->delete();
+        return response('deleted');
     }
 }

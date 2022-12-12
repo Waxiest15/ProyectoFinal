@@ -14,7 +14,8 @@ import Data from "../JSONs/products.json";
 import { useState } from "react";
 
 function ShoppingCart() {
-    const [cart, setCart] = useState(Data);
+    const [cart, setCart] = useState([]);
+    
 
     const removeItem = (index) => {
         setCart(cart.filter((o, i) => index !== i));

@@ -66,11 +66,22 @@ Route::post('/user_show_city', [UserController::class, 'show_city']);
 Route::post('/user_show_neighborhood', [UserController::class, 'show_neighborhood']);
 Route::post('/user_show_street', [UserController::class, 'show_street']);
 
+//Route setImage user
+
 //Routes CellUser show_addresss
+Route::middleware('auth:api')->group(function(){
+    Route::post('/user_add_image', [UserController::class, 'add_image']);
+    
+    
+    
+});
 Route::post('/cellUser_store', [CellUserController::class, 'store']);
-Route::post('/cellUser_show', [CellUserController::class, 'show']);
+Route::get('/address_user/{user_id}', [AddressController::class, 'show_u']);
+Route::delete('/delete_address/{address_id}', [AddressController::class, 'destroy']);
+
+Route::get('/cellUser_show/{user_id}', [CellUserController::class, 'show']);
 Route::post('/cellUser_update', [CellUserController::class, 'update']);
-Route::post('/cellUser_destroy', [CellUserController::class, 'destroy']);
+Route::delete('/cellUser_destroy/{cell_id}', [CellUserController::class, 'destroy']);
 
 //Routes CellBusiness
 Route::post('/cellBusiness_store', [CellBusinessController::class, 'store']);
@@ -82,6 +93,7 @@ Route::post('/cellBusiness_destroy', [CellBusinessController::class, 'destroy'])
 //Addressstore
 Route::post('/address_store', [AddressController::class, 'store']);//Esta y la de arriba 
 Route::get('/address_test', [AddressController::class, 'test']);
+
 
 //State
 Route::get('/state_show', [StateController::class, 'show']);

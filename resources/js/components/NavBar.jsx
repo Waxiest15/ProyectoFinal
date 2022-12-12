@@ -5,6 +5,7 @@ import { Form, Button } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { FiShoppingBag } from 'react-icons/fi';
 import {
     PersonCircle,
     Search,
@@ -212,11 +213,19 @@ function NavBar() {
                                 >
                                     <Cart />
                                 </Button>
-                                <Button className="me-2">
+                                <Button
+                                    className="me-2"
+                                    as={Link}
+                                    to="wishlist"
+                                >
                                     <Star />
                                 </Button>
-                                <Button>
-                                    <Bell />
+                                <Button
+                                    className="me-2"
+                                    as={Link}
+                                    to="boughts"
+                                >
+                                    <FiShoppingBag />
                                 </Button>
                             </Nav.Link>
                         </Nav>

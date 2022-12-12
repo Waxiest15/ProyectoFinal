@@ -20,6 +20,17 @@ use App\Models\SpeciesBreed;
 
 class UserController extends Controller
 {
+
+    public function add_image(Request $request){
+        $fie = $request->file('image');
+        $filename = date('His') . 'user'.$request->user_id;
+
+        $user = User::find($request->user_id);
+        $user ->image = $request->file('image')->move('imagesU/', $filename, 'public');
+        $user -> save();
+        return response('jalo?');
+    }
+
     public function show_users(){
         //$users =  User::find(1);
         $UsersR=[];
