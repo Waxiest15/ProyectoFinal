@@ -62,14 +62,14 @@ function Login() {
     <>
       <div className="container d-flex justify-content-center">
         <Card className="p-3 mt-5 login">
-          <h5 className="text-center">Inicio de Sesión</h5>
+          <h5 className="text-center">Login</h5>
 
           <Form onSubmit={login}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Ingresa tu email"
+                placeholder="Type your email"
                 value={formData.email}
                 name="email"
                 onChange={onChangeFormData}
@@ -77,10 +77,10 @@ function Login() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Contraseña</Form.Label>
+              <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Ingresa tu contraseña"
+                placeholder="type your password"
                 value={formData.password}
                 name="password"
                 onChange={onChangeFormData}
@@ -90,7 +90,7 @@ function Login() {
 
             <div className="d-grid gap-2">
               <Button variant="primary" type="submit">
-                Iniciar Sesión
+                Login
               </Button>
             </div>
             <div className="text-center">
