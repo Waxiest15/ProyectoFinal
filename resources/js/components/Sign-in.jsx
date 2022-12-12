@@ -114,17 +114,17 @@ function Signin() {
     <Container className="w-50">
       <Card className="m-3 p-3">
         <Card.Header className="text-center">
-          <h1>Registro</h1>
+          <h1>Create account</h1>
         </Card.Header>
         <Form onSubmit={postData}>
           <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label>Nombre(s)</Form.Label>
+            <Form.Label>Name</Form.Label>
             <Form.Control
               name="name"
               type="text"
               maxLength={"100"}
               pattern="[A-Za-z]{1,100}"
-              placeholder="Escribe tu nombre(s)"
+              placeholder="Type your name"
               required
               value={formValue.name}
               onChange={onChange}
@@ -134,11 +134,11 @@ function Signin() {
           <Row>
             <Col>
               <Form.Group className="mb-3" controlId="formBasicLastNames">
-                <Form.Label>Apellido paterno</Form.Label>
+                <Form.Label>Middle Name</Form.Label>
                 <Form.Control
                   name="last_name"
                   type="text"
-                  placeholder="Apellido paterno"
+                  placeholder="Type middle name"
                   maxLength={"100"}
                   pattern="[A-Za-z]{1,100}"
                   required
@@ -150,11 +150,11 @@ function Signin() {
             </Col>
             <Col>
               <Form.Group className="mb-3" controlId="formBasicLastNames">
-                <Form.Label>Apellido Materno</Form.Label>
+                <Form.Label>Last Name</Form.Label>
                 <Form.Control
                   name="last_name2"
                   type="text"
-                  placeholder="Apellido materno"
+                  placeholder="Type last name"
                   maxLength={"100"}
                   pattern="[A-Za-z]{1,100}"
                   required
@@ -166,7 +166,7 @@ function Signin() {
             </Col>
           </Row>
           <Form.Group className="mb-3" controlId="birthDate">
-            <Form.Label>Fecha de nacimiento</Form.Label>
+            <Form.Label>Birth date</Form.Label>
             <Form.Control
               onSelect={getToday}
               name="birth"
@@ -179,26 +179,26 @@ function Signin() {
 
           <Col>
             <Form.Group className="mb-3" controlId="gender">
-              <Form.Label>Género</Form.Label>
+              <Form.Label>Gender</Form.Label>
               <Form.Select
                 name="category"
                 onChange={(e) => setGender(e.target.value)}
               >
                 <option value="">Agrega tu género</option>
-                <option value="Male">Masculino</option>
-                <option value="Female">Femenido</option>
-                <option value="Nonbinary">Nonbinario</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Nonbinary">Other</option>
               </Form.Select>
             </Form.Group>
           </Col>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Correo electronico</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
-              title='Solo se aceptan caracteres alfabeticos [a-z] especiales (%?+- etc), debe tener el formato example@extension.algo[.algo]'
+              title='Wrong email input, email must look like example@domain.com'
               name='email'
               type="email"
-              placeholder="Escribe tu correo"
+              placeholder="Type your email"
               pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
               maxLength={100}
               required
@@ -208,12 +208,12 @@ function Signin() {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Contraseña</Form.Label>
+            <Form.Label>Password</Form.Label>
             <Form.Control
               name="password"
               type="password"
               // pattern="(?=.*?[#?!@$%^&*-\]\[]){8,20}[A-Za-z]"
-              placeholder="Contraseña"
+              placeholder="Password"
               value={formValue.password}
               onChange={onChange} />
           </Form.Group>
