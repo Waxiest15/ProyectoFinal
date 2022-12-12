@@ -210,6 +210,8 @@ function AddAddress() {
                 <Form.Group className="mb-3" controlId="number">
                   <Form.Label>Number</Form.Label>
                   <Form.Control
+                    min={0}
+                    max={9999}
                     name="number"
                     type="number"
                     placeholder="Set your number address"

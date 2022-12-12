@@ -21,7 +21,10 @@ import {
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 
+
+
 const Footer = () => (
+
     <footer className="page-footer font-small blue pt-4" class="footer">
         <div className="container-fluid text-center text-md-left">
             <div className="row">
@@ -109,6 +112,13 @@ const Footer = () => (
 
 function NavBar() {
     const [search, setSearch] = useState("");
+    const user_id = sessionStorage.getItem('user');
+    const token = sessionStorage.getItem('token');
+    const logOut = () => {
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('user');
+        window.location.reload(true);
+    }
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -116,6 +126,12 @@ function NavBar() {
                     <Navbar.Brand as={Link} to="/ProyectoFinal/public/">
                         PetWeb
                     </Navbar.Brand>
+                    <Nav.Link> <Button
+                    className="bg-black border-light"
+                    as={Link}
+                    to='result'
+                    >Catalog</Button>
+                    </Nav.Link>
                     <Nav className="me-auto w-50" >
                         <Nav.Link className="d-flex w-100">
                             <Form className="d-flex ms-3 w-75">
@@ -142,17 +158,6 @@ function NavBar() {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-3 gap-3 ms-auto">
-                            <Nav.Link className="m-0">
-                                <Button
-                                    variant="Link"
-                                    className="text-light d-flex align-items-center gap-2 ps-0"
-                                    as={Link}
-                                    to="admin"
-                                >
-                                    Admin
-                                    <Shop color="white" />
-                                </Button>
-                            </Nav.Link>
                             <Nav.Link className="d-flex gap-1">
                                 <NavDropdown
 
@@ -160,56 +165,59 @@ function NavBar() {
                                     title="User"
                                     id="basic-nav-dropdown"
                                 >
-                                    <NavDropdown.Item as={Link} to="profile">
+                                    {(token) ? <NavDropdown.Item as={Link} to="profile">
                                         Profile
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item as={Link} to="pets">
-                                        My pets
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item as={Link} to="signin">
-                                        Create an account
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item as={Link} to="login">
+                                    </NavDropdown.Item> : <></>}
+                                    
+                                    {token != null ? <> </> : <NavDropdown.Item as={Link} to="login">
                                         Login
-                                    </NavDropdown.Item>
+                                    </NavDropdown.Item>}
+                                    {(token) ? <> </> : <NavDropdown.Item as={Link} to="signin">
+                                        Create an account
+                                    </NavDropdown.Item>}
+                                    {(token) ? 
                                     <NavDropdown.Item as={Link} to="wishList">
                                         Wish list
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item as={Link} to="boughts">
+                                    : <></>}
+                                    
+                                    {(token) ?<NavDropdown.Item as={Link} to="boughts">
                                         Orders
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item as={Link} to="admin">
-                                        Admin
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item>Logout</NavDropdown.Item>
+                                    </NavDropdown.Item> 
+                                    : <></>}
+                                    
+                                    {(token) ?<><NavDropdown.Divider />
+                                    <NavDropdown.Item onClick={logOut}>Logout</NavDropdown.Item></> : <></>}
+                                    
                                 </NavDropdown>
                             </Nav.Link>
-                            <Nav.Link>
-                                <Button
-                                    className="me-2"
-                                    as={Link}
-                                    to="shoppingcart"
-                                >
-                                    <Cart />
-                                </Button>
-                                <Button
-                                    className="me-2"
-                                    as={Link}
-                                    to="wishlist"
-                                >
-                                    <Star />
-                                </Button>
-                                <Button
-                                    className="me-2"
-                                    as={Link}
-                                    to="boughts"
+                            {(token) ?
+                                <Nav.Link>
+                                    <Button
+                                        className="me-2"
+                                        as={Link}
+                                        to="shoppingcart"
+                                    >
+                                        <Cart />
+                                    </Button>
+                                    <Button
+                                        className="me-2"
+                                        as={Link}
+                                        to="wishlist"
+                                    >
+                                        <Star />
+                                    </Button>
+                                    <Button
+                                        className="me-2"
+                                        as={Link}
+                                        to="boughts"
 
-                                >
-                                    <Bag />
+                                    >
+                                        <Bag />
 
-                                </Button>
-                            </Nav.Link>
+                                    </Button>
+                                </Nav.Link> : <> </>}
+
                         </Nav>
                         <Nav xs sm lg className="d-flex flex-wrap">
                             <Nav.Link></Nav.Link>
