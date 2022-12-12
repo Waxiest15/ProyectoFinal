@@ -22,15 +22,13 @@ function SearchResult() {
     let { productoS } = useParams();
     let condicion;
 
-    if(productoS!=null){
-        console.log("si jala")
-        condicion = productoS
-    }else{
-        console.log("no jala")
-        condicion = ""
+    if (productoS != null) {
+        console.log("si jala");
+        condicion = productoS;
+    } else {
+        console.log("no jala");
+        condicion = "";
     }
-
-    
 
     const Duplicates = Data.map((tags) => tags.category);
     const [pivote, setPivote] = useState([...new Set(Duplicates)]);
@@ -51,7 +49,6 @@ function SearchResult() {
     };
 
     return (
-
         <Container className="d-flex p-3">
             <Container className="w-25 border rounded ms-0">
                 <h4 className="text-center mt-2">Filtros</h4>
@@ -80,8 +77,8 @@ function SearchResult() {
             </Container>
 
             <Container>
-                
                 <Container className="d-flex flex-wrap">
+                <Row lg={3} sm={2} xs={1}>
                     {productos
                         .filter(
                             (product) =>
@@ -94,47 +91,46 @@ function SearchResult() {
                         )
                         .map((product, index) => (
                             <>
-                                <Container
-                                    style={{ width: "31%" }}
-                                    className="p-0"
-                                >
-                                    <Card
-                                        className="p-3 m-1 w-100"
-                                        style={{
-                                            width: "30%",
-                                            height: "92%",
-                                            textDecoration: "none",
-                                            color: "black",
-                                        }}
-                                        as={Link}
-                                        to={product.ruta}
-                                    >
-                                        <Card.Img
-                                            src={product.img}
-                                            className='w-100'
-                                            alt="Card image"
-                                        />
-                                        <Card.ImgOverlay className="">
-                                            <Fab
-                                                className="me-3"
-                                                size="small"
-                                                color="secondary"
-                                                aria-label="like"
-                                            >
-                                                <FavoriteIcon />
-                                            </Fab>
-                                        </Card.ImgOverlay>
-                                        <Card.Body>
-                                            <p>{product.name}</p>
-                                            <p>tag: {product.category}</p>
-                                        </Card.Body>
-                                        <Card.Footer>
-                                            precio: ${product.price}
-                                        </Card.Footer>
-                                    </Card>
-                                </Container>
+                                
+                                    <Col>
+                                        <Card
+                                            className="p-3 m-1 w-100"
+                                            style={{
+                                                textDecoration: "none",
+                                                color: "black",
+                                            }}
+                                            as={Link}
+                                            to={product.ruta}
+                                        >
+                                            <Card.Img
+                                            style={{height: '300px'}}
+                                                src={product.img}
+                                                className="w-100"
+                                                alt="Card image"
+                                            />
+                                            <Card.ImgOverlay className="">
+                                                <Fab
+                                                    className="me-3"
+                                                    size="small"
+                                                    color="secondary"
+                                                    aria-label="like"
+                                                >
+                                                    <FavoriteIcon />
+                                                </Fab>
+                                            </Card.ImgOverlay>
+                                            <Card.Body>
+                                                <p>{product.name}</p>
+                                                <p>tag: {product.category}</p>
+                                            </Card.Body>
+                                            <Card.Footer>
+                                                precio: ${product.price}
+                                            </Card.Footer>
+                                        </Card>
+                                    </Col>
+                                
                             </>
                         ))}
+                        </Row>
                 </Container>
             </Container>
         </Container>
