@@ -18,6 +18,13 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+
+        $companies = ['Negocio A', 'Negocio B', 'Negocio C', 'Negocio D',
+        'Negocio E', 'Negocio F', 'Negocio G', 'Negocio H', 'Negocio I',
+        'Negocio J', 'Negocio K', 'Negocio L', 'Negocio M', 'Negocio N',
+        'Negocio Ñ', 'Negocio O', 'Negocio P', 'Negocio P', 'Negocio R',
+        'Negocio S'];
+
         return [
             'name' => $this->faker->asciify('Producto-*****'),
             'size' => ('{length:' . strval($this->faker->randomFloat(2, 0, 500)) . 
@@ -30,9 +37,8 @@ class ProductFactory extends Factory
             'amount' => $this->faker->numberBetween(1, 100),
             'enable' => $this->faker->boolean(),
             'deliverTime' => $this->faker->numberBetween(1, 32),
-            'image' => 'public/images/ElPolooYon.png',
+            'brand' => (strval($companies[$this->faker->numberBetween(0,19)]) . strval($this->faker->randomFloat(5, 0, 5400))),
             'category_id' => Category::inRandomOrder()->first()->id,
-            'business_id' => Business::inRandomOrder()->first()->id
         ];
     }
 }

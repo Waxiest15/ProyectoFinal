@@ -56,12 +56,12 @@ class DatabaseSeeder extends Seeder
             ->create(['user_id' => $user->id]);
         });
 
-        Business::factory(10)
-        ->create()
-        ->each(function ($business){
-            CellBusiness::factory(2)
-            ->create(['business_id' => $business->id]);
-        });
+        // Business::factory(10)
+        // ->create()
+        // ->each(function ($business){
+        //     CellBusiness::factory(2)
+        //     ->create(['business_id' => $business->id]);
+        // });
         
         Street::factory(10)->create();
 
@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
         Address::factory(10)->create();
         Product::factory(10)->create();
 
-        Pet::factory(10)->create();
+        // Pet::factory(10)->create();
 
         Buy::factory(10)->create();
         Wishlist::factory(10)->create();

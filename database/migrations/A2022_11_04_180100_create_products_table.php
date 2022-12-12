@@ -25,8 +25,8 @@ return new class extends Migration
             $table->boolean('enable')->default(true);
             $table->string('image')->default('images/defaultProduct.png');
             $table->integer('deliverTime');
+            $table->string('brand');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

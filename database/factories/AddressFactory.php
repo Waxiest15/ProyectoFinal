@@ -28,7 +28,6 @@ class AddressFactory extends Factory
             'neighborhood_id' => Neighborhood::inRandomOrder()->first()->id,
             'street_id' => Street::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id,
-            'business_id' => null
         ]; 
     }
 }
