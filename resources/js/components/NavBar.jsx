@@ -17,7 +17,6 @@ import {
     Envelope,
     Star,
     Bag,
-    BiShoppingBag
 } from "react-bootstrap-icons";
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";

@@ -41,10 +41,11 @@ function AddAddress() {
 
   //Store Address
   const postAddress = async (e) => {
+    console.log(state_id, city_id, neighborhood_id, street_id, number, user_id)
     //if (e && e.preventDefault()) e.preventDefault(); e.preventDefault();
     const formData = new FormData();
     //console.log("entrandooo")
-    console.log(state_id, city_id, neighborhood_id, street_id, number, id)
+    console.log(state_id, city_id, neighborhood_id, street_id, number, user_id)
     formData.append("state_id", parseInt(state_id))
     formData.append("city_id", parseInt(city_id))
     formData.append("neighborhood_id", parseInt(neighborhood_id))

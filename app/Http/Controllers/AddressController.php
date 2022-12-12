@@ -55,10 +55,6 @@ class AddressController extends Controller
         $address->number = $request->number;
         $address->user_id = $request->user_id;
         $address->save();
-        if ($request->business_id) {
-            $address->business_id = $request->business_id;
-        }
-
         return response();
     }
 
