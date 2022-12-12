@@ -24,12 +24,11 @@ function AddAddress() {
   const [neighborhoods, setNeighborhoods] = useState([])//Put all the Neighborhoods in a State
   const [streets, setStreets] = useState([])//Put all the Streets in a State
 
-  const i = sessionStorage.getItem('user')//current user_id
+  const user_id = sessionStorage.getItem('user')//current user_id
   const token = sessionStorage.getItem('token')
 
   const [state_id, setState_id] = useState('')
 
-  const [id, setID] = useState(sessionStorage.getItem('user'))
 
   const [city_id, setCity_id] = useState(0)
 
@@ -51,7 +50,7 @@ function AddAddress() {
     formData.append("neighborhood_id", parseInt(neighborhood_id))
     formData.append("street_id", parseInt(street_id))
     formData.append("number", number)
-    formData.append("user_id", id)
+    formData.append("user_id", user_id)
     // formData.append("_token", )
     //formData.append("image", formValue.image)
     await axios.post('http://localhost:80/ProyectoFinal/public/api/address_store',

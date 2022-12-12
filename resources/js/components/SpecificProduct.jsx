@@ -98,14 +98,11 @@ function EditComment(props) {
 }
 
 function ShowProduct() {
-
-
-
-
   const user_id = sessionStorage.getItem('user');
   const token = sessionStorage.getItem('token');
 
   let id = useParams();//para pasar product_id
+  // let id = i.pro;
   console.log('id--->>>', id)
 
   //hacer post para pastbuys
@@ -251,7 +248,7 @@ function ShowProduct() {
   }, [])
 
   const [shopcart, setShopcart] = useState(false);
-  useEffect(() => {//Get Shoppingcart from Laravel
+  useEffect(() => {//Get Shoppingcart from Laravel Test???
     axios.get(`http://localhost:80/ProyectoFinal/public/api/inCart/${user_id}/${id.pro}`)
       .then(res => {
         console.log("restrue")

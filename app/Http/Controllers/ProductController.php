@@ -48,42 +48,30 @@ class ProductController extends Controller
             'rate' => 'numeric',
             'amount' => 'required|numeric',
             'deliverTime' => 'required|numeric|min:1',
-            'category_id' => 'required|numeric|min:1',
-            'business_id' => 'required|numeric|min:1'
+            'category_id' => 'required|numeric|min:1'
         ]);
         $product = new Product();
-        $product -> name = $request -> name;
-        $product -> size = $request -> size;
-        $product -> weight = $request ->weight;
-        $product -> price = $request -> price;
-        $product -> description = $request -> description;
-        $product -> rate = $request -> rate;
-        $product -> amount = $request -> amount;
-        if($request->image){
-            $product -> image = $request -> image;
+        $product->name = $request->name;
+        $product->size = $request->size;
+        $product->weight = $request->weight;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->rate = $request->rate;
+        $product->amount = $request->amount;
+        if ($request->image) {
+            $product->image = $request->image;
         }
         //$product -> enable = $request -> enable;
-        $product -> deliverTime = $request -> deliverTime;
-        $product -> category_id = $request -> category_id;
-        $product -> business_id = $request -> business_id;
-        $product -> save();
+        $product->deliverTime = $request->deliverTime;
+        $product->category_id = $request->category_id;
+        $product->user_id = $request->user_id;
+        $product->save();
     }
 
     public function show_specific($id)
     {
         $product = Product::find($id);
-        return response()->json(['id' => $product->id,
-        'name' => $product->name,
-        'size' => $product->size,
-        'weight' => $product->weight,
-        'price' => $product->price,
-        'rate' => $product->rate,
-        'description' => $product->description,
-        'amount'=> $product->amount,
-        'image'=> $product->image,
-        'deliverTime' => $product->deliverTime,
-        'category_id' => Category::find($product->category_id)->name,
-        'business_id' => Business::find($product->business_id)->name]);
+        return response()->json($product);
     }
 
     /**
@@ -94,9 +82,10 @@ class ProductController extends Controller
      */
     public function show()
     {
+        $products = Product::where('enable', true)->get();
         $p = [];
-        foreach(Product::all() as $product){
-            $p [] = [
+        foreach ($products as $product) {
+            $p[] = [
                 'id' => $product->id,
                 'name' => $product->name,
                 'size' => $product->size,
@@ -104,11 +93,11 @@ class ProductController extends Controller
                 'price' => $product->price,
                 'rate' => $product->rate,
                 'description' => $product->description,
-                'amount'=> $product->amount,
-                'image'=> $product->image,
+                'amount' => $product->amount,
+                'image' => $product->image,
                 'deliverTime' => $product->deliverTime,
+                'brand' => $product->brand,
                 'category_id' => Category::find($product->category_id)->name,
-                'business_id' => Business::find($product->business_id)->name
             ];
         }
         return response()->json($p);
@@ -116,10 +105,10 @@ class ProductController extends Controller
 
     public function show_cat_3($category_id)
     {
-        $pp = Product::where('category_id', $category_id)->limit(3)->get();
+        $pp = Product::where('category_id', $category_id)->where('enable', true)->limit(3)->get();
         $p = [];
-        foreach($pp as $pro){
-            $p [] = [
+        foreach ($pp as $pro) {
+            $p[] = [
                 'id' => $pro->id,
                 'name' => $pro->name,
                 'size' => $pro->size,
@@ -127,11 +116,10 @@ class ProductController extends Controller
                 'price' => $pro->price,
                 'rate' => $pro->rate,
                 'description' => $pro->description,
-                'amount'=> $pro->amount,
-                'image'=> $pro->image,
+                'amount' => $pro->amount,
+                'image' => $pro->image,
                 'deliverTime' => $pro->deliverTime,
                 'category_id' => Category::find($pro->category_id)->name,
-                'business_id' => Business::find($pro->business_id)->name
             ];
         }
         return response()->json($p);
@@ -141,16 +129,16 @@ class ProductController extends Controller
     {
         $pp = Product::where('category_id', $request->category_id)->get();
         $p = [];
-        foreach($pp as $pro){
-            $p [] = [
+        foreach ($pp as $pro) {
+            $p[] = [
                 'name' => $pro->name,
                 'size' => $pro->size,
                 'weight' => $pro->weight,
                 'price' => $pro->price,
                 'rate' => $pro->rate,
                 'description' => $pro->description,
-                'amount'=> $pro->amount,
-                'image'=> $pro->image,
+                'amount' => $pro->amount,
+                'image' => $pro->image,
                 'deliverTime' => $pro->deliverTime,
                 'category_id' => Category::find($pro->category_id)->name,
                 'business_id' => Business::find($pro->business_id)->name

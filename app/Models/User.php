@@ -36,20 +36,6 @@ class User extends Authenticatable
         return $this->hasMany(Pet::class);
     }
 
-    // public function dataAddressUser(){
-    //     return $this->hasManyThrough(
-    //         Address::class, 
-    //         AddressUser::class
-    //     );
-    // }
-
-    // public function addressUser(){
-    //     return $this->belongsToMany(
-    //         Address::class,
-    //         'address_users'
-    //     )->withTimestamps();
-    // }
-
     //info state
     public function state(){
         return $this->belongsToMany(

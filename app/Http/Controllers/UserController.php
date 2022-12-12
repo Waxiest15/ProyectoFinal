@@ -12,6 +12,7 @@ use Laravel\Ui\Presets\React;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AddressController\last_address;
+use App\Models\Category;
 use App\Models\City;
 use App\Models\Neighborhood;
 use App\Models\State;
@@ -99,23 +100,25 @@ class UserController extends Controller
         return $user->shopingcart()->attach($request->product_id, ['date' => now()]);//Se agrega en la tabla shopingcart
     }
 
-    public function quit_from_shopping_cart($product_id, $user_id){//Al usuario ingresar productos a su carrito
-        $user = User::find($user_id);//PROBAR
-        $user->shopingcart()->detach($product_id);
-    }
+    // public function quit_from_shopping_cart($product_id, $user_id){//Al usuario ingresar productos a su carrito
+    //     $user = User::find($user_id);//PROBAR
+    //     $user->shopingcart()->detach($product_id);
+    // }
 
-    public function show_wishlist(Request $request){
-        $request->validate([//CHECAR
-            'user_id' => 'required|numeric',
-            'product_id' => 'required|numeric',
-        ]);
-        $user = User::find($request->user_id);//PROBAR
+    public function show_wishlist($user_id){
+        $user = User::find($user_id);//PROBAR
         $p = [];
         foreach($user->wishlist as $product){
             $p [] = [
+                'id' => $product->pivot->id,
+                'product_id' => $product->id,
+                'product_price' => $product->price,
+                'product_des' => $product->description,
+                'rate' => $product->rate,
                 'product' => $product->name,//Generamos el nombre del producto
-                'date add' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
+                'date_add' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
                 'image' => $product->image,
+                'category' => Category::find($product->category_id)->name
             ];
         }
         return response()->json($p);
@@ -134,24 +137,25 @@ class UserController extends Controller
                 'product' => $product->name,//Generamos el nombre del producto
                 'date_add' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
                 'image' => $product->image,
+                'category' => Category::find($product->category_id)->name
             ];
         }
         return response()->json($p);
     }
 
-    public function past_shopping(Request $request){
-        $request->validate([//CHECAR
-            'user_id' => 'required|numeric',
-            'product_id' => 'required|numeric',
-        ]);
-        $user = User::find($request->user_id);//PROBAR
+    public function past_shopping($user_id){
+        $user = User::find($user_id);//PROBAR
         $p = [];
         foreach($user->buy as $product){//Iteramos en cada relación de los productos y usuarios
             $p [] = [
+                'product_id' => $product->id,
                 'product' => $product->name,//Generamos el nombre del producto
-                'product_price' => $product->price,
-                'date of buy' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
+                'price' => $product->price,
+                'description' => $product->description,
+                'date_of_buy' => $product->pivot->date,//con base a la tabla intermediaria se obtiene la fecha de compra
                 'image' => $product->image,
+                'rate' => $product->rate,
+                'category' => Category::find($product->category_id)->name,
             ];
         }
         return response()->json($p);
@@ -166,14 +170,14 @@ class UserController extends Controller
         return $user->wishlist()->attach($request->product_id, ['date' => now()]);//Se agrega en la tabla wishlists
     }
 
-    public function quit_from_wishlist(Request $request){//Al usuario ingresar quitar cosas de su wishlist
-        $request->validate([//CHECAR
-            //'user_id' => 'required|numeric',
-            'product_id' => 'required|numeric',
-        ]);
-        $user = User::find($request->user_id);//PROBAR
-        $user->wishlist()->detach($request->product_id);
-    }
+    // public function quit_from_wishlist(Request $request){//Al usuario ingresar quitar cosas de su wishlist
+    //     $request->validate([//CHECAR
+    //         //'user_id' => 'required|numeric',
+    //         'product_id' => 'required|numeric',
+    //     ]);
+    //     $user = User::find($request->user_id);//PROBAR
+    //     $user->wishlist()->detach($request->product_id);
+    // }
 
     public function store(Request $request){
         $request->validate([

@@ -317,7 +317,7 @@ function ProfileCard() {
 
                                 <Card.Title className="text-center">Address</Card.Title>
                                 <hr />
-                                <Table striped hover>
+                                <Table responsive>
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -331,7 +331,7 @@ function ProfileCard() {
                                     <tbody>
                                         {address.map(add =>
                                             <tr>
-                                                <td><Button variant="danger" size="sm" className='mx-2' onClick={() => DeleteAddress(add.id)} > {add.id}<BsFillTrashFill /> </Button></td>
+                                                <td><Button variant="danger" size="sm" className='mx-2' onClick={() => DeleteAddress(add.id)} > <BsFillTrashFill /> </Button></td>
                                                 <td>{add.state}</td>
                                                 <td>{add.city}</td>
                                                 <td>{add.neighborhood}</td>
@@ -351,14 +351,6 @@ function ProfileCard() {
                             </Card.Body>
                         </Col>
                     </Row>
-                    <br />
-                    <Card.Title className="text-center">Modify User</Card.Title>
-                    <hr />
-                    <div className="d-grid gap-2">
-                        <Button variant="warning" size="lg" as={Link} to="/ProyectoFinal/public/addAddress">
-                            Modify User Values <BsGear />
-                        </Button>
-                    </div>
                 </Card>
             </Container>
         </div >

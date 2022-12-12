@@ -11,9 +11,9 @@ function Admin() {
                 <Form>
                     <Form.Group className="mb-3" controlId="adminUser">
                         <Form.Label>Admin</Form.Label>
-                        <Form.Control 
-                        type="email" 
-                        placeholder="Admin user" 
+                        <Form.Control
+                            type="email"
+                            placeholder="Admin user"
                         />
                     </Form.Group>
 
@@ -22,10 +22,9 @@ function Admin() {
                         <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="Checkbox">
-                        <Form.Check type="checkbox" label="check me out" />
                     </Form.Group>
                     <Button variant="primary" as={Link} to='/ProyectoFinal/public/panel'>
-                        Acceder
+                        Access
                     </Button>
                 </Form>
             </Card>

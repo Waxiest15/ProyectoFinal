@@ -16,7 +16,8 @@ import {
     Twitter,
     Envelope,
     Star,
-    Bag
+    Bag,
+    BiShoppingBag
 } from "react-bootstrap-icons";
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
@@ -54,8 +55,8 @@ const Footer = () => (
                             </Form.Label>
                         </li>
                         <li>
-                            <Form.Label as={Link} 
-                            to="bussiness">
+                            <Form.Label as={Link}
+                                to="bussiness">
                                 Become a distribuitor
                             </Form.Label>
                         </li>
@@ -155,7 +156,7 @@ function NavBar() {
                             </Nav.Link>
                             <Nav.Link className="d-flex gap-1">
                                 <NavDropdown
-                                
+
                                     className="justify-content-center"
                                     title="User"
                                     id="basic-nav-dropdown"
@@ -204,10 +205,10 @@ function NavBar() {
                                     className="me-2"
                                     as={Link}
                                     to="boughts"
-                                    
+
                                 >
-                                    <Bag/>
-                                    
+                                    <Bag />
+
                                 </Button>
                             </Nav.Link>
                         </Nav>

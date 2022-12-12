@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import React from 'react'
 
 import Data from "./JSONs/carrousel.json";
 

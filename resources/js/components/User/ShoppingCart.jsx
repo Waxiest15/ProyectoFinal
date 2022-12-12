@@ -114,14 +114,22 @@ function ShoppingCart() {
                                 <Col xs={8}>
                                     <Card.Body>
                                         <ListGroup className="list-group-flush">
-                                            <ListGroup.Item>
+                                        <ListGroup.Item>
                                                 {item.product}
+                                            </ListGroup.Item>
+                                            <ListGroup.Item>
+                                                <p> Description: <br />
+                                                    {item.product_des}</p>
+
+                                            </ListGroup.Item>
+                                            <ListGroup.Item>
+                                                Rate: {item.rate}
                                             </ListGroup.Item>
                                             <ListGroup.Item>
                                                 Price: ${item.product_price}
                                             </ListGroup.Item>
                                             <ListGroup.Item>
-                                                Rate: {item.rate}
+                                                Category: {item.category}
                                             </ListGroup.Item>
                                         </ListGroup>
                                     </Card.Body>
@@ -134,7 +142,11 @@ function ShoppingCart() {
                     <Card>
                         <Card.Title className="text-center mt-3 p-3">
                             <h2>Total amount</h2>
-
+                            <p>${cart.reduce(
+                                (accumulator, currentValue) =>
+                                    accumulator + currentValue.product_price,
+                                0
+                            )}</p>
                             <Paypal></Paypal>
                         </Card.Title>
                     </Card>
