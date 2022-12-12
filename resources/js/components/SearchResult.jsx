@@ -5,9 +5,6 @@ import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import CardGroup from "react-bootstrap/CardGroup";
 import { Alert } from 'react-bootstrap';
-import { Fab } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
@@ -15,9 +12,6 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import axios from 'axios';
 import { useParams } from "react-router-dom";
-import Data from "./JSONs/products.json";
-import { ProductionQuantityLimits } from "@mui/icons-material";
-import { isNull, isSet } from "lodash";
 import { Star } from "react-bootstrap-icons";
 
 function SearchResult() {
@@ -26,17 +20,15 @@ function SearchResult() {
     let { productoS } = useParams();
     let condicion;
 
-    // if (productoS != null) {
-    //     console.log("si jala");
-    //     condicion = productoS;
-    // } else {
-    //     console.log("no jala");
-    //     condicion = "";
-    // }
+    if (productoS != null) {
+        
+        condicion = productoS;
+    } else {
+        
+        condicion = "";
+    }
 
-    const Duplicates = Data.map((tags) => tags.category);
-    const [pivote, setPivote] = useState([...new Set(Duplicates)]);
-    const [noDuplicates, setNoDuplicates] = useState(pivote);
+
     const [helper, setHelper] = useState("");
     const [selectedTag, setSelectedTag] = useState("");
 
@@ -45,18 +37,22 @@ function SearchResult() {
     const [disable, setDisable] = useState(true);
     const [quitados, setQuitados] = useState([]);
 
-    //Obtener productos
-    const [productos, setProductos] = useState([]);
-    useEffect(() => {//Get products from Laravel
-        axios.get('http://localhost:80/ProyectoFinal/public/api/product_show_all')
-            .then(res => {
-                console.log(res)
-                setProductos(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }, [])
+    //Get products
+        const [productos, setProductos] = useState([]);
+        useEffect(() => {//Get products from Laravel
+            axios.get('http://localhost:80/ProyectoFinal/public/api/product_show_all')
+                .then(res => {
+                    console.log(res)
+                    setProductos(res.data)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }, [])
+
+    const Duplicates = productos.map((tags) => tags.category_id);
+    const [pivote, setPivote] = useState([...new Set(Duplicates)]);
+    const [noDuplicates, setNoDuplicates] = useState(pivote);
 
     //Add wishlist
     const [wish, setWish] = useState(false);
@@ -70,7 +66,8 @@ function SearchResult() {
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
             }
         ).then(response => {
@@ -105,17 +102,17 @@ function SearchResult() {
                         onChange={(e) => setSelectedTag(e.target.value)}
                     >
                         <option value="">Chose one</option>
-                        {/* {noDuplicates.map((tags) => (
+                        {Duplicates.map((tags) => (
                             <option value={tags}>{tags}</option>
-                        ))} */}
+                        ))}
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className="d-block gap-1">
                     <Form.Label>Price</Form.Label>
                     <Form.Range
                         controlId="maxCost"
-                        min={40}
-                        max={1000}
+                        min={100}
+                        max={10000}
                         onChange={(e) => setQuery(e.target.value)}
                     />
                     <p>Max cost: ${query}</p>
@@ -127,56 +124,58 @@ function SearchResult() {
                     {wish && (<Alert key='danger' variant='success'>Product added to Wishlist</Alert>)}
                     <Row lg={3} sm={2} xs={1}>
 
-                        {productos.map(product => (
-                            <>
-                                <Col>
+                        {productos.filter((productf) => productf.category_id.toString().includes(selectedTag) && productf.name.includes(condicion)
+                         && (productf.price.toString().includes(query) || productf.price < query))
+                            .map(product => (
+                                <>
+                                    <Col>
 
-                                    <Card
+                                        <Card
 
-                                        className="p-3 m-1 w-100"
-                                        style={{
-                                            textDecoration: "none",
-                                            color: "black",
-                                        }}
+                                            className="p-3 m-1 w-100"
+                                            style={{
+                                                textDecoration: "none",
+                                                color: "black",
+                                            }}
 
-                                    >
-
-                                        
-                                        <Card.Img
-                                        
-                                            style={{ height: '300px' }}
-                                            src={product.image}
-                                            className="w-100"
-                                            alt="Card image"
-                                        />
-
-                                        <Card.Body>
-                                            <Card.Text>{product.name}</Card.Text>
-                                            <Card.Text><strong>Description:</strong></Card.Text>
-                                            <Card.Text>{product.description}</Card.Text>
-                                            <Card.Text> <strong>Price:</strong>  ${product.price}</Card.Text>
-                                            <Card.Text> <strong>Category:</strong>  {product.category_id}</Card.Text>
-                                            <Button
-                                                variant="primary"
-                                                className='mx-2'
-                                                as={Link}
-                                                to={`../result/${product.id}`}
-                                            >
-                                                See Product
-                                            </Button>
-                                            <Button size="lg"  variant="outline-warning" onClick={()=>AddWishlist(product.id)}><Star/></Button>
-                                        </Card.Body>
+                                        >
 
 
-                                    </Card>
-                                    <Card.Footer>
+                                            <Card.Img
 
-                                    </Card.Footer>
+                                                style={{ height: '300px' }}
+                                                src={product.image}
+                                                className="w-100"
+                                                alt="Card image"
+                                            />
 
-                                </Col>
+                                            <Card.Body>
+                                                <Card.Text>{product.name}</Card.Text>
+                                                <Card.Text><strong>Description:</strong></Card.Text>
+                                                <Card.Text>{product.description}</Card.Text>
+                                                <Card.Text> <strong>Price:</strong>  ${product.price}</Card.Text>
+                                                <Card.Text> <strong>Category:</strong>  {product.category_id}</Card.Text>
+                                                <Button
+                                                    variant="primary"
+                                                    className='mx-2'
+                                                    as={Link}
+                                                    to={`../result/${product.id}`}
+                                                >
+                                                    See Product
+                                                </Button>
+                                               {(token)?<Button size="lg" variant="outline-warning" onClick={() => AddWishlist(product.id)}><Star /></Button> : <></>} 
+                                            </Card.Body>
 
-                            </>
-                        ))}
+
+                                        </Card>
+                                        <Card.Footer>
+
+                                        </Card.Footer>
+
+                                    </Col>
+
+                                </>
+                            ))}
                     </Row>
                 </Container>
             </Container>

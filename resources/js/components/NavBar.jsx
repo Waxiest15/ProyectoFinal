@@ -30,7 +30,7 @@ const Footer = () => (
             <div className="row">
                 <div className="col-md-6 mt-md-0 mt-3">
                     <h5 className="text-uppercase">PetWeb</h5>
-                    <p>Empresa en ingles</p>
+                    <p>Petweb its a dedicated enterprise focus on provide everything a pet would need</p>
                 </div>
 
                 <hr className="clearfix w-100 d-md-none pb-0" />
@@ -49,11 +49,6 @@ const Footer = () => (
                         <li>
                             <Form.Label as={Link} to="politicas">
                                 Terms and conditions
-                            </Form.Label>
-                        </li>
-                        <li>
-                            <Form.Label as={Link} to="mapa">
-                                King Crimson!!!
                             </Form.Label>
                         </li>
                         <li>
@@ -94,18 +89,13 @@ const Footer = () => (
                                 class="me-2"
                                 href="mailto:petwebmx1@gmail.com?Subject=Correo%20desde%20la%20pagina"
                             >
-                                Correo
+                                Email
                             </a>
                             <Envelope />
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>
-
-        <div className="footer-copyright text-center py-3">
-            © 2020 Copyright:
-            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
         </div>
     </footer>
 );

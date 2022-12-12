@@ -17,8 +17,6 @@ import { Link } from "react-router-dom";
 
 import { Trash } from "react-bootstrap-icons";
 
-import Data from "../JSONs/products.json";
-
 
 
 function Paypal() {
@@ -57,7 +55,14 @@ function ShoppingCart() {
 
     const [cart, setCart] = useState([]);
     useEffect(() => {//Get Neighborhoods from Laravel
-        axios.get(`http://localhost:80/ProyectoFinal/public/api/user_show_shopping_cart/${user_id}`)
+        axios.get(`http://localhost:80/ProyectoFinal/public/api/user_show_shopping_cart/${user_id}`,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(res => {
                 console.log(res.data)
                 setCart(res.data)
@@ -68,7 +73,14 @@ function ShoppingCart() {
     }, [])
 
     const handleDelete = async (e) => {
-        await axios.delete(`http://localhost:80/ProyectoFinal/public/api/quit_from_shopping_cart/${e}`)
+        await axios.delete(`http://localhost:80/ProyectoFinal/public/api/quit_from_shopping_cart/${e}`,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(response => {
                 console.log("delete", response.data)
                 window.location.reload(true);
@@ -80,7 +92,14 @@ function ShoppingCart() {
     }
 
     const handleClear = async (e) => {
-        await axios.delete(`http://localhost:80/ProyectoFinal/public/api/clear_cart/${user_id}`)
+        await axios.delete(`http://localhost:80/ProyectoFinal/public/api/clear_cart/${user_id}`,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(response => {
                 console.log("CLEAR", response.data)
                 window.location.reload(true);

@@ -16,9 +16,11 @@ import "/xampp/htdocs/ProyectoFinal/resources/css/app.css";
 //Editar número
 function EditNumber(props) {
     //Other function
+    const token = sessionStorage.getItem('token')
     const [number, setNumber] = useState('');
     const postData = async () => {
         const formData = new FormData();
+        console.log(props.value, number)
         formData.append("cell_id", props.value)
         formData.append("phone", number)
         await axios.post('http://localhost:80/ProyectoFinal/public/api/cellUser_update',
@@ -26,7 +28,8 @@ function EditNumber(props) {
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
             }
         ).then(response => {
@@ -169,7 +172,14 @@ function ProfileCard() {
 
     const [user, setUser] = useState([]);
     useEffect(() => {//Get data User from Laravel
-        axios.get(`http://localhost:80/ProyectoFinal/public/api/user/${user_id}`)
+        axios.get(`http://localhost:80/ProyectoFinal/public/api/user/${user_id}`,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(res => {
                 console.log(res)
                 setUser(res.data)
@@ -194,13 +204,14 @@ function ProfileCard() {
 
     const [phone, setPhone] = useState([])
     useEffect(() => {//Get Phone from Laravel
-        axios.get(`http://localhost:80/ProyectoFinal/public/api/cellUser_show/${user_id}`,{
+        axios.get(`http://localhost:80/ProyectoFinal/public/api/cellUser_show/${user_id}`,
+        {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
-        },)
+        })
             .then(res => {
                 console.log(res)
                 setPhone(res.data)
@@ -232,7 +243,13 @@ function ProfileCard() {
     const DeleteAddress = async (e) => {//CHECAR
         console.log(e)
         await axios.delete(`http://localhost:80/ProyectoFinal/public/api/delete_address/${e}`
-            ).then(response => {
+            ,{
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(response => {
                 console.log("delete Address", response.data)
                 window.location.reload(true);
             }).catch(error => {

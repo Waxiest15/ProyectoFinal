@@ -56,7 +56,8 @@ function AddAddress() {
     //formData.append("image", formValue.image)
     await axios.post('http://localhost:80/ProyectoFinal/public/api/address_store',
       formData,
-      { headers: { 'Content-Type': 'multipart/form-data' } }
+      { headers: { 'Content-Type': 'multipart/form-data',
+      'Accept': 'application/json','Authorization': `Bearer ${token}` } }
 
     ).then(navigate('../'))
   }

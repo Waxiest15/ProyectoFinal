@@ -24,8 +24,14 @@ function ShoppingCart() {
 
     const [wish, setWish] = useState([]);
     useEffect(() => {//Get Wishlist from Laravel
-        axios.get(`http://localhost:80/ProyectoFinal/public/api/user_show_wishlist/${user_id}`)
-            .then(res => {
+        axios.get(`http://localhost:80/ProyectoFinal/public/api/user_show_wishlist/${user_id}`,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(res => {
                 console.log(res.data)
                 setWish(res.data)
             })
@@ -35,7 +41,14 @@ function ShoppingCart() {
     }, [])
 
     const handleDelete = async (e) => {
-        await axios.delete(`http://localhost:80/ProyectoFinal/public/api/quit_from_wishlist/${e}`)
+        await axios.delete(`http://localhost:80/ProyectoFinal/public/api/quit_from_wishlist/${e}`,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(response => {
                 console.log("delete", response.data)
                 window.location.reload(true);
@@ -47,7 +60,14 @@ function ShoppingCart() {
     }
 
     const handleClear = async (e) => {
-        await axios.delete(`http://localhost:80/ProyectoFinal/public/api/clear_wishlist/${user_id}`)
+        await axios.delete(`http://localhost:80/ProyectoFinal/public/api/clear_wishlist/${user_id}`,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
             .then(response => {
                 console.log("CLEAR", response.data)
                 window.location.reload(true);

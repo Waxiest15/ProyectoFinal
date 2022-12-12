@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import React from 'react'
-
+import { Row, Col, Image, Form, Alert } from 'react-bootstrap';
 import Data from "./JSONs/carrousel.json";
 
 import AliceCarousel, { AnimationType } from "react-alice-carousel";
@@ -14,6 +14,8 @@ import "react-alice-carousel/lib/alice-carousel.css";
 
 import "/xampp/htdocs/ProyectoFinal/resources/css/app.css";
 import { Button } from "react-bootstrap";
+import { useRef, useState, useEffect } from "react";
+import axios from 'axios';
 
 const handleDragStart = (e) => e.preventDefault();
 
@@ -42,11 +44,25 @@ const Gallery = () => {
 };
 
 function carousel() {
+    const user_id = sessionStorage.getItem('user');
+    const token = sessionStorage.getItem('token');
     let navigate = useNavigate();
     const navigateTo = (url) => {
         let path = url;
         navigate("/" + url);
     };
+
+    const [productos, setProductos] = useState([]);
+    useEffect(() => {//Get products from Laravel
+        axios.get('http://localhost:80/ProyectoFinal/public/api/product_show_all')
+            .then(res => {
+                console.log(res)
+                setProductos(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [])
 
     return (
         <>
@@ -102,72 +118,62 @@ function carousel() {
                 </Container>
 
                 <CardGroup xs sm lg>
-                    <Card>
-                        <Card.Img
-                            variant="top"
-                            src="images/collar.jpg"
-                            className="w-100 mx-auto"
-                        />
-                        <Card.Body>
-                            <Card.Title>Collar rosa para perro</Card.Title>
-                            <Card.Text>
-                                Collar decorativo para mascota, color rosa y con
-                                sincho para asegurar que no se suelte
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                            <small className="text-muted">
-                                Last updated 3 mins ago
-                            </small>
-                        </Card.Footer>
-                    </Card>
-                    <Card>
-                        <Card.Img
-                            variant="top"
-                            src="images/comerLento.jpg"
-                            className="w-100 mx-auto"
-                        />
-                        <Card.Body>
-                            <Card.Title>Tazon antiestres</Card.Title>
-                            <Card.Text>
-                                Tazon diseñado para hacer comer al animal mas
-                                despacio, ayudando a su nutricion y absorver los
-                                nutrimentos de forma adecuada{" "}
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                            <small className="text-muted">
-                                Last updated 3 mins ago
-                            </small>
-                        </Card.Footer>
-                    </Card>
+                        <Container className="d-flex flex-wrap">
+                            
+                            <Row lg={3} sm={2} xs={1}>
 
-                    <Card
-                        as={Link}
-                        to="producto"
-                        style={{ textDecoration: "none", color: "black" }}
-                    >
-                        <Card.Img
-                            variant="top"
-                            src="images/hulerojo.jpg"
-                            className="w-100 mx-auto "
-                        />
-                        <Card.Body>
-                            <Card.Title>
-                                Bola de juguete de goma extradura
-                            </Card.Title>
-                            <Card.Text>
-                                Pelota de juguete de goma roja ultraresistente
-                                para uso duradero sin desgaste, hecho de
-                                material no toxico
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                            <small className="text-muted">
-                                Last updated 3 mins ago
-                            </small>
-                        </Card.Footer>
-                    </Card>
+                                {productos.map(product => (
+                                        <>
+                                            <Col>
+
+                                                <Card
+
+                                                    className="p-3 m-1 w-100"
+                                                    style={{
+                                                        textDecoration: "none",
+                                                        color: "black",
+                                                    }}
+
+                                                >
+
+
+                                                    <Card.Img
+
+                                                        style={{ height: '300px' }}
+                                                        src={product.image}
+                                                        className="w-100"
+                                                        alt="Card image"
+                                                    />
+
+                                                    <Card.Body>
+                                                        <Card.Text>{product.name}</Card.Text>
+                                                        <Card.Text><strong>Description:</strong></Card.Text>
+                                                        <Card.Text>{product.description}</Card.Text>
+                                                        <Card.Text> <strong>Price:</strong>  ${product.price}</Card.Text>
+                                                        <Card.Text> <strong>Category:</strong>  {product.category_id}</Card.Text>
+                                                        <Button
+                                                            variant="primary"
+                                                            className='mx-2'
+                                                            as={Link}
+                                                            to={`result/${product.id}`}
+                                                        >
+                                                            See Product
+                                                        </Button>
+                                                      
+                                                    </Card.Body>
+
+
+                                                </Card>
+                                                <Card.Footer>
+
+                                                </Card.Footer>
+
+                                            </Col>
+
+                                        </>
+                                    ))}
+                            </Row>
+                        </Container>
                 </CardGroup>
             </div>
         </>

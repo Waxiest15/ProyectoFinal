@@ -21,7 +21,14 @@ function Bought() {
 
   const [products, setProduct] = useState([]);
   useEffect(() => {//Get Neighborhoods from Laravel
-    axios.get(`http://localhost:80/ProyectoFinal/public/api/user_past_shopping/${user_id}`)
+    axios.get(`http://localhost:80/ProyectoFinal/public/api/user_past_shopping/${user_id}`,
+    {
+      headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
+      }
+  })
       .then(res => {
         console.log(res.data)
         setProduct(res.data)

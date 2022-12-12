@@ -1,21 +1,16 @@
 <?php
 
 use App\Http\Controllers\AddressController;
-use App\Http\Controllers\AddressUserController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BusinessController;
-use App\Http\Controllers\CellBusinessController;
 use App\Http\Controllers\CellUserController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NeighborhoodController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\StreetController;
-use App\Http\Controllers\PetController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\SpeciesBreedController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -38,9 +33,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Routes Users
-Route::post('/users',[UserController::class, 'show_users']);
+Route::post('/users', [UserController::class, 'show_users']);
 
-Route::post('/user_store',[UserController::class, 'store']);
+Route::post('/user_store', [UserController::class, 'store']);
 //Pa comprar
 
 
@@ -57,29 +52,17 @@ Route::post('/user_store',[UserController::class, 'store']);
 
 //User->Wishlist
 
-Route::delete('/user_quit_from_wishlist/{id}',[UserController::class, 'quit_from_wishlist']);
+Route::delete('/user_quit_from_wishlist/{id}', [UserController::class, 'quit_from_wishlist']);
 
-Route::post('/user_add_address',[UserController::class, 'add_address']);//Esta y la de abajo 
-Route::post('/user_show_addresss',[UserController::class, 'show_addresss']);
-Route::post('/user_show_pets',[UserController::class, 'show_pets']);
+Route::post('/user_add_address', [UserController::class, 'add_address']); //Esta y la de abajo 
+Route::post('/user_show_addresss', [UserController::class, 'show_addresss']);
+Route::post('/user_show_pets', [UserController::class, 'show_pets']);
 
-Route::post('/user_show_state',[UserController::class, 'show_state']);
+Route::post('/user_show_state', [UserController::class, 'show_state']);
 Route::post('/user_show_city', [UserController::class, 'show_city']);
 Route::post('/user_show_neighborhood', [UserController::class, 'show_neighborhood']);
 Route::post('/user_show_street', [UserController::class, 'show_street']);
 
-
-
-
-
-
-
-
-//Routes CellBusiness
-Route::post('/cellBusiness_store', [CellBusinessController::class, 'store']);
-Route::post('/cellBusiness_show', [CellBusinessController::class, 'show']);
-Route::post('/cellBusiness_update', [CellBusinessController::class, 'update']);
-Route::post('/cellBusiness_destroy', [CellBusinessController::class, 'destroy']);
 
 
 //Addressstore
@@ -88,36 +71,16 @@ Route::get('/address_test', [AddressController::class, 'test']);
 
 
 //State
-
 Route::post('/state_show_by_id_state', [StateController::class, 'show_by_id_state']);
 Route::post('/test', [StateController::class, 'test2']);
 
 
-
-
-
-//Pets
-Route::post('/pet_store', [PetController::class, 'store']);
-Route::post('/pet_destroy', [PetController::class, 'destroy']);
-Route::get('/pet_lost', [PetController::class, 'pet_lost']);
-
-//SpeciesBreeds
-Route::get('/species_show', [SpeciesBreedController::class, 'show']);
-
-
 //Products
 Route::post('/product_store', [ProductController::class, 'store']);
-
-
 Route::get('/product_show_cat', [ProductController::class, 'show_cat']);
 Route::get('/product_show_cat_3/{category_id}', [ProductController::class, 'show_cat_3']);
 
 
-
-//Business
-Route::post('/business_store', [BusinessController::class, 'store']);
-Route::get('/business_product_shows/{id}', [BusinessController::class, 'show_products']);
-Route::post('/business_store', [BusinessController::class, 'store']);
 
 //ShoppingCart
 Route::get('/inCart/{user_id}/{product_id}', [ShoppingCartController::class, 'inCart']);
@@ -128,17 +91,17 @@ Route::get('/inCart/{user_id}/{product_id}', [ShoppingCartController::class, 'in
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout.user');
 
-Route::get('/login', [AuthController::class, 'login'])->name('login'); 
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 
-Route::middleware('auth:api')->get('/details',[AuthController::class, 'getTaskList']); //To verify from middleware
+Route::middleware('auth:api')->get('/details', [AuthController::class, 'getTaskList']); //To verify from middleware
 
 Route::middleware('auth:api')->get('/user_id', function (Request $request) {
     return $request->user()->id;
 });
 
 // Route::middleware('auth:api')->group(function(){
-    
+
 
 // });
 
@@ -150,12 +113,36 @@ Route::middleware('auth:api')->get('/user_id', function (Request $request) {
 
 
 //Routes Auth
-Route::middleware('auth:api')->group(function(){
+Route::middleware('auth:api')->group(function () {
     //User
     Route::post('/user_add_image', [UserController::class, 'add_image']);
-    
-    
-    
+    Route::post('/user_add_wishlist_products', [UserController::class, 'add_wishlist_products']);
+    Route::post('/user_buy', [UserController::class, 'buy_products']);
+    Route::post('/user_add_shopping_cart_products', [UserController::class, 'add_shopping_cart_products']);
+    Route::get('/user_show_wishlist/{user_id}', [UserController::class, 'show_wishlist']);
+    Route::get('/user/{id}', [UserController::class, 'show_user']);
+    Route::get('/user_show_shopping_cart/{user_id}', [UserController::class, 'show_shopping_cart']);
+    Route::get('/user_past_shopping/{user_id}', [UserController::class, 'past_shopping']);
+
+    //Celluser
+    Route::delete('/cellUser_destroy/{cell_id}', [CellUserController::class, 'destroy']);
+    Route::get('/cellUser_show/{user_id}', [CellUserController::class, 'show']);
+    Route::post('/cellUser_store', [CellUserController::class, 'store']);
+    Route::post('/cellUser_update', [CellUserController::class, 'update']);
+
+    //Comments
+    Route::post('/make_comment', [CommentController::class, 'store_comment']);
+    Route::post('/update_comment', [CommentController::class, 'update']);
+    Route::delete('/comment_delete/{id}', [CommentController::class, 'delete_comment']);
+
+    //Wishlist
+    Route::delete('quit_from_wishlist/{id}', [WishlistController::class, 'delete_product']);
+    Route::delete('clear_wishlist/{id}', [WishlistController::class, 'clear_cart']);
+
+    //Shopping cart
+    Route::delete('quit_from_shopping_cart/{id}', [ShoppingCartController::class, 'delete_product']);
+    Route::delete('clear_cart/{id}', [ShoppingCartController::class, 'clear_cart']); 
+
 });
 
 
@@ -165,35 +152,20 @@ Route::middleware('auth:api')->group(function(){
 //Auth
 Route::post('/register', [AuthController::class, 'register']);
 
-//User
-Route::get('/user/{id}',[UserController::class, 'show_user']);
-Route::post('/user_add_wishlist_products',[UserController::class, 'add_wishlist_products']);
-Route::post('/user_buy',[UserController::class, 'buy_products']);
-Route::post('/user_add_shopping_cart_products',[UserController::class, 'add_shopping_cart_products']);
-Route::get('/user_show_wishlist/{user_id}', [UserController::class, 'show_wishlist']);
-Route::get('/user_show_shopping_cart/{user_id}',[UserController::class, 'show_shopping_cart']);
-Route::get('/user_past_shopping/{user_id}',[UserController::class, 'past_shopping']);
+
 
 //Address
-Route::delete('/delete_address/{address_id}', [AddressController::class, 'destroy']);
-Route::get('/address_user/{user_id}', [AddressController::class, 'show_u']);
 Route::post('/address_store', [AddressController::class, 'store']);
-
-//CellUser
-Route::delete('/cellUser_destroy/{cell_id}', [CellUserController::class, 'destroy']);
-Route::get('/cellUser_show/{user_id}', [CellUserController::class, 'show']);
-Route::post('/cellUser_store', [CellUserController::class, 'store']);
-Route::post('/cellUser_update', [CellUserController::class, 'update']);
+Route::delete('/delete_address/{address_id}', [AddressController::class, 'destroy']); //CHECK
+Route::get('/address_user/{user_id}', [AddressController::class, 'show_u']);
 
 //Products
 Route::get('/product_show_all', [ProductController::class, 'show']);
 Route::get('/product_show/{id}', [ProductController::class, 'show_specific']);
 
 //Comments
-Route::post('/make_comment', [CommentController::class, 'store_comment']);
-Route::post('/update_comment', [CommentController::class, 'update']);
 Route::get('/comment_show/{product_id}', [CommentController::class, 'show']);
-Route::delete('/comment_delete/{id}',[CommentController::class, 'delete_comment']);
+
 
 //State
 Route::get('/state_show', [StateController::class, 'show']);
@@ -207,11 +179,8 @@ Route::get('/neib_show', [NeighborhoodController::class, 'show']);
 //Street
 Route::get('/street_show', [StreetController::class, 'show']);
 
-//Wishlist
-Route::delete('quit_from_wishlist/{id}',[WishlistController::class, 'delete_product']);
-Route::delete('clear_wishlist/{id}',[WishlistController::class, 'clear_cart']); 
 
-//Shopping cart
-Route::delete('quit_from_shopping_cart/{id}',[ShoppingCartController::class, 'delete_product']);
-Route::delete('clear_cart/{id}',[ShoppingCartController::class, 'clear_cart']); 
+
+
+
 ///

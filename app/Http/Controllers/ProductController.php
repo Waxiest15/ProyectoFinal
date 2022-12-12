@@ -141,7 +141,6 @@ class ProductController extends Controller
                 'image' => $pro->image,
                 'deliverTime' => $pro->deliverTime,
                 'category_id' => Category::find($pro->category_id)->name,
-                'business_id' => Business::find($pro->business_id)->name
             ];
         }
         return response()->json($p);

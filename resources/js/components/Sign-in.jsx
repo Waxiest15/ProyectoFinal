@@ -120,6 +120,7 @@ function Signin() {
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Name</Form.Label>
             <Form.Control
+            title='Wrong input'
               name="name"
               type="text"
               maxLength={"100"}
@@ -184,7 +185,7 @@ function Signin() {
                 name="category"
                 onChange={(e) => setGender(e.target.value)}
               >
-                <option value="">Agrega tu género</option>
+                <option value="">Set your gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Nonbinary">Other</option>

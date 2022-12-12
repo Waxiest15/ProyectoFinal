@@ -44,42 +44,46 @@ function Login() {
       formData,
       { headers })
       .then(response => {
+
         console.log(response)
         sessionStorage.setItem('token', response.data.token);
-        //setUserLogged(true);
 
         sessionStorage.setItem('user', response.data.user.id);
-        //setUser(response.data.user);
 
         navigate("/ProyectoFinal/public/");
 
       }).catch(error => {
         console.log(error)
+        setFormOk(false);
         setTextError('Contraseña o correo incorrecto');
       });
   }
   return (
     <>
-      <div className="container d-flex justify-content-center">
-        <Card className="p-3 mt-5 login">
+      <Container className="container d-flex justify-content-center">
+        <Card className="p-3 mt-5 login w-50">
           <h5 className="text-center">Login</h5>
-
+          {!formOk && (<Alert key='danger' variant='danger'>{textError}</Alert>)}
           <Form onSubmit={login}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
+              title='Wrong email, try again'
                 type="email"
                 placeholder="Type your email"
                 value={formData.email}
                 name="email"
                 onChange={onChangeFormData}
+                required
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
+              title='Wrong password, check your credentials'
                 type="password"
+                required
                 placeholder="type your password"
                 value={formData.password}
                 name="password"
@@ -94,11 +98,11 @@ function Login() {
               </Button>
             </div>
             <div className="text-center">
-              <Form.Label className="mt-2">¿No tienes una cuenta? <Link to="/ProyectoFinal/public/signin"><span className='text-primary' role="button">Registrate</span></Link></Form.Label>
+              <Form.Label className="mt-2">You do not have an account? <Link to="/ProyectoFinal/public/signin"><span className='text-primary' role="button">Sign in</span></Link></Form.Label>
             </div>
           </Form>
         </Card>
-      </div>
+      </Container>
     </>
   );
 }

@@ -2,7 +2,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Row, Col, Image, Form, Alert } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Data from './JSONs/comments.json'
 import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
 import { useContext } from 'react'
@@ -16,6 +15,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 function Paypal(props) {
   const user_id = sessionStorage.getItem('user');
+  const token = sessionStorage.getItem('token');
   //hacer post de pastbuys
   const postBuy = async () => {
     if (e && e.preventDefault()) e.preventDefault(); e.preventDefault();
@@ -27,7 +27,8 @@ function Paypal(props) {
       {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
         }
       }
     ).then(response => {
@@ -53,6 +54,7 @@ function Paypal(props) {
 function EditComment(props) {
 
   //Other function
+  const token = sessionStorage.getItem('token');
   const [text, setText] = useState('');
   const postData = async (e) => {
     if (e && e.preventDefault()) e.preventDefault(); e.preventDefault();
@@ -65,7 +67,8 @@ function EditComment(props) {
       {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
         }
       }
     ).then(response => {
@@ -116,7 +119,8 @@ function ShowProduct() {
       {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
         }
       }
     ).then(response => {
@@ -146,7 +150,8 @@ function ShowProduct() {
       {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
         }
       }
     )
@@ -155,7 +160,14 @@ function ShowProduct() {
 
 
   const handleDelete = async (e) => {
-    await axios.delete(`http://localhost:80/ProyectoFinal/public/api/comment_delete/${e}`)
+    await axios.delete(`http://localhost:80/ProyectoFinal/public/api/comment_delete/${e}`,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then(response => {
         console.log("delete", response.data)
         window.location.reload(true);
@@ -176,7 +188,8 @@ function ShowProduct() {
       {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
         }
       }
     ).then(response => {
@@ -204,7 +217,8 @@ function ShowProduct() {
       {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
         }
       }
     ).then(response => {
@@ -279,10 +293,10 @@ function ShowProduct() {
     // setIsShown(true);
   };
 
-  
+
   const amounts = JSON.stringify(
     `${product.price}`
-    )
+  )
   return (
     <Container className='m-3'>
       <Card className='p-3 gap-3'>
@@ -308,24 +322,26 @@ function ShowProduct() {
               Units available: {product.amount}
             </Card.Text>
             {cart && (<Alert key='danger' variant='success'>Product added to Shopping Cart</Alert>)}
-            <Button variant="outline-primary" onClick={() => AddCart(product.id)} >Add to Shopping Cart <BsCart3 /> </Button>
-            
+            {(token) ?<Button variant="outline-primary" onClick={() => AddCart(product.id)} >Add to Shopping Cart <BsCart3 /> </Button> : <></>}
+
             <br />
             <br />
             {wish && (<Alert key='danger' variant='success'>Product added to Wishlist</Alert>)}
-            <Button variant="outline-primary" onClick={() => AddWishlist(product.id)}>Agregar a la Wishlist <AiOutlineStar /></Button>
+
+            {(token) ? <Button variant="outline-primary" onClick={() => AddWishlist(product.id)}>Add to Wishlist <AiOutlineStar /></Button> : <></>}
             <br />
-            <br/>
+            <br />
             {buy && (<Alert key='danger' variant='success'>Product bought</Alert>)}
-            <Button variant='outline-success' size="lg" onClick={() => PostBuy(product.id)} ><h5>Buy Product for {product.price}</h5><AiOutlineCreditCard/>  </Button>
+            {(token) ? <Button variant='outline-success' size="lg" onClick={() => PostBuy(product.id)} ><h5>Buy Product for {product.price}</h5><AiOutlineCreditCard />  </Button> : <></>}
             <br />
             <br />
-            <PayPalScriptProvider
+
+            {(token) ? <PayPalScriptProvider
               options={{ "client-id": "AYcwDoQW6grHeC8qKSjVp35vNRUvhOljz6lpx4ki8H-91IX_LvNlpmO4kewWra8d8wTAPbrZ9NC9g_nl" }}
             >
               <PayPalButtons
                 createOrder={(data, actions) => {
-                  
+
                   return actions.order.create({
                     purchase_units: [
                       {
@@ -342,7 +358,8 @@ function ShowProduct() {
                   alert("Transaction completed by " + name);
                 }}
               />
-            </PayPalScriptProvider>
+            </PayPalScriptProvider> : <></>}
+
           </Col>
 
         </Row>
@@ -414,7 +431,7 @@ function ShowProduct() {
 
         </Card>
       )}
-      <Card>
+      {(token) ? <Card>
         <Card.Header className="text-center">
           <h4>Add Comment</h4>
         </Card.Header>
@@ -428,7 +445,8 @@ function ShowProduct() {
             Make comment
           </Button>
         </Form>
-      </Card>
+      </Card> : <></>}
+     
     </Container>
   );
 }

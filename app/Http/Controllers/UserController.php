@@ -100,11 +100,6 @@ class UserController extends Controller
         return $user->shopingcart()->attach($request->product_id, ['date' => now()]);//Se agrega en la tabla shopingcart
     }
 
-    // public function quit_from_shopping_cart($product_id, $user_id){//Al usuario ingresar productos a su carrito
-    //     $user = User::find($user_id);//PROBAR
-    //     $user->shopingcart()->detach($product_id);
-    // }
-
     public function show_wishlist($user_id){
         $user = User::find($user_id);//PROBAR
         $p = [];
@@ -170,14 +165,6 @@ class UserController extends Controller
         return $user->wishlist()->attach($request->product_id, ['date' => now()]);//Se agrega en la tabla wishlists
     }
 
-    // public function quit_from_wishlist(Request $request){//Al usuario ingresar quitar cosas de su wishlist
-    //     $request->validate([//CHECAR
-    //         //'user_id' => 'required|numeric',
-    //         'product_id' => 'required|numeric',
-    //     ]);
-    //     $user = User::find($request->user_id);//PROBAR
-    //     $user->wishlist()->detach($request->product_id);
-    // }
 
     public function store(Request $request){
         $request->validate([
@@ -204,62 +191,7 @@ class UserController extends Controller
         $user -> save();
     }
 
-    // public function add_address(Request $request){
-    //     $request->validate([
-    //         'user_id' => 'required|numeric|min:1'
-    //     ]);
-    //     $request->validate([//CHECAR
-    //         //'user_id' => 'required|numeric',
-    //     ]);
-    //     $user = User::find($request->user_id);
-    //     $user->addressUser()->attach(app(AddressController::class)->last_address());
-    // }
-
-    // public function show_addresss(Request $request){
-    //     $request->validate([
-    //         'user_id' => 'required|numeric|min:1'
-    //     ]);        
-    //     $user = User::find($request->user_id);
-    //     $p = [];
-    //     foreach($user->addressUser as $add){
-    //         $p [] =[
-    //             'address_id' => $add->pivot->address_id,
-    //             'state_id' => State::find($add->state_id)->name,
-    //             'city_id' => City::find($add->city_id)->name,
-    //             'neighborhood_id' => Neighborhood::find($add->neighborhood_id)->name,
-    //             'street_id' => Street::find($add->street_id)->name
-    //         ];
-    //     }
-    //     return response()->json($p);
-    // }
-
-    public function show_pets(Request $request){
-        $request->validate([
-            'user_id' => 'required|numeric|min:1'
-        ]);
-        $pets = User::find($request->user_id);
-        $p = [];
-        
-        foreach($pets->pet as $pett){
-            $p [] = [
-                'name' => $pett->name,
-                'age' => $pett->age,
-                'color' => $pett->color,
-                'size' => $pett->size,
-                'description' => $pett->description,
-                'specie' => SpeciesBreed::find($pett->species_breed_id)->specie,
-                'breed' => SpeciesBreed::find($pett->species_breed_id)->breed,
-            ];
-        }
-        return  response()->json($p);
-    }
-
-    // public function store_image($request){
-    //     $newImageName = uniqid() . '-' . $request->title . '.' .
-    //     $request->image->extension();
-
-    //     return $request->image->move(public_path('imagesUser'), $newImageName);
-    // }
+   
 
     public function show_state(Request $request){
         $request->validate([
@@ -346,8 +278,6 @@ class UserController extends Controller
         $responseArray['name'] = $user->name;
         return response()->json($responseArray, 200);
     }
-    
-    
 
     public function showToken(){
         echo csrf_token();
