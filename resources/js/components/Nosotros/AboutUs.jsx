@@ -8,17 +8,17 @@ function AboutUs() {
         <Card className='mx-auto w-100'>
       <Card.Body>
         <Card.Title>PetWeb</Card.Title>
-        <Card.Subtitle className="mb-2">Mision</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Mission</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Ofrecer un servicio de atención de mascotas, y que deseen consentir y cuidarlos a los compañeros de una manera segura y confiable,
-         brindando atención especializada en tareas, como el aseo, o caminatas cuando los propietarios estén ocupados.
+        Offer a pet care service, and who wish to pamper and care for their companions in a safe and reliable way,
+         providing specialized attention to tasks, such as grooming, or walks when the owners are busy.
         </Card.Text>
 
         <Card.Subtitle className="mb-2">Vision</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Hacer crecer a la compañía, aumentar los servicios y su variedad, además de mejorar su potencia y calidad, abarcar nuestro servicio de 
-        atención a nuevos grupos de animales, como lo son aves, exótico y acuáticos, territorialmente llevar la idea PetWeb más allá de la ciudad 
-        de Aguascalientes.
+        Make the company grow, increase the services and their variety, as well as improve their power and quality, cover our service of
+         attention to new groups of animals, such as birds, exotic and aquatic, territorially take the PetWeb idea beyond the city
+         of Aguascalientes.
         </Card.Text>
 
         <Container >

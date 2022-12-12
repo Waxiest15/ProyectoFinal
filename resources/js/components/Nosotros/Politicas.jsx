@@ -6,118 +6,118 @@ function Politicas() {
     <Container className='p-5'>
         <Card className='mx-auto w-100'>
       <Card.Body>
-        <Card.Title>Terminos y condiciones</Card.Title>
-        <Card.Subtitle className="mb-2">Propiedad</Card.Subtitle>
+        <Card.Title>Terms and Conditions</Card.Title>
+        <Card.Subtitle className="mb-2">Property</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Esta página web es propiedad y está operado por PetWeb. Estos Términos establecen los términos y condiciones bajo los cuales tu puedes usar nuestra página web y servicios ofrecidos por nosotros. Esta página web ofrece a los visitantes
-        Comprar y/o vender productos relacionados al cuidado de mascota, a si mismo pedir y/o ofrecer servicios del mismo ambito.
-        Al acceder o usar la página web de nuestro servicio, usted aprueba que haya leído, entendido y aceptado estar sujeto a estos Términos:
-        ¿Quién puede usar tu página web; ¿Cuáles son los requisitos para crear una
+        This website is owned and operated by PetWeb. These Terms set out the terms and conditions under which you may use our website and services offered by us. This website offers visitors
+         Buy and/or sell products related to pet care, and request and/or offer services in the same field.
+         By accessing or using the web page of our service, you agree that you have read, understood and agree to be bound by these Terms:
+         Who can use your website? What are the requirements to create one?
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Creacion y uso de cuenta</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Creation and use of account</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Para usar nuestro página web y / o recibir nuestros servicios, debes tener al menos [agregar número] 
-        años de edad, o la mayoría de edad legal en tu jurisdicción, y poseer la autoridad legal, 
-        el derecho y la libertad para participar en estos Términos como un acuerdo vinculante. 
-        No tienes permitido utilizar esta página web y / o recibir servicios si hacerlo está prohibido 
-        en tu país o en virtud de cualquier ley o regulación aplicable a tu caso.
+        To use our website and/or receive our services, you must have at least [add number]
+         years of age, or the legal age of majority in your jurisdiction, and possess the legal authority,
+         the right and freedom to enter into these Terms as a binding agreement.
+         You are not allowed to use this website and/or receive services if doing so is prohibited
+         in your country or under any law or regulation applicable to you.
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Terminos de adquisicion de vienes</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Terms of acquisition of products</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Al comprar un artículo, aceptas que: (i) eres responsable de leer el listado completo del artículo antes de 
-        comprometerte a comprarlo: (ii) celebras un contrato legalmente vinculante para comprar un artículo 
-        cuando te comprometed a comprar un artículo y completar el proceso de check-out.
-        Los precios que cobramos por usar nuestros servicios / para nuestros productos se enumeran en  la página web. 
-        Nos reservamos el derecho de cambiar nuestros precios para los productos que se muestran en cualquier momento
-         y de corregir los errores de precios que pueden ocurrir inadvertidamente. Información adicional sobre precios e impuestos sobre las ventas está disponible en la página de pagos. 
+        By purchasing an item, you agree that: (i) you are responsible for reading the entire item listing prior to
+         commit to buy it: (ii) you enter into a legally binding contract to buy an item
+         when you commit to purchase an item and complete the check-out process.
+         The prices we charge for using our services / for our products are listed on the website.
+         We reserve the right to change our prices for the products displayed at any time.
+          and to correct pricing errors that may inadvertently occur. Additional pricing and sales tax information is available on the checkout page.
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Rembolsos y garantias</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Refunds and guarantees</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Para cualquier producto no dañado, simplemente devuélvelo  con los accesorios y el paquete incluidos junto con el recibo original 
-        (o recibo de regalo) dentro de los 14 días posteriores a la fecha que recibiste el producto, y lo cambiaremos o te ofreceremos un 
-        reembolso basado en el método de pago original . Además, ten en cuenta lo siguiente: (i) Los productos solo se pueden devolver en 
-        el país en el que se compraron originalmente; y (ii) los siguientes productos no son elegibles para la devolución: [lista de artículos].
+        For any undamaged product, simply return it with the included accessories and packaging along with the original receipt
+         (or gift receipt) within 14 days from the date you received the product, and we will exchange it or offer you a
+         refund based on original method of payment. In addition, please note the following: (i) Products can only be returned in
+         the country in which they were originally purchased; and (ii) the following products are not eligible for return: [item list].
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Retencion del derecha al cambio de oferta</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Retention of the right to change the offer</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Podemos, sin aviso previo, cambiar los servicios; dejar de proporcionar los servicios o cualquier característica de los servicios que 
-        ofrecemos; o crear límites para los servicios. Podemos  suspender de manera permanente o temporal el acceso a los servicios sin previo 
-        aviso ni responsabilidad por cualquier motivo, o sin ningún motivo.
+        We may, without prior notice, change the services; stop providing the services or any features of the services that
+         we offer; or create limits for services. We may permanently or temporarily suspend access to the Services without prior
+         notice or liability for any or no reason.
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Garantias y responsabilidad por servicios y productos</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Guarantees and responsibility for services and products</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Cuando recibimos un reclamo de garantía válido de un producto que vendemos, repararemos el defecto relevante o reemplazaremos el producto. 
-        Si no podemos reparar o reemplazar el producto dentro de un tiempo razonable, el cliente tendrá derecho a un reembolso total cuando nos 
-        devuelva el producto. Pagaremos el envío de los productos reparados o reemplazados al cliente y el cliente será responsable de devolvernos 
-        el producto.
+        When we receive a valid warranty claim for a product we sell, we will either repair the relevant defect or replace the product.
+        If we are unable to repair or replace the product within a reasonable time, the customer will be entitled to a full refund when we
+        return the product. We will pay for shipping the repaired or replaced products to the customer and the customer will be responsible for returning them to us.
+        the product.
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Posesión de propiedad intelectual, derechos de autor y logos.</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Ownership of intellectual property, copyrights and logos.</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        El Servicio y todos los materiales incluidos o transferidos, incluyendo, sin limitación, software, imágenes, texto, gráficos, logotipos, patentes, 
-        marcas registradas, marcas de servicio, derechos de autor, fotografías, audio, videos, música y todos los Derechos de Propiedad Intelectual 
-        relacionados con ellos, son la propiedad exclusiva de [Nombre del propietario dela página web]. Salvo que se indique explícitamente en este 
-        documento, no se considerará que nada en estos Términos crea una licencia en o bajo ninguno de dichos Derechos de Propiedad Intelectual, 
-        y tu aceptas no vender, licenciar, alquilar, modificar, distribuir, copiar, reproducir, transmitir, exhibir públicamente, realizar
-         públicamente, publicar, adaptar, editar o crear trabajos derivados de los mismos.
+        The Service and all materials included in or transferred, including, without limitation, software, images, text, graphics, logos, patents,
+        trademarks, service marks, copyrights, photographs, audio, videos, music and all Intellectual Property Rights
+        related to them, are the exclusive property of [Name of the owner of the web page]. Unless explicitly stated in this
+        document, nothing in these Terms shall be deemed to create a license in or under any such Intellectual Property Rights,
+        and you agree not to sell, license, rent, modify, distribute, copy, reproduce, transmit, publicly display, perform
+         publicly, publish, adapt, edit or create derivative works thereof.
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Derecho a suspender o cancelar la cuenta de usuario</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Right to suspend or cancel the user account</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Podemos terminar o suspender de manera permanente o temporal tu acceso al servicio sin previo aviso y responsabilidad por cualquier razón, 
-        incluso si a nuestra sola determinación tu violas alguna disposición de estos Términos o cualquier ley o regulación aplicable. 
-        Puedes descontinuar el uso y solicitar cancelar tu cuenta y / o cualquier servicio en cualquier momento. Sin perjuicio de lo contrario en 
-        lo que antecede, con respecto a las suscripciones renovadas automáticamente a los servicios pagados, dichas suscripciones se suspenderán 
-        solo al vencimiento del período correspondiente por el que ya has realizado el pago.
+        We may permanently or temporarily terminate or suspend your access to the Service without notice and liability for any reason,
+         even if in our sole determination you violate any provision of these Terms or any applicable law or regulation.
+         You may discontinue use and request to cancel your account and/or any service at any time. Notwithstanding the contrary in
+         the foregoing, with respect to automatically renewed subscriptions to paid services, such subscriptions will be suspended
+         only at the expiration of the corresponding period for which you have already made the payment.
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Indemnización</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Compensation</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Usted acuerda indemnizar y eximir de responsabilidad a [propietario del sitio web] de cualquier demanda, pérdida, responsabilidad, 
-        reclamación o gasto (incluidos los honorarios de abogados) que terceros realicen en tu contra como consecuencia de, o derivado de,
-         o en relación con tu uso de la página web o cualquiera de los servicios ofrecidos en la página web
+        You agree to indemnify and hold harmless [website owner] from any and all claims, losses, liabilities,
+         claim or expense (including legal fees) that third parties make against you as a result of, or derived from,
+          or in relation to your use of the website or any of the services offered on the website
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Limitacion de responsabilidad del propietario</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Limitation of Owner's Liability</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        En la máxima medida permitida por la ley aplicable, en ningún caso el [propietario de la página web] será responsable por daños indirectos, 
-        punitivos, incidentales, especiales, consecuentes o ejemplares, incluidos, entre otros, daños por pérdida de beneficios, buena voluntad,
-        uso, datos. u otras pérdidas intangibles, que surjan de o estén relacionadas con el uso o la imposibilidad de utilizar el servicio. 
-        En la máxima medida permitida por la ley aplicable, [el propietario la página web] no asume responsabilidad alguna por 
-        (i) errores, errores o inexactitudes de contenido; 
-        (ii) lesiones personales o daños a la propiedad, de cualquier naturaleza que sean, como resultado de tu acceso o uso de nuestro servicio; y 
-        (iii) cualquier acceso no autorizado o uso de nuestros servidores seguros y / o toda la información personal almacenada en los mismos.
+        To the fullest extent permitted by applicable law, in no event shall [website owner] be liable for consequential damages,
+         punitive, incidental, special, consequential, or exemplary damages, including, but not limited to, damages for lost profits, goodwill,
+         use, data. or other intangible losses, arising out of or related to the use of, or inability to use, the Service.
+         To the fullest extent permitted by applicable law, [website owner] assumes no responsibility for
+         (i) errors, errors or inaccuracies of content;
+         (ii) personal injury or property damage, of whatever nature, as a result of your access to or use of our service; Y
+         (iii) any unauthorized access to or use of our secure servers and/or any personal information stored.
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Derecha al cambio de terminos y condiciones</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Right to change terms and conditions</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Nos reservamos el derecho de modificar estos términos de vez en cuando a nuestra entera discreción. Por lo tanto,
-        debes revisar estas páginas periódicamente. Cuando cambiemos los Términos de una manera material, te notificaremos que se han realizado
-        cambios importantes en los Términos. El uso continuado de la página web o nuestro servicio después de dicho cambio constituye 
-        tu aceptación de los nuevos Términos. Si no aceptas alguno de estos términos o cualquier versión futura de los Términos, no uses o  
-        accedas (o continúes accediendo) a la página web o al servicio.
+        We reserve the right to modify these terms from time to time at our sole discretion. Therefore,
+         you should review these pages periodically. When we change the Terms in a material way, we will notify you that changes have been made.
+         material changes to the Terms. Your continued use of the Website or our Service after such change constitutes
+         your acceptance of the new Terms. If you do not agree to any of these terms or any future version of the Terms, do not use or
+         access (or continue to access) the website or the service.
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Emails con promociones y contenido</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Emails with promotions and content</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Acepta recibir de vez en cuando nuestros mensajes y materiales de promoción, por correo postal, correo electrónico o cualquier otro 
-        formulario de contacto que nos proporciones (incluido tu número de teléfono para llamadas o mensajes de texto). Si no deseas recibir 
-        dichos materiales o avisos de promociones, simplemente avísanos en cualquier momento.
+        You agree to receive our messages and promotional materials from time to time, by postal mail, email or any other
+         contact form that you provide us (including your phone number for calls or text messages). If you do not wish to receive
+         such promotional materials or notices, simply let us know at any time.
         </Card.Text>
 
-        <Card.Subtitle className="mb-2">Preferencia de la ley y resolucion de disputas</Card.Subtitle>
+        <Card.Subtitle className="mb-2">Preference of law and dispute resolution</Card.Subtitle>
         <Card.Text style={{textAlign: 'justify'}}>
-        Estos Términos, los derechos y recursos provistos aquí, y todos y cada uno de los reclamos y disputas relacionados con este y / o 
-        los servicios, se regirán, interpretarán y aplicarán en todos los aspectos única y exclusivamente de conformidad con las leyes 
-        sustantivas internas de [ Nombre del país / estado], sin respeto a sus principios de conflicto de leyes. Todos los reclamos y disputas 
-        se presentarán y usted acepta que sean decididos exclusivamente por un tribunal de jurisdicción competente ubicada en 
-        [Nombre de la ciudad de los tribunales]. La aplicación de la Convención de Contratos de las Naciones Unidas para la Venta Internacional 
-        de Bienes queda expresamente excluida.
+        These Terms, the rights and remedies provided herein, and any and all claims and disputes related to this and/or
+         the services will be governed, interpreted and applied in all aspects solely and exclusively in accordance with the laws
+         internal substantive laws of [Name of country / state], without regard to its principles of conflict of laws. All claims and disputes
+         will be filed and you agree that they will be decided exclusively by a court of competent jurisdiction located at
+         [Name of the city of the courts]. The application of the United Nations Convention of Contracts for International Sales
+         of Goods is expressly excluded.
         </Card.Text>
 
 

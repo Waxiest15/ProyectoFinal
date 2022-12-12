@@ -16,6 +16,7 @@ import {
     Twitter,
     Envelope,
     Star,
+    Bag
 } from "react-bootstrap-icons";
 import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
@@ -53,8 +54,9 @@ const Footer = () => (
                             </Form.Label>
                         </li>
                         <li>
-                            <Form.Label as={Link} to="test">
-                                Za hando!!!
+                            <Form.Label as={Link} 
+                            to="bussiness">
+                                Become a distribuitor
                             </Form.Label>
                         </li>
                     </ul>
@@ -114,31 +116,9 @@ function NavBar() {
                     <Navbar.Brand as={Link} to="/ProyectoFinal/public/">
                         PetWeb
                     </Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link className="d-flex">
-                            <NavDropdown
-                                title="Services"
-                                id="collasible-nav-dropdown"
-                            >
-                                <NavDropdown.Item as={Link} to="paseo">
-                                    Take a walk
-                                </NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="aseo">
-                                    Baths
-                                </NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="estetica">
-                                    Estetic
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item>Nutrition</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="lostPet">
-                                    Pet Loss
-                                </NavDropdown.Item>
-                                <NavDropdown.Item>Mortuary</NavDropdown.Item>
-                                <NavDropdown.Item>Veterinary</NavDropdown.Item>
-                                <NavDropdown.Item>Stay</NavDropdown.Item>
-                            </NavDropdown>
-                            <Form className="d-flex ms-3">
+                    <Nav className="me-auto w-50" >
+                        <Nav.Link className="d-flex w-100">
+                            <Form className="d-flex ms-3 w-75">
                                 <Form.Control
                                     onChange={(e) =>
                                         setSearch(e.target.value.toString())
@@ -162,19 +142,20 @@ function NavBar() {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-3 gap-3 ms-auto">
-                            <Nav.Link>
+                            <Nav.Link className="m-0">
                                 <Button
                                     variant="Link"
-                                    className="text-light d-flex align-items-center gap-2"
+                                    className="text-light d-flex align-items-center gap-2 ps-0"
                                     as={Link}
-                                    to="bussiness"
+                                    to="admin"
                                 >
-                                    My bussiness
+                                    Admin
                                     <Shop color="white" />
                                 </Button>
                             </Nav.Link>
                             <Nav.Link className="d-flex gap-1">
                                 <NavDropdown
+                                
                                     className="justify-content-center"
                                     title="User"
                                     id="basic-nav-dropdown"
@@ -212,11 +193,21 @@ function NavBar() {
                                 >
                                     <Cart />
                                 </Button>
-                                <Button className="me-2">
+                                <Button
+                                    className="me-2"
+                                    as={Link}
+                                    to="wishlist"
+                                >
                                     <Star />
                                 </Button>
-                                <Button>
-                                    <Bell />
+                                <Button
+                                    className="me-2"
+                                    as={Link}
+                                    to="boughts"
+                                    
+                                >
+                                    <Bag/>
+                                    
                                 </Button>
                             </Nav.Link>
                         </Nav>

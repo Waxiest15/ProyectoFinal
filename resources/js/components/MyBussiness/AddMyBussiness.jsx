@@ -28,7 +28,7 @@ function Test() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        send("service_1apb3ca", "template_bjb4bgr", toSend, "_22Q-TAjQCCZvZ5Gg")
+        send("service_xdeuyhm", "template_bjb4bgr", toSend, "_22Q-TAjQCCZvZ5Gg")
             .then((response) => {
                 console.log("SUCCESS!", response.status, response.text);
             })
@@ -136,50 +136,6 @@ function Map() {
     );
 }
 
-function Distribuidor() {
-    return (
-        <Card className="p-3 w-75 ms-auto me-auto">
-            <Card.Header className="text-center">
-                <h1>Distribuidor</h1>
-            </Card.Header>
-            <Form>
-                <Form.Group>
-                    <Form.Label>Nombre de la empresa</Form.Label>
-                    <Form.Control
-                        placeholder="Escribe el correo de la empresa"
-                        type="email"
-                        maxLength={100}
-                        required
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Nombre de la empresa</Form.Label>
-                    <Form.Control
-                        placeholder="Escribe el nombre de la empresa"
-                        required
-                        maxLength={100}
-                        pattern="[A-Za-z]{1,100}"
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Telefono de contacto</Form.Label>
-                    <Form.Control placeholder="Telefono" required type="tel" />
-                </Form.Group>
-
-                <Form.Group>
-                    <Form.Label>Mensaje</Form.Label>
-                    <Form.Control type="text" required as="textarea" rows={7} />
-                </Form.Group>
-                <Container className="text-center">
-                    <Button className="w-25" variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Container>
-            </Form>
-        </Card>
-    );
-}
 
 function MyBussines() {
     const [file, setFile] = useState();
@@ -280,28 +236,9 @@ function BussinessForm() {
     return (
         <>
             <Container className="p-5">
-                <Form.Group className="w-75 ms-auto me-auto mb-5">
-                    <Form.Label>
-                        {" "}
-                        <h3>What kind of register de you want?</h3>{" "}
-                    </Form.Label>
-                    <Form.Select
-                        aria-label="Default select example"
-                        id="tipoNegocio"
-                        name="tipoNegocio"
-                        onChange={whichMenu}
-                    >
-                        <option value="0">
-                            Choose register type
-                        </option>
-                        <option value="1">My business</option>
-                        <option value="2">As a distribuitor</option>
-                    </Form.Select>
-                </Form.Group>
+                
 
-                <div>
-                    {message == "1" ? <MyBussines></MyBussines> : <Test />}
-                </div>
+                <Test />
             </Container>
         </>
     );
