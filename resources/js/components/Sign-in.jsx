@@ -91,11 +91,11 @@ function Signin() {
         // console.log(response.data)
         // let tokenForm = response.data.token;//obtener token 
         // sessionStorage.setItem('token', tokenForm)//guardan token 
-        localStorage.setItem('user', response.data.user_id)
+        // localStorage.setItem('user', response.data.user_id)
 
-        localStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('token', response.data.token);
 
-        localStorage.setItem('user', response.data.user);
+        sessionStorage.setItem('user', response.data.user.id);
         //setUser(response.data.user);
 
         console.log('test->',response.data.token);

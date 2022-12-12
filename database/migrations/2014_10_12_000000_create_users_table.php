@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('last_name', 100);
             $table->string('last_name2', 100);
+            $table->boolean('admin')->default(false);
             $table->date('birth');
             $table->string('gender', 100);
             $table->string('email', 100)->unique();
             $table->string('password', 100);
-            $table->string('image')->nullable();
+            $table->string('image')->default('images/default.png');
             $table->rememberToken();
             $table->timestamps();
         });

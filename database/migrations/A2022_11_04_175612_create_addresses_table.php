@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('neighborhood_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('street_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('business_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('number');
             $table->timestamps();

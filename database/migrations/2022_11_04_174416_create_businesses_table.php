@@ -13,18 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('businesses', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100)->unique();
-            $table->text('description');
-            $table->string('email', 100)->unique();
-            $table->boolean('distributor')->default(0);
-            $table->float('rate');
-            $table->string('password', 100); 
-            $table->string('image');           
-            $table->json('location_api')->nullable();
-            $table->timestamps();
-        });
+        
     }
 
     /**
