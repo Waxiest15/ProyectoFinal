@@ -23,7 +23,7 @@ return new class extends Migration
             $table->float('rate')->default(3);
             $table->integer('amount')->nullable();
             $table->boolean('enable')->default(true);
-            $table->string('image')->nullable();
+            $table->string('image')->default('images/defaultProduct.png');
             $table->integer('deliverTime');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
